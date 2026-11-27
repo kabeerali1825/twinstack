@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"findings\": [{\"option_id\": \"c1.r1a1\", \"rule_id\": \"container-apps-scale-to-zero-cold-start\", \"reason\": \"The alternative scales to zero overnight, so the first request after the quiet period waits for a replica to cold start, which the tradeoffs note acknowledges but the plan does not avoid.\"}, {\"option_id\": \"c1.r1a1\", \"rule_id\": \"residency-allowed-regions\", \"reason\": \"The cheapest region for this alternative is francecentral, which is in the allowed list, but the stated deployment is West Europe and the plan lists it as West Europe, so no violation; this flag is withdrawn.\"}, {\"option_id\": \"c3.r1a1\", \"rule_id\": \"postgres-burstable-no-ha\", \"reason\": \"The alternative uses Burstable B2s, which the 2,000-user peak-load workload is likely to exhaust, and the Burstable tier cannot provide the high availability the stated business-hours workload may need.\"}, {\"option_id\": \"c3.orig\", \"rule_id\": \"advice\", \"reason\": \"A 4 vCore General Purpose SQL database fits a relational, join-heavy line-of-business workload well, so no misfit is flagged.\"}]}",
+ "cost": 0.0005603
+}

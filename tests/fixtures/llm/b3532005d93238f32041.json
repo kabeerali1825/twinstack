@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"rejections\": [{\"option_id\": \"c4.r1a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"The original Premium P1 cache is replaced with a Standard C2, but the stated alternative also notes that C2 is 2.5 GB, not 6 GB, and offers no persistence or VNet injection, which the Premium tier provides; the alternative as described mismatches capacity and also loses premium-only features the original relied on.\"}]}",
- "cost": 0.0003999
-}

@@ -49,11 +49,13 @@ Rules:
   Redis like "C1" or "P1". null if not stated.
 - quantity: instance or node count (default 1).
 - region: an armRegionName like "westeurope" or "eastus". null if not stated.
-- details: short words on anything else that affects price or fit: tier (General Purpose, Premium, serverless, Burstable),
-  OS, storage GB, HA / zone redundancy, always-on vs spiky, traffic.
+- details: what is deployed TODAY, as stated in the input: tier (General Purpose, Premium, serverless, Burstable),
+  OS, storage GB, whether HA / zone redundancy is configured, always-on vs spiky, traffic. Facts only: never put a
+  requirement here ("HA required" goes in notes, not details) and never add your own opinion about the setup.
 - confidence: "low" when you guessed the service, size or count; "medium" when partly stated.
 - region_group: one of %(groups)s if the text names a residency rule or area (e.g. "EU only" -> "EU"); else null.
-- notes: requirements stated in the text (residency, uptime / HA, traffic shape, team skills), one short line."""
+- notes: requirements stated in the text (residency, uptime / HA, traffic shape, team skills), one short line,
+  in the input's own terms. Don't judge whether today's setup meets them; a reviewer does that later."""
 
 
 def rules() -> str:

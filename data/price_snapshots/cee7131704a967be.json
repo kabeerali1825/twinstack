@@ -1,0 +1,237 @@
+{
+ "filter": "serviceName eq 'Azure Database for PostgreSQL' and skuName eq 'B2S' and (armRegionName eq 'francecentral' or armRegionName eq 'germanywestcentral' or armRegionName eq 'italynorth' or armRegionName eq 'northeurope' or armRegionName eq 'polandcentral' or armRegionName eq 'spaincentral' or armRegionName eq 'swedencentral' or armRegionName eq 'westeurope' or armRegionName eq 'Global')",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2021-06-01T00:00:00Z",
+   "meterId": "2e345945-22c2-5a5e-b40d-f532206e8cfc",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/003F",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.06368,
+     "retailPrice": 0.06368,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.076,
+   "unitPrice": 0.076,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2021-06-01T00:00:00Z",
+   "meterId": "5c3de9c5-aa87-58db-a93c-a9506eaf1874",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/003H",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0608,
+     "retailPrice": 0.0608,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.072,
+   "unitPrice": 0.072,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2021-06-01T00:00:00Z",
+   "meterId": "62ccbc9b-c01e-5a84-94d8-2863e74d8a93",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/0039",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0576,
+     "retailPrice": 0.0576,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2021-06-01T00:00:00Z",
+   "meterId": "f072c78a-31c7-5c89-a820-259bb2b39f30",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/003M",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.06368,
+     "retailPrice": 0.06368,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0398,
+   "unitPrice": 0.0398,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-12-01T00:00:00Z",
+   "meterId": "5feecacb-9662-5e2d-95a4-63f2e7e3a1d6",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/005S",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.03184,
+     "retailPrice": 0.03184,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "27e33e6e-4465-5cc0-9c28-75f3aeade557",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/00Q6",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.06368,
+     "retailPrice": 0.06368,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "c31c490b-d813-5f42-af15-9d2b434f8307",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/00SJ",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.06368,
+     "retailPrice": 0.06368,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "3552d3d0-25a7-5858-94e7-460caa13f95f",
+   "meterName": "B2S",
+   "productId": "DZH318Z0DCRL",
+   "skuId": "DZH318Z0DCRL/00M4",
+   "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+   "skuName": "B2S",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "B2S",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.06368,
+     "retailPrice": 0.06368,
+     "term": "1 Year"
+    }
+   ]
+  }
+ ]
+}

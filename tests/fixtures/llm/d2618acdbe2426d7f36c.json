@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"rejections\": [{\"option_id\": \"c4.r2a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"The original Premium P1 cache is being replaced with a Standard C3 tier, which lacks data persistence and VNet injection; the case does not clearly require these features, so this alternative breaks no rule and should not be rejected on that basis alone.\"}]}",
- "cost": 0.0001705
-}

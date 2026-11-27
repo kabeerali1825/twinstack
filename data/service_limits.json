@@ -114,6 +114,14 @@
    "verified": false
   },
   {
+   "id": "ha-required-not-configured",
+   "services": ["Azure Database for PostgreSQL", "Azure Database for MySQL"],
+   "applies_to": "Flexible Server without high availability enabled",
+   "fact": "High availability is an option you turn on: it adds a standby server (in another zone for zone-redundant HA) and roughly doubles compute cost. A server without it does not meet a requirement for high or zone-redundant availability.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-high-availability",
+   "verified": false
+  },
+  {
    "id": "mysql-burstable-no-ha",
    "services": ["Azure Database for MySQL"],
    "applies_to": "Flexible Server, Burstable tier",

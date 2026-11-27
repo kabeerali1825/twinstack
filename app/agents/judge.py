@@ -36,6 +36,8 @@ saves at least 5%% of the bill on its own.
 - Safest: smallest change from today (same services; only newer or cheaper SKUs and/or a cheaper allowed region).
   It should still save money when a low-risk saving exists. Region "%(home)s" means each component stays where it is.
 An option with "also_replaces" makes those components unnecessary; if you pick it, they are dropped.
+"issues_in_todays_design" lists components whose current setup breaks a requirement: their original is not offered,
+so every plan (Safest too) picks one of their fixes ("fixes_todays_issue"). Say so in the summary when it applies.
 Pick, for every component, an option that is priced in the plan's region.
 The picks in one plan must work together. Don't combine an option that relies on another component's tier with a
 pick that removes it (e.g. Event Hubs Capture needs the Event Hubs namespace on Standard or higher, so never pair
@@ -130,10 +132,13 @@ def _worth_moving(stay: list[PlanItem], moved: list[PlanItem], home: str, region
     return home, ""
 
 
-def _guard(state: RunState, comps, table, chosen: dict[str, str], region: str, name: str, log=False) -> dict[str, str]:
-    """Never keep an alternative that costs more than the original in the plan's region."""
+def _guard(state: RunState, comps, table, chosen: dict[str, str], region: str, name: str, log=False,
+           skip: frozenset = frozenset()) -> dict[str, str]:
+    """Never keep an alternative that costs more than the original in the plan's region (except fixes: `skip`)."""
     chosen = dict(chosen)
     for c in comps:
+        if c.id in skip:
+            continue
         where = c.region if region == HOME else region
         alt, orig = table[chosen[c.id]].get(where), table[f"{c.id}.orig"].get(where)
         if not state.option(chosen[c.id]).also_replaces and alt is not None and orig is not None and alt > orig:
@@ -154,26 +159,49 @@ def run(state: RunState) -> None:
     originals = {c.id: f"{c.id}.orig" for c in comps}
     baseline_items = _assemble(state, comps, table, HOME, originals)
     baseline = round(sum(i.monthly_cost for i in baseline_items), 2)
+
+    # Today's components that break a rule can't stay in any plan once a fix exists: plans use `ptable`, which
+    # drops those originals, and start from `defaults` (the cheapest fix at home for each, else the original).
+    issues = {i.component_id: i for i in state.issues if i.kind == "rule"}
+    fixable = frozenset(cid for cid in issues if cid in originals and any(
+        o.component_id == cid and not o.is_original and o.id in table for o in state.options))
+    ptable = {k: v for k, v in table.items() if k not in {f"{cid}.orig" for cid in fixable}}
+    defaults = dict(originals)
+    for c in comps:
+        if c.id in fixable:
+            fixes = [o.id for o in state.options if o.component_id == c.id and c.region in ptable.get(o.id, {})]
+            if fixes:
+                defaults[c.id] = min(fixes, key=lambda oid: ptable[oid][c.region])
+    fixed_items = _assemble(state, comps, ptable, HOME, defaults) if fixable else None
+    state.fixed_total = round(sum(i.monthly_cost for i in fixed_items), 2) if fixed_items else 0
+    if fixed_items:
+        state.log("Judge", "output", f"Fixing today's design: ${baseline:,.2f} -> ${state.fixed_total:,.2f}/mo "
+                                     f"({len(fixable)} component(s) changed to meet the requirements)")
+    fallback_items = fixed_items or baseline_items
+
     allowed = state.constraints.allowed_regions
     regions = [HOME, *allowed]
     home = Counter(c.region for c in comps).most_common(1)[0][0]
-    best = _cheapest(state, comps, table, allowed)
-    stay = _cheapest(state, comps, table, [home]) if home in allowed else None
+    best = _cheapest(state, comps, ptable, allowed)
+    stay = _cheapest(state, comps, ptable, [home]) if home in allowed else None
     cheap_note = ""
     if best and stay and best[0] != home:
         moved_to, cheap_note = _worth_moving(stay[3], best[3], home, best[0])
         best = best if moved_to == best[0] else stay
-    cheap_region, cheap_chosen, _, cheap_items = best or stay or (HOME, originals, baseline, baseline_items)
+    cheap_region, cheap_chosen, _, cheap_items = best or stay or (HOME, defaults, 0, fallback_items)
 
     choices = [{"component_id": c.id, "home_region": c.region, "options": [
-        {"option_id": o.id, "original": o.is_original, "service": o.service, "sku": o.sku, "details": o.details,
-         "tradeoffs": o.tradeoffs, "also_replaces": o.also_replaces, "usd_per_month_by_region": table[o.id]}
-        for o in state.options if o.component_id == c.id and o.id in table]} for c in comps]
+        {"option_id": o.id, "original": o.is_original, "fixes_todays_issue": c.id in fixable and not o.is_original,
+         "service": o.service, "sku": o.sku, "details": o.details,
+         "tradeoffs": o.tradeoffs, "also_replaces": o.also_replaces, "usd_per_month_by_region": ptable[o.id]}
+        for o in state.options if o.component_id == c.id and o.id in ptable]} for c in comps]
     state.log("Judge", "start", f"Building plans for {len(comps)} components; cheapest single region is {cheap_region}")
     out = llm.chat_json(
         [{"role": "system", "content": SYSTEM % {"home": HOME}},
          {"role": "user", "content": json.dumps({
-             "requirements": state.constraints.notes, "regions": regions, "components": choices,
+             "requirements": state.constraints.notes, "regions": regions,
+             "issues_in_todays_design": [{"component_id": cid, "problem": issues[cid].reason} for cid in fixable],
+             "components": choices,
              "cheapest_plan_by_code": {"region": cheap_region, "options": cheap_chosen}}, indent=1)}],
         _Out, state, smart=True, max_tokens=1500)
 
@@ -185,27 +213,29 @@ def run(state: RunState) -> None:
             items, region, note = cheap_items, cheap_region, cheap_note
         else:
             region = p.region if p and p.region in regions else HOME
-            chosen = {**originals, **{k: v for k, v in (p.options if p else {}).items()
-                                      if k in originals and v in table and state.option(v).component_id == k}}
+            chosen = {**defaults, **{k: v for k, v in (p.options if p else {}).items()
+                                     if k in originals and v in ptable and state.option(v).component_id == k}}
+            guard = lambda where, log=False: _guard(state, comps, table, chosen, where, name, log, skip=fixable)
             if region not in (HOME, home) and home in allowed:
-                stay = _assemble(state, comps, table, home, _guard(state, comps, table, chosen, home, name))
-                moved = _assemble(state, comps, table, region, _guard(state, comps, table, chosen, region, name))
+                stay = _assemble(state, comps, ptable, home, guard(home))
+                moved = _assemble(state, comps, ptable, region, guard(region))
                 if stay and moved:
                     region, note = _worth_moving(stay, moved, home, region)
-            # Use the Judge's region if every choice is sold there; else the same choices at home; else today's setup.
+            # Use the Judge's region if every choice is sold there; else the same choices at home; else today's
+            # setup (with its required fixes).
             items = None
             for where in dict.fromkeys([region, home if home in allowed else region, HOME]):
-                items = _assemble(state, comps, table, where, _guard(state, comps, table, chosen, where, name))
+                items = _assemble(state, comps, ptable, where, guard(where))
                 if items:
                     if where != region:
                         state.log("Judge", "warn", f"{name}: not every choice is sold in {region}; using {where}")
                         note = ""
                     region = where
-                    _guard(state, comps, table, chosen, region, name, log=True)
+                    guard(region, log=True)
                     break
             if items is None:
                 state.log("Judge", "warn", f"{name}: choices not sold together in any region; using today's setup")
-                items, region, note = baseline_items, HOME, ""
+                items, region, note = fallback_items, HOME, ""
         total = round(sum(i.monthly_cost for i in items), 2)
         savings = round(baseline - total, 2)
         state.plans.append(Plan(name=name, region=region, items=items, monthly_total=total, savings=savings,

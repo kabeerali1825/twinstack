@@ -269,7 +269,7 @@ function compareRow(it) {
   const o = opt(it.option_id), twin = it.replaced_by ? null : cand(it.option_id, it.region);
   const covers = o.also_replaces.map((id) => comp(id)).filter(Boolean).map((x) => x.service).join(", ");
   const planSub = it.replaced_by ? `Covered by ${label(o)}`
-    : !o.is_original ? `${label(o)} in ${region(it.region)}${covers ? `, also replaces ${covers}` : ""}`
+    : !o.is_original ? `${o.is_fix ? "Fix: " : ""}${label(o)} in ${region(it.region)}${covers ? `, also replaces ${covers}` : ""}`
     : it.region !== c.region ? `Same, moved to ${region(it.region)}` : "Same";
   const delta = it.monthly_cost - todayCost;
   const detail = h("tr", { class: "detail", hidden: true },
@@ -291,12 +291,30 @@ function compareRow(it) {
 
 function renderResults() {
   const plans = S.plans, plan = plans[Math.min(planIdx, plans.length - 1)], orig = S.original_total;
+  const ruleIssues = (S.issues || []).filter((i) => i.kind === "rule");
+  // Lean: even the Cheapest plan saves nothing and nothing needed fixing, so say so plainly.
+  const lean = plans[0].savings <= 0.005 && !ruleIssues.length;
+  const tried = S.options.filter((o) => !o.is_original).length;
+  const headline = lean ? "Your design is already lean"
+    : plan.savings > 0.005 ? h("span", { class: "save" }, `Save ${money(plan.savings)} a month`)
+    : plan.savings < -0.005 ? `Meeting your requirements adds ${money(-plan.savings)} a month` : "No saving in this plan";
+  const sub = lean
+    ? `No cheaper option passed the checks: ${tried} ${tried === 1 ? "alternative was" : "alternatives were"} priced `
+      + `in ${S.constraints.allowed_regions.length} regions. Each one, and why it was turned down, is listed below.`
+    : plan.savings > 0.005
+    ? `${plan.name} plan: ${plan.savings_pct}% less than today, about ${money(plan.savings * 12)} a year`
+      + (ruleIssues.length ? `, with today's ${ruleIssues.length === 1 ? "problem" : "problems"} fixed.` : ".")
+    : plan.savings < -0.005 ? `Today's design doesn't meet its requirements; this ${plan.name.toLowerCase()} plan fixes it.`
+    : `${plan.name} plan keeps today's setup.`;
   const summary = h("div", { class: "card summary" },
     h("div", {},
-      h("h1", { id: "results-h" }, plan.savings > 0 ? h("span", { class: "save" }, `Save ${money(plan.savings)} a month`) : "No saving in this plan"),
-      h("p", {}, plan.savings > 0
-        ? `${plan.name} plan: ${plan.savings_pct}% less than today, about ${money(plan.savings * 12)} a year.`
-        : `${plan.name} plan keeps today's setup.`),
+      h("h1", { id: "results-h" }, headline),
+      h("p", {}, sub),
+      S.fixed_total ? h("p", {}, (() => {
+        const d = S.fixed_total - plan.monthly_total;
+        return `Compared with just fixing today's design (${money(S.fixed_total)} a month), this plan `
+          + (Math.abs(d) < 0.005 ? "costs the same." : d > 0 ? `saves ${money(d)} a month.` : `costs ${money(-d)} more a month.`);
+      })()) : null,
       S.saved ? h("p", {}, `Saved example, recorded ${new Date(S.timeline[0].t * 1000).toLocaleDateString()} with live prices.`) : null),
     h("dl", { class: "figs" },
       h("div", {}, h("dt", {}, "Today"), h("dd", {}, money(orig))),
@@ -334,7 +352,35 @@ function renderResults() {
 
   const imgCard = S.demo_image ? h("div", { class: "card section" }, h("h2", {}, "Diagram analyzed"),
     h("img", { class: "figure", src: S.demo_image, alt: "The diagram that was analyzed" })) : null;
-  $("results").replaceChildren(...[summary, planCard, rejCard, imgCard, actions].filter(Boolean));
+
+  // Problems in TODAY's design, found by the Skeptic. Rule issues are fixed in every plan; advice is shown only.
+  // No rule issues + a completed check = a visible pass, not silence.
+  const issues = S.issues || [];
+  const passed = !ruleIssues.length && S.fit_rules_checked > 0;
+  const fixCard = passed ? h("div", { class: "card section fit-pass" },
+    h("h2", {}, "Fit check passed"),
+    h("p", {}, `Today's design meets the stated requirements: ${S.fit_rules_checked} `
+      + `${S.fit_rules_checked === 1 ? "rule" : "rules"} checked, no problems found.`),
+    issues.length ? [h("p", { class: "muted" }, "A few things worth a look, not required:"),
+      h("ul", { class: "issues" }, issues.map((i) => {
+        const c = comp(i.component_id);
+        return h("li", { class: "advice" }, h("span", { class: "who" }, c ? label(c) : i.component_id), " ", i.reason);
+      }))] : null)
+  : issues.length ? h("div", { class: "card section fix-first" },
+    h("h2", {}, ruleIssues.length
+      ? `Today's design has ${ruleIssues.length} ${ruleIssues.length === 1 ? "problem" : "problems"} to fix first`
+      : "Things to check in today's design"),
+    ruleIssues.length && S.fixed_total ? h("p", { class: "muted" },
+      `Fixing ${ruleIssues.length === 1 ? "it" : "them"} takes today's ${money(orig)} to ${money(S.fixed_total)} a month `
+      + `(${signed(S.fixed_total - orig).replace("−", "-")}). Every plan below includes the ${ruleIssues.length === 1 ? "fix" : "fixes"}.`) : null,
+    h("ul", { class: "issues" }, issues.map((i) => {
+      const c = comp(i.component_id);
+      return h("li", { class: i.kind },
+        h("span", { class: "who" }, c ? label(opt(`${c.id}.orig`) || c) : i.component_id), " ", i.reason, " ",
+        i.kind === "rule" ? h("a", { href: i.source_url, target: "_blank", rel: "noopener" }, "Rule source")
+          : h("span", { class: "tag" }, "Advice, not enforced"));
+    }))) : null;
+  $("results").replaceChildren(...[summary, fixCard, planCard, rejCard, imgCard, actions].filter(Boolean));
 }
 
 async function openDemo(name) {

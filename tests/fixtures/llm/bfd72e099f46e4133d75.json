@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"options\": [{\"option_id\": \"c4.r2a1\", \"meters\": [{\"index\": 0, \"count\": 1, \"count_means\": \"instances\", \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard C3 (6 GB) single-replica cache, always on, billed per hour for the whole month (730 hours); C3 is the closest Standard tier size to the 6 GB Premium P1 today\"}], \"problem\": \"\"}]}",
- "cost": 0.0003983
-}

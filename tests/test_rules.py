@@ -32,6 +32,41 @@ def test_usage_amounts_are_plain_counts():
         == __import__("pytest").approx(1_000_000)
 
 
+def test_fit_review_fixes_todays_design_even_if_it_costs_more(monkeypatch):
+    """Today: PostgreSQL Burstable ($30) while the requirements need HA. The only fix ($300) costs more:
+    it must survive the cost check, and every plan must use it instead of the broken original."""
+    from app import llm
+    from app.agents import judge, skeptic
+    from app.models import Candidate, Component, Constraints, RunState
+
+    s = RunState(step="skeptic", constraints=Constraints(allowed_regions=["westeurope"], notes="Zone-redundant HA required"))
+    s.components = [Component(id="c1", service="Azure Database for PostgreSQL", sku="B2s", region="westeurope")]
+    s.options = [
+        Option(id="c1.orig", component_id="c1", service="Azure Database for PostgreSQL", sku="B2s", is_original=True,
+               priced=True, scouted=True),
+        Option(id="c1.r1a1", component_id="c1", service="Azure Database for PostgreSQL", sku="2 vCore", priced=True,
+               scouted=True, round=1),
+    ]
+    s.candidates = [Candidate(option_id="c1.orig", component_id="c1", region="westeurope", monthly_cost=30, lines=[]),
+                    Candidate(option_id="c1.r1a1", component_id="c1", region="westeurope", monthly_cost=300, lines=[])]
+    replies = iter([
+        skeptic._Out(findings=[skeptic._Finding(option_id="c1.orig", rule_id="postgres-burstable-no-ha",
+                                                reason="Burstable has no HA, which the requirements need.")]),
+        judge._Out(plans=[]),
+    ])
+    monkeypatch.setattr(llm, "chat_json", lambda *a, **kw: next(replies))
+
+    skeptic.run(s)
+    assert [i.rule for i in s.issues] == ["postgres-burstable-no-ha"]
+    assert not s.rejections                          # the pricier fix is NOT rejected as "not cheaper"
+    assert not skeptic.needs_rework(s)               # a fix exists, so no rework round is needed
+
+    judge.run(s)
+    assert s.fixed_total == 300
+    assert all(i.option_id == "c1.r1a1" for p in s.plans for i in p.items)   # broken original never kept
+    assert all(p.savings == -270 for p in s.plans)
+
+
 def items(*costs):
     return [PlanItem(component_id=f"c{i}", option_id=f"c{i}.orig", region="x", monthly_cost=c) for i, c in enumerate(costs)]
 

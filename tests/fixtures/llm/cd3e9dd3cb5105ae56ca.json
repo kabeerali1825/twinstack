@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "```json\n{\"alternatives\": [{\"component_id\": \"c4\", \"service\": \"Redis Cache\", \"sku\": \"C6\", \"details\": \"Standard tier, 6 GB cache, 1 instance\", \"rationale\": \"Standard C6 provides roughly the same 6 GB capacity as Premium P1 at a lower price, since it drops clustering, persistence and VNet injection that the workload does not require.\", \"tradeoffs\": [\"No data persistence or RDB/AOF backup\", \"No VNet injection or private endpoint support in Standard tier\", \"No clustering, so cache size is limited to one shard\", \"No zone redundancy beyond the standard replica\"], \"also_replaces\": []}]}\n```",
- "cost": 0.0004619
-}
