@@ -47,6 +47,10 @@ def test_demo_run_end_to_end(offline):
 
     # Every priced line is traceable to an Azure meter.
     assert all(line.meter_id for c in s.candidates for line in c.lines)
+    # M2 steps ran: commitments never cost more than pay-as-you-go; ops effort was estimated.
+    for p in s.plans:
+        assert p.commitments and p.commitments.three_year <= p.commitments.one_year <= p.commitments.payg + 0.01
+    assert s.ops_rate > 0 and s.today_ops_hours > 0
     # Rejections carry who rejected and why; Skeptic ones cite a Learn page.
     assert all(r.reason and (r.by != "Skeptic" or r.source_url.startswith("https://learn.microsoft.com"))
                for r in s.rejections)
@@ -64,7 +68,7 @@ def diagram_state():
 def test_diagram_reader(offline):
     from app import orchestrator
     s = orchestrator.step(diagram_state())
-    assert s.step == "confirm" and not s.error
+    assert s.step == "profile" and not s.error  # next: the Workload Profiler, then the confirm screen
     assert s.input_image == ""  # not shipped back and forth after reading
     services = {c.service for c in s.components}
     assert {"Azure App Service", "SQL Database", "Redis Cache"} <= services

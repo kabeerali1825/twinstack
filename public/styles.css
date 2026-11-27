@@ -28,6 +28,7 @@
   --logo-a: #494D5F; --logo-b: #8458B3;
   --a-reader: #3E8FBF; --a-you: #8458B3; --a-pricer: #5E7FD3; --a-scout: #2F9AA3;
   --a-swap: #A07CE0; --a-skeptic: #B23A5E; --a-judge: #494D5F; --a-cost: #C0607E; --a-system: #868BA0;
+  --a-model: #23739E; --a-profiler: #6F86D9;
   --r-card: 16px;
   --r-ctl: 10px;
   --ease: cubic-bezier(0.2, 0, 0, 1);
@@ -47,6 +48,7 @@
     --logo-a: #A0D2EB; --logo-b: #D0BDF4;
     --a-reader: #A0D2EB; --a-you: #D0BDF4; --a-pricer: #9FB4F0; --a-scout: #8FD3D8;
     --a-swap: #C9B3F5; --a-skeptic: #F28FAD; --a-judge: #E5EAF5; --a-cost: #F0A3BC; --a-system: #8F95AB;
+    --a-model: #A0D2EB; --a-profiler: #B4C2F2;
     color-scheme: dark;
   }
 }
@@ -171,7 +173,8 @@ body[data-view="result"] .workspace { grid-template-columns: minmax(0, 1fr); max
 
 /* confirm */
 #confirm > p { margin-top: 4px; }
-.table-scroll { overflow-x: auto; margin: 14px -4px 8px; }
+/* position: relative keeps absolutely positioned children (e.g. .sr-only header labels) inside the scroll box */
+.table-scroll { position: relative; overflow-x: auto; margin: 14px -4px 8px; }
 table { border-collapse: collapse; width: 100%; }
 th { text-align: left; font-weight: 400; font-size: 12.5px; color: var(--ink-2); padding: 6px 4px; }
 .edit td { padding: 3px 4px; vertical-align: top; }
@@ -205,7 +208,17 @@ th { text-align: left; font-weight: 400; font-size: 12.5px; color: var(--ink-2);
 [data-agent="pricer"] { --a: var(--a-pricer); }   [data-agent="scout"] { --a: var(--a-scout); }
 [data-agent="swap"] { --a: var(--a-swap); }       [data-agent="skeptic"] { --a: var(--a-skeptic); }
 [data-agent="judge"] { --a: var(--a-judge); }     [data-agent="cost"] { --a: var(--a-cost); }
-[data-agent="system"] { --a: var(--a-system); }
+[data-agent="system"] { --a: var(--a-system); }   [data-agent="model"] { --a: var(--a-model); }
+[data-agent="profiler"] { --a: var(--a-profiler); }
+/* Workload Profiler questions on the confirm screen */
+.questions { margin: 18px 0 4px; padding: 14px 16px; border-radius: 12px; background: var(--brand-tint); }
+.questions h3 { margin-bottom: 2px; }
+.questions > p { font-size: 13px; margin-bottom: 8px; }
+.question { border: 0; margin: 10px 0 0; padding: 0; }
+.question legend { font-size: 14px; font-weight: 500; padding: 0; margin-bottom: 6px; }
+.question legend small { font-weight: 400; color: var(--ink-2); }
+.choice { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 6px 0; font-size: 13.5px; cursor: pointer; min-height: 32px; }
+.choice input { width: auto; accent-color: var(--brand); }
 .stepper li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--ink-3); padding: 3px 0; }
 .stepper .dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--a, currentColor); flex: none; }
 .stepper li.done { color: var(--ink-2); }
@@ -302,6 +315,23 @@ tr.detail td { background: var(--canvas); padding: 4px 16px 14px; }
 .rejections li { font-size: 14px; background: var(--risk-tint); border-radius: 10px; padding: 10px 14px;
   box-shadow: inset 3px 0 0 var(--risk); }
 .rejections .who { color: var(--risk); font-weight: 500; }
+/* Pricing Model: commitments under each plan */
+.commit { padding: 16px; border-top: 1px solid var(--line); }
+.commit h3 { margin-bottom: 10px; }
+.commit-figs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.commit-figs > div { display: grid; gap: 2px; background: var(--sunken); border-radius: 12px; padding: 10px 14px; min-width: 10rem; }
+.commit-figs span { font-size: 12.5px; color: var(--ink-2); }
+.commit-figs strong { font-weight: 500; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.commit-figs small { font-size: 12px; color: var(--save); }
+.commit-lines summary { cursor: pointer; font-size: 14px; color: var(--blue); margin-bottom: 6px; }
+.commit-lines ul { margin: 4px 0 8px; padding-left: 18px; font-size: 13.5px; }
+.commit-lines li { margin: 3px 0; }
+.commit p { font-size: 13px; margin-top: 6px; }
+.small { font-size: 12px; }
+.effort { padding: 16px; border-top: 1px solid var(--line); }
+.effort h3 { margin-bottom: 10px; }
+.commit-figs small.risk { color: var(--risk); }
+.commit-figs small.muted { color: var(--ink-2); }
 .fix-first { box-shadow: var(--ring), inset 4px 0 0 var(--brand); }
 .fit-pass { box-shadow: var(--ring), inset 4px 0 0 var(--save); }
 .fit-pass h2 { color: var(--save); display: flex; align-items: center; gap: 8px; }

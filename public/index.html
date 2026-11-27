@@ -30,7 +30,7 @@
       <div class="composer" id="composer">
         <label for="text" class="sr-only">Describe the architecture</label>
         <textarea id="text" rows="4" maxlength="4000"
-          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or paste a screenshot of your diagram (Ctrl+V)."></textarea>
+          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or paste a Mermaid diagram, or a screenshot of your diagram (Ctrl+V)."></textarea>
         <div class="composer-foot">
           <input type="file" id="file" accept="image/png,image/jpeg,image/webp" class="sr-only">
           <label for="file" class="btn ghost" title="Or paste an image with Ctrl+V, or drop a file here">Attach diagram</label>
@@ -82,6 +82,11 @@
           </div>
           <button type="button" class="btn ghost small" id="add-row">Add component</button>
           <datalist id="services"></datalist>
+          <div id="questions" class="questions" hidden>
+            <h3>A few questions to price this accurately</h3>
+            <p class="muted">Answer what you know; "Not sure" is fine. Your answers are added to the requirements.</p>
+            <div id="question-list"></div>
+          </div>
           <div class="fields">
             <label>Regions to search <select id="region-group"></select></label>
             <label>Requirements <input id="notes" maxlength="500" placeholder="e.g. EU data residency, 99.9% uptime"></label>

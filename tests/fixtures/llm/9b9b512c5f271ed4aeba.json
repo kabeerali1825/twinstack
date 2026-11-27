@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"findings\": [{\"option_id\": \"c3.r1a1\", \"rule_id\": \"sql-serverless-auto-pause\", \"reason\": \"The serverless alternative enables auto-pause after 1 hour idle, so the first connection after a quiet period waits up to about a minute for the database to resume, which conflicts with a business-hours user base that needs prompt responses.\"}, {\"option_id\": \"c4.r1a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"Requirements do not rule out persistence or clustering, and the replacement is Standard C1, which lacks data persistence, clustering and VNet injection that the Premium P1 today may be using.\"}]}",
+ "cost": 0.0004743
+}

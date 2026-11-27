@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"alternatives\": [{\"component_id\": \"c3\", \"service\": \"SQL Database\", \"sku\": \"General Purpose serverless, 4 vCore max\", \"details\": \"General Purpose serverless tier, 4 vCore max, auto-pause disabled or long delay, ~40% average utilization across business hours and quiet nights, EU region West Europe\", \"rationale\": \"Serverless bills per second for vCores actually used, so the quiet nights and off-peak hours stop paying for idle provisioned compute while business-hour capacity stays available.\", \"tradeoffs\": [\"Per-second billing rate is higher than provisioned per vCore, so savings depend on average utilization staying well below peak.\", \"Scaling to max vCores can incur cold-start or throttling latency during sudden spikes.\", \"Auto-pause, if enabled, adds resume latency on the first request after idle time.\", \"A prior attempt at this SKU reported no matching price meters, so pricing may need a different meter lookup.\"], \"also_replaces\": []}]}",
- "cost": 0.0005139
-}

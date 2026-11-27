@@ -6,14 +6,14 @@ meter of the option is sold there.
 from concurrent.futures import ThreadPoolExecutor
 
 from app.models import Candidate, PriceLine, RunState
-from app.pricing import monthly_cost, odata, query
+from app.pricing import meter_region, monthly_cost, non_regional, odata, query
 
 MAX_REGIONS_PER_QUERY = 18  # + serviceName + skuName = the API's 20-condition limit
 
 
 def _rows(service: str, sku: str, regions: list[str]) -> list[dict]:
     rows = []
-    regions = [*regions, "Global"]  # license-style meters live in 'Global'
+    regions = [*regions, *non_regional(regions)]  # licences in 'Global'; Front Door etc. with no region or per zone
     for i in range(0, len(regions), MAX_REGIONS_PER_QUERY):
         chunk = regions[i:i + MAX_REGIONS_PER_QUERY]
         regions_or = " or ".join(odata(armRegionName=r) for r in chunk)
@@ -41,7 +41,7 @@ def run(state: RunState) -> None:
                 continue
             lines = []
             for m in o.meters:
-                where = "Global" if m.global_meter else region
+                where = meter_region(m, region)
                 tiers = [r for r in fetched[(m.service, m.sku)]
                          if r["armRegionName"] == where and r["type"] == "Consumption"
                          and r["productName"] == m.product and r["meterName"] == m.meter]

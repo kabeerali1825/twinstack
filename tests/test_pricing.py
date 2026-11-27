@@ -50,6 +50,19 @@ def test_odata_escapes_quotes():
         "serviceName eq 'Virtual Machines' and skuName eq 'it''s'"
 
 
+def test_non_regional_prices_map_to_the_right_rows():
+    from app.models import MeterPick
+    from app.pricing import billing_zone, meter_region, row_scope
+    assert billing_zone("westeurope") == billing_zone("eastus") == "Zone 1"
+    assert billing_zone("japaneast") == "Zone 2" and billing_zone("australiaeast") == "Zone 4"
+    assert [row_scope(r) for r in ("westeurope", "Global", "", "Zone 1")] == ["regional", "global", "none", "zone"]
+    pick = lambda **kw: MeterPick(service="s", product="p", sku="k", meter="m", unit="1 Hour", qty=1, **kw)
+    assert meter_region(pick(scope="zone"), "northeurope") == "Zone 1"
+    assert meter_region(pick(scope="none"), "northeurope") == ""
+    assert meter_region(pick(global_meter=True), "northeurope") == "Global"   # runs saved before `scope` existed
+    assert meter_region(pick(), "northeurope") == "northeurope"
+
+
 def test_service_catalog():
     assert len(services()) > 150
     assert resolve_service("virtual machines") == "Virtual Machines"

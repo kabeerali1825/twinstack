@@ -41,6 +41,9 @@ SYSTEM = """You are a strict Azure reviewer. You check two things against the ru
    Capture needs Standard tier but another moves Event Hubs to Basic), reject the one with the smaller saving and
    name the one it conflicts with. "advice" is not allowed for alternatives.
 Do not flag anything for reasons no rule covers (except "advice" on today's design). If unsure, don't flag.
+A rule about features (persistence, clustering, VNet injection, deployment slots, autoscale...) is only broken when
+the requirements or today's details show the feature is NEEDED or USED. A cheaper tier that merely lacks a feature
+today's tier offers is fine. Judge every alternative of the same kind the same way (e.g. Redis Standard C1 and C2).
 List ONLY what you flag; an empty list is a good answer. Never list something to say it is fine.
 
 Rules (cite by id):

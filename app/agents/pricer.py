@@ -11,7 +11,7 @@ from pydantic import BaseModel
 
 from app import llm
 from app.models import MeterPick, Option, RunState
-from app.pricing import PER_MONTH, odata, parse_uom, query
+from app.pricing import PER_MONTH, non_regional, odata, parse_uom, query, row_scope
 
 MENU_MAX = 40
 
@@ -76,7 +76,8 @@ Rules:
 - Pick each billable thing once. The same meter name can appear under several products (e.g. "Blob Storage" and
   "General Block Blob v2"): choose the one product that matches and don't add it twice.
 - Include storage meters only when the details give a size. Skip meters for features not mentioned.
-- When a number is not given, make a reasonable assumption and say it in "why" (short).
+- Use workload facts from the requirements (users, requests or events a month, data size, busy hours) before
+  assuming anything. When a number is still not given, make a reasonable assumption and say it in "why" (short).
 - If nothing in the menu fits, return no meters and explain in "problem"."""
 
 TIME_UNITS = {"Second", "Minute", "Hour", "Day"}
@@ -90,8 +91,10 @@ def _words(text: str) -> set[str]:
 
 def menu(option: Option, region: str) -> list[dict]:
     """Distinct consumption meters for the option's service in `region`, most relevant first."""
-    # Some meters (e.g. SQL licenses) are priced once in a 'Global' region, not per region.
-    flt = f"{odata(serviceName=option.service)} and ({odata(armRegionName=region)} or armRegionName eq 'Global')"
+    # Some meters are priced outside regions: once in 'Global' (SQL licences), with no region, or per billing zone
+    # (Front Door). Ask for those too.
+    regions_or = " or ".join(odata(armRegionName=r) for r in [region, *non_regional([region])])
+    flt = f"{odata(serviceName=option.service)} and ({regions_or})"
     if option.service == "Virtual Machines" and option.sku:  # VM rows per region are too many to scan
         sku = option.sku.strip().replace(" ", "_")
         flt += " and " + odata(armSkuName=sku if sku.lower().startswith("standard_") else f"Standard_{sku}")
@@ -165,7 +168,7 @@ def _license_for(pick: MeterPick, option: Option) -> MeterPick | None:
     r = rows[0]
     return MeterPick(service=pick.service, product=product, sku=r["skuName"], meter=r["meterName"],
                      unit=r["unitOfMeasure"], qty=vcores, why=f"SQL license for {vcores:g} vCores (added by code)",
-                     global_meter=True)
+                     global_meter=True, scope="global")
 
 
 def run(state: RunState) -> None:
@@ -207,7 +210,8 @@ def run(state: RunState) -> None:
             elif qty > 0:
                 o.meters.append(MeterPick(service=o.service, product=r["productName"], sku=r["skuName"],
                                           meter=r["meterName"], unit=r["unitOfMeasure"], qty=qty, why=m.why,
-                                          global_meter=r["armRegionName"] == "Global"))
+                                          scope=row_scope(r["armRegionName"]),
+                                          global_meter=row_scope(r["armRegionName"]) != "regional"))
         # Same sku+meter picked twice: within one product it's a schedule (add up); across products it's a
         # duplicate (e.g. Gen5 and DC-Series compute, or the same storage meter under two products): keep the first.
         merged: dict[tuple, MeterPick] = {}
@@ -228,7 +232,8 @@ def run(state: RunState) -> None:
             o.meters += licenses.values()
         if o.meters:
             state.log("Pricer", "output", f"{o.id}: billed on " + ", ".join(
-                f"{m.meter}{' (global price)' if m.global_meter else ''} x{m.qty:g}" for m in o.meters),
+                f"{m.meter}{ {'zone': ' (zone price)', 'global': ' (global price)', 'none': ' (global price)'}.get(m.scope, '')} x{m.qty:g}"
+                for m in o.meters),
                       [m.model_dump() for m in o.meters])
         else:
             state.log("Pricer", "warn", f"{o.id}: no matching price meters ({p.problem if p else 'not answered'})")
