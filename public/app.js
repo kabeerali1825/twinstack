@@ -13,6 +13,12 @@ const WORKING = {
   skeptic: "Checking alternatives against service limits", judge: "Building the three plans",
 };
 const DEMO_IMAGES = { "contoso-bookings": "/demos/contoso-bookings.png" };
+// One color per agent (see [data-agent] in styles.css).
+const AGENT_KEY = {
+  Parser: "reader", "Diagram Reader": "reader", You: "you", Pricer: "pricer", "Region Scout": "scout",
+  "Service Swap": "swap", Skeptic: "skeptic", Judge: "judge", "Cost check": "cost", System: "system",
+};
+const STAGE_AGENT = { parse: "reader", confirm: "you", price: "pricer", scout: "scout", swap: "swap", skeptic: "skeptic", judge: "judge" };
 const REGION_NAMES = {
   westeurope: "West Europe", northeurope: "North Europe", swedencentral: "Sweden Central", francecentral: "France Central",
   germanywestcentral: "Germany West Central", italynorth: "Italy North", polandcentral: "Poland Central",
@@ -84,8 +90,13 @@ function clearRun() {
   try { localStorage.removeItem(STORE); } catch {}
   S = null; planIdx = 0;
   document.body.dataset.view = "start";
-  show("workspace", false); show("start"); show("run-error", false);
+  show("workspace", false); show("start"); show("run-error", false); show("new-analysis", false);
+  markDemo("");
   window.scrollTo(0, 0);
+  $("text").focus();
+}
+function markDemo(name) {
+  for (const b of document.querySelectorAll("[data-demo]")) b.setAttribute("aria-pressed", String(b.dataset.demo === name));
 }
 
 // ---------- input ----------
@@ -153,7 +164,8 @@ function render() {
   if (!S) return;
   const done = S.step === "done" && S.plans.length > 0;
   document.body.dataset.view = done ? "result" : "run";
-  show("start", false); show("workspace");
+  show("start", false); show("workspace"); show("new-analysis");
+  markDemo(S.demo_name || "");
   renderActivity();
   show("confirm", S.step === "confirm");
   if (S.step === "confirm") renderConfirm();
@@ -175,12 +187,12 @@ function renderActivity() {
   $("stepper").replaceChildren(...STAGES.map(([key, label], i) => {
     const now = key === S.step;
     const cls = now ? (key === "confirm" ? "wait" : "now") : i < reached || S.step === "done" ? "done" : "";
-    return h("li", { class: cls, "aria-current": now ? "step" : null }, h("span", { class: "dot" }), label);
+    return h("li", { class: cls, "data-agent": STAGE_AGENT[key], "aria-current": now ? "step" : null }, h("span", { class: "dot" }), label);
   }));
   $("log").replaceChildren(...S.timeline.map((e) => {
     const msg = e.data == null ? h("span", { class: "msg" }, e.message)
       : h("details", { class: "msg" }, h("summary", {}, e.message), h("pre", {}, JSON.stringify(e.data, null, 2)));
-    return h("li", { class: `k-${e.kind}` }, h("span", { class: "agent" }, e.agent), msg);
+    return h("li", { class: `k-${e.kind}`, "data-agent": AGENT_KEY[e.agent] || "system" }, h("span", { class: "agent" }, e.agent), msg);
   }));
   const log = $("log");
   if (S.step !== "done") log.scrollTop = log.scrollHeight;
@@ -271,7 +283,8 @@ function compareRow(it) {
   const row = h("tr", { class: "item", onclick: flip },
     h("td", {}, toggle, h("span", { class: "what" }, label(orig)), h("span", { class: "sub" }, region(c.region))),
     h("td", { class: "r amount" }, money(todayCost)),
-    h("td", { class: "r" }, h("span", { class: `amount${it.replaced_by ? " gone" : ""}` }, money(it.monthly_cost)), h("span", { class: "sub" }, planSub)),
+    h("td", { class: "r" }, h("span", { class: `amount${it.replaced_by ? " gone" : ""}` }, money(it.monthly_cost)),
+      h("span", { class: `sub${!o.is_original && !it.replaced_by ? " new" : ""}` }, planSub)),
     h("td", { class: `r amount delta${delta < -0.005 ? " save" : ""}` }, signed(delta)));
   return [row, detail];
 }
@@ -303,7 +316,8 @@ function renderResults() {
   const planCard = h("div", { class: "card" },
     h("div", { class: "plan-head" }, seg, h("span", { class: "muted" }, where)),
     h("div", { class: "plan-text" }, h("p", {}, plan.summary || "The lowest total that passed every check, in one region."),
-      plan.tradeoffs.length ? h("ul", {}, plan.tradeoffs.map((t) => h("li", {}, t))) : null),
+      plan.tradeoffs.length ? h("ul", {}, plan.tradeoffs.map((t) => h("li", {}, t))) : null,
+      plan.note ? h("p", { class: "plan-note" }, plan.note.replace(/\b[a-z]+(?:central|europe|us\d?|asia|east|west|north|south)\w*\b/g, region)) : null),
     h("div", { class: "table-scroll" }, table));
 
   const rej = S.rejections.map((r) => {
@@ -318,15 +332,14 @@ function renderResults() {
     h("span", { class: "muted" }, `This analysis made ${S.llm_calls} AI calls and cost ${S.ai_cost_usd < 0.01 ? "under 1 cent" : money(S.ai_cost_usd)}.`),
     h("button", { type: "button", class: "btn primary", onclick: clearRun }, "Analyze another"));
 
-  $("results").replaceChildren(...[
-    S.demo_image ? h("img", { class: "figure", src: S.demo_image, alt: "The diagram that was analyzed" }) : null,
-    summary, planCard, rejCard, actions,
-  ].filter(Boolean));
+  const imgCard = S.demo_image ? h("div", { class: "card section" }, h("h2", {}, "Diagram analyzed"),
+    h("img", { class: "figure", src: S.demo_image, alt: "The diagram that was analyzed" })) : null;
+  $("results").replaceChildren(...[summary, planCard, rejCard, imgCard, actions].filter(Boolean));
 }
 
 async function openDemo(name) {
   try {
-    S = { ...(await api(`/demos/${name}.json`)), saved: true, demo_image: DEMO_IMAGES[name] || "" };
+    S = { ...(await api(`/demos/${name}.json`)), saved: true, demo_name: name, demo_image: DEMO_IMAGES[name] || "" };
     planIdx = 0; render(); window.scrollTo(0, 0);
   } catch { $("input-error").textContent = "That example isn't available right now."; show("input-error"); }
 }
@@ -339,6 +352,14 @@ composer.ondragover = (e) => { e.preventDefault(); composer.classList.add("over"
 composer.ondragleave = () => composer.classList.remove("over");
 composer.ondrop = (e) => { e.preventDefault(); composer.classList.remove("over"); e.dataTransfer.files[0] && attach(e.dataTransfer.files[0]); };
 $("text").onkeydown = (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) analyze(); };
+// Paste a copied screenshot or image anywhere on the start screen to attach it. Text pastes normally.
+document.addEventListener("paste", (e) => {
+  if (document.body.dataset.view !== "start") return;
+  const file = [...(e.clipboardData?.files || [])].find((f) => f.type.startsWith("image/"));
+  if (!file) return;
+  e.preventDefault();
+  attach(file);
+});
 $("analyze").onclick = analyze;
 $("use-example").onclick = () => {
   $("text").value = "Web API on AKS with 3 Standard_D4s_v5 nodes, Azure SQL Database General Purpose 4 vCore provisioned, "
@@ -353,12 +374,29 @@ for (const b of document.querySelectorAll("[data-demo]")) b.onclick = () => open
 $("add-row").onclick = () => $("comp-rows").append(compRow({ id: "", service: "", quantity: 1, region: S.components[0]?.region || "westeurope" }));
 $("confirm-btn").onclick = confirmComponents;
 $("retry").onclick = () => { show("run-error", false); drive(); };
-for (const id of ["restart-1", "restart-2"]) $(id).onclick = clearRun;
+for (const id of ["restart-1", "restart-2", "new-analysis"]) $(id).onclick = clearRun;
+$("brand").onclick = (e) => { e.preventDefault(); clearRun(); };
+
+// Fill the sample cards from the saved runs themselves, so the numbers never drift from the files.
+async function fillSamples() {
+  for (const el of document.querySelectorAll("[data-figs]")) {
+    try {
+      const run = await api(`/demos/${el.dataset.figs}.json`);
+      const best = run.plans[0];
+      el.replaceChildren(
+        h("span", { class: "was" }, money(run.original_total)), " to ",
+        h("strong", {}, money(best.monthly_total)), " a month",
+        h("span", { class: "pct" }, `saves ${best.savings_pct}%`));
+    } catch { el.remove(); }
+  }
+}
 
 (async function init() {
+  fillSamples();
   try {
     meta = await api("/api/meta");
     $("services").replaceChildren(...meta.services.map((s) => h("option", { value: s })));
+    if (meta.live_runs_per_hour) $("run-limit").textContent = meta.live_runs_per_hour;
   } catch { /* the confirm step still works with free text */ }
   try { S = JSON.parse(localStorage.getItem(STORE)); } catch { S = null; }
   if (!S) return;

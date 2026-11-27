@@ -51,7 +51,7 @@ def _rate_limit(request: Request, kind: str) -> None:
         hits.popleft()
     if len(hits) >= LIMITS[kind]:
         raise HTTPException(429, f"Limit reached: {LIMITS['start']} live analyses per hour per visitor. "
-                                 "Try again later, or open a saved demo.")
+                                 "Try again later, or open a sample result.")
     hits.append(now)
 
 
@@ -76,8 +76,8 @@ def health():
 
 @app.get("/api/meta")
 def meta():
-    """Lists for the confirm step: exact billing service names and region groups."""
-    return {"services": sorted(services()), "region_groups": REGION_GROUPS}
+    """Lists for the confirm step (service names, region groups) and the live-run limit to show."""
+    return {"services": sorted(services()), "region_groups": REGION_GROUPS, "live_runs_per_hour": LIMITS["start"]}
 
 
 @app.post("/api/run/start")

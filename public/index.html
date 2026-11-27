@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TwinStack</title>
   <meta name="description" content="Find a cheaper way to run an Azure architecture, priced with live Azure meters.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#8458B3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300..600&display=swap" rel="stylesheet">
@@ -12,12 +14,14 @@
 </head>
 <body data-view="start">
   <header class="bar">
-    <a class="brand" href="/">TwinStack</a>
-    <nav class="examples" aria-label="Saved examples">
-      <span class="muted">Examples</span>
-      <button type="button" class="chip" data-demo="aks-sql-redis">AKS web API</button>
-      <button type="button" class="chip" data-demo="contoso-bookings">Contoso diagram</button>
-    </nav>
+    <a class="brand" href="/" id="brand">
+      <svg viewBox="0 0 256 256" aria-hidden="true">
+        <rect class="la" x="32" y="40" width="90" height="56" rx="14"/>
+        <rect class="lb" x="134" y="40" width="90" height="56" rx="14"/>
+        <rect class="lb" x="97" y="108" width="62" height="48" rx="12"/>
+        <rect class="lb" x="97" y="168" width="62" height="48" rx="12"/>
+      </svg>TwinStack</a>
+    <button type="button" class="btn primary small" id="new-analysis" hidden>New analysis</button>
   </header>
 
   <main>
@@ -26,10 +30,10 @@
       <div class="composer" id="composer">
         <label for="text" class="sr-only">Describe the architecture</label>
         <textarea id="text" rows="4" maxlength="4000"
-          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or attach a diagram."></textarea>
+          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or paste a screenshot of your diagram (Ctrl+V)."></textarea>
         <div class="composer-foot">
           <input type="file" id="file" accept="image/png,image/jpeg,image/webp" class="sr-only">
-          <label for="file" class="btn ghost">Attach diagram</label>
+          <label for="file" class="btn ghost" title="Or paste an image with Ctrl+V, or drop a file here">Attach diagram</label>
           <span id="attachment" class="attachment" hidden>
             <img id="preview" alt="Attached diagram">
             <button type="button" class="btn ghost small" id="remove-image" aria-label="Remove the diagram">Remove</button>
@@ -38,10 +42,30 @@
           <button type="button" class="btn primary" id="analyze">Analyze</button>
         </div>
       </div>
-      <p class="start-note">Uses live Azure prices and takes about a minute. 3 analyses per hour.
+      <p class="start-note">Uses live Azure prices and takes about a minute. <span id="run-limit">3</span> analyses per hour.
         Or try <button type="button" class="link" id="use-example">the example text</button> or
         <button type="button" class="link" id="use-sample">a sample diagram</button>.</p>
       <p class="error" id="input-error" role="alert" hidden></p>
+
+      <section class="samples" aria-labelledby="samples-h">
+        <h2 id="samples-h">Or open a sample result</h2>
+        <p class="muted">Recorded runs with live prices. Free and instant.</p>
+        <div class="sample-grid">
+          <button type="button" class="sample" data-demo="aks-sql-redis">
+            <span class="sample-kind">Text input</span>
+            <span class="sample-name">Web API on AKS</span>
+            <span class="sample-desc">3 AKS nodes, SQL Database 4 vCore, Redis Premium. West Europe, EU only.</span>
+            <span class="sample-figs" data-figs="aks-sql-redis"></span>
+          </button>
+          <button type="button" class="sample" data-demo="contoso-bookings">
+            <img src="/demos/contoso-bookings.png" alt="" class="sample-thumb">
+            <span class="sample-kind">Diagram input</span>
+            <span class="sample-name">Contoso Bookings</span>
+            <span class="sample-desc">App Service, Functions, SQL Business Critical, Redis, Blob. North Europe.</span>
+            <span class="sample-figs" data-figs="contoso-bookings"></span>
+          </button>
+        </div>
+      </section>
     </section>
 
     <div class="workspace" id="workspace" hidden>
