@@ -43,7 +43,8 @@ class MeterPick(BaseModel):
     unit: str
     qty: float
     why: str = ""
-    global_meter: bool = False        # priced in the 'Global' region, same price everywhere (e.g. SQL licenses)
+    global_meter: bool = False        # priced outside regions (Global / no region / billing zone); see scope
+    scope: str = "regional"           # regional | global | none | zone (pricing.row_scope)
 
 
 class Option(BaseModel):

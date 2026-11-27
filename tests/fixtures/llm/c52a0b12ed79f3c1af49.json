@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"findings\": [{\"option_id\": \"c1.r1a1\", \"rule_id\": \"container-apps-scale-to-zero-cold-start\", \"reason\": \"The plan scales the web API to near zero overnight, and the stated tradeoff notes cold starts unless minimum replicas are set to 1, which the plan does not commit to.\"}, {\"option_id\": \"c1.r1a1\", \"rule_id\": \"container-apps-consumption-size\", \"reason\": \"The plan runs on the Consumption workload profile, which is adequate at about 2 vCPU/4 GiB per replica but would need a Dedicated profile if peak replica sizing grows beyond 4 vCPU/8 GiB.\"}, {\"option_id\": \"c3.r1a1\", \"rule_id\": \"sql-serverless-auto-pause\", \"reason\": \"The plan allows an auto-pause delay of 1 hour, and the first connection after a pause would wait for the database to resume, which the stated tradeoff only partly covers.\"}, {\"option_id\": \"c4.r1a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"Replacing P1 Premium with C2 Standard drops VNet injection and data persistence, which the requirements and current design rely on for isolation and durability.\"}]}",
- "cost": 0.0006282
-}

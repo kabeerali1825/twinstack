@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"questions\": [{\"question\": \"How much data will the SQL database store?\", \"why\": \"sizes the database storage and backup cost\", \"options\": [\"Under 100 GB\", \"100 GB to 1 TB\", \"Over 1 TB\"], \"components\": [\"c3\"]}, {\"question\": \"How many API requests or events per month?\", \"why\": \"drives AKS node count and autoscaling need\", \"options\": [\"Under 10 million\", \"10 to 100 million\", \"Over 100 million\"], \"components\": [\"c1\", \"c2\"]}, {\"question\": \"Does the API need zone redundancy or a high-availability SLA?\", \"why\": \"changes SQL tier, node pool layout and Redis replication\", \"options\": [\"Yes, zone-redundant\", \"No, single zone is fine\"], \"components\": [\"c1\", \"c3\", \"c4\"]}]}",
- "cost": 0.00023349999999999998
-}

@@ -124,6 +124,48 @@ def resolve_service(name: str) -> str | None:
         return None  # can't check right now: treat as unknown; the confirm step flags it for the user
 
 
+def billing_zone(region: str) -> str:
+    """Azure bills some services (Front Door, bandwidth) by zone, not region. Europe and the Americas' main
+    regions are Zone 1. ponytail: name-based approximation; extend if a run needs the exact zone table."""
+    r = region.lower()
+    if "australia" in r:
+        return "Zone 4"
+    if "india" in r:
+        return "Zone 5"
+    if any(k in r for k in ("asia", "japan", "korea")):
+        return "Zone 2"
+    if "brazil" in r:
+        return "Zone 3"
+    return "Zone 1"
+
+
+def row_scope(arm_region: str) -> str:
+    """Where a price row applies: 'regional', or one price for everywhere ('global' / 'none') or per zone."""
+    if arm_region == "Global":
+        return "global"
+    if arm_region == "":
+        return "none"
+    if arm_region.startswith("Zone "):
+        return "zone"
+    return "regional"
+
+
+def price_region(scope: str, region: str) -> str:
+    """The armRegionName to look up for a meter of this scope, when deploying in `region`."""
+    return {"global": "Global", "none": "", "zone": billing_zone(region)}.get(scope, region)
+
+
+def meter_region(m, region: str) -> str:
+    """armRegionName to price meter pick `m` at when deploying in `region` (older runs only set global_meter)."""
+    scope = m.scope if (m.scope != "regional" or not m.global_meter) else "global"
+    return price_region(scope, region)
+
+
+def non_regional(regions: list[str]) -> list[str]:
+    """Extra armRegionNames to query so global, region-less and zone-billed rows come back too."""
+    return ["Global", "", *sorted({billing_zone(r) for r in regions})]
+
+
 def parse_uom(uom: str) -> tuple[int, str | None]:
     """'10K/Month' -> (10000, 'Month'); '1 GB' -> (1, None)."""
     m = _UOM.match(uom.strip())

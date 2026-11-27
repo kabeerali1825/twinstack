@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from app.agents.scout import _rows
 from app.models import Commitments, CommitLine, RunState
-from app.pricing import PER_MONTH, odata, parse_uom, query
+from app.pricing import PER_MONTH, meter_region, odata, parse_uom, query
 
 TERMS = {"1 Year": 1, "3 Years": 3}
 TIME_UNITS = {"Second", "Minute", "Hour", "Day"}
@@ -101,7 +101,7 @@ def run(state: RunState) -> None:
         fetched = dict(zip(keys, pool.map(lambda k: _rows(*k, regions), keys)))
 
     for plan in state.plans:
-        lines = [_line(m, line, fetched[(m.service, m.sku)], "Global" if m.global_meter else item.region,
+        lines = [_line(m, line, fetched[(m.service, m.sku)], meter_region(m, item.region),
                        item.component_id)
                  for p, item, m, line in work if p is plan]
         hybrid = sum(l.payg for l in lines if "SQL License" in l.meter)
