@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": { "type": "string", "defaultValue": "westeurope" },
+    "planSku": { "type": "string", "defaultValue": "P1v3" }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2023-01-01",
+      "name": "plan-portal",
+      "location": "[parameters('location')]",
+      "kind": "linux",
+      "sku": { "name": "[parameters('planSku')]", "tier": "PremiumV3", "capacity": 2 }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2023-01-01",
+      "name": "app-portal",
+      "location": "[parameters('location')]",
+      "kind": "app,linux"
+    },
+    {
+      "type": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "apiVersion": "2023-06-01-preview",
+      "name": "pg-portal",
+      "location": "[parameters('location')]",
+      "sku": { "name": "Standard_D2ds_v5", "tier": "GeneralPurpose" },
+      "properties": { "storage": { "storageSizeGB": 128 }, "highAvailability": { "mode": "ZoneRedundant" } }
+    },
+    {
+      "type": "Microsoft.Cache/redis",
+      "apiVersion": "2023-08-01",
+      "name": "redis-portal",
+      "location": "[parameters('location')]",
+      "properties": { "sku": { "name": "Standard", "family": "C", "capacity": 1 } }
+    },
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2023-05-01",
+      "name": "nsg-portal",
+      "location": "[parameters('location')]"
+    }
+  ]
+}

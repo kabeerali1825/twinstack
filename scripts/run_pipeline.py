@@ -21,7 +21,7 @@ DEMO = ("Web API on AKS with 3 Standard_D4s_v5 nodes, Azure SQL Database General
         "Data must stay in the EU.")
 
 
-def run(text: str, max_steps: int = 20, image: str = "") -> RunState:
+def run(text: str, max_steps: int = 30, image: str = "") -> RunState:
     state = RunState(input_text=text, input_image=image)
     shown = 0
     for _ in range(max_steps):

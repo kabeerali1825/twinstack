@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"options\": [{\"option_id\": \"c4.r3a1\", \"meters\": [{\"index\": 0, \"count\": 1, \"count_means\": \"instances\", \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard tier C3 (6 GB) single cache, billed all month as an alternative to today's Premium P1; the C3 Standard whole-cache meter fits the no-clustering, no-persistence requirement.\"}], \"problem\": \"\"}]}",
- "cost": 0.0004051
-}

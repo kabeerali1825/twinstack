@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"questions\": [{\"question\": \"How much data will the SQL database store?\", \"why\": \"sizes the database storage cost and may change the vCore tier\", \"options\": [\"Under 100 GB\", \"100 GB to 1 TB\", \"Over 1 TB\"], \"components\": [\"c3\"]}, {\"question\": \"Does the API need high availability across zones or uptime SLA?\", \"why\": \"zone redundancy adds cost to AKS nodes and the SQL database\", \"options\": [\"Yes, zone-redundant, 99.99% or higher\", \"Standard SLA is enough\", \"Not critical, single zone is fine\"], \"components\": [\"c1\", \"c2\", \"c3\"]}, {\"question\": \"How many API requests or transactions per month?\", \"why\": \"sizes node count and autoscaling and the Redis cache need\", \"options\": [\"Under 10 million\", \"10 million to 100 million\", \"Over 100 million\"], \"components\": [\"c1\", \"c2\", \"c4\"]}]}",
- "cost": 0.0002499
-}

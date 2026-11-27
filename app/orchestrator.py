@@ -1,10 +1,11 @@
 """Step machine: each call runs exactly one agent step on a RunState and moves it to the next step.
 
 parse -> profile -> confirm (human, answers questions) -> price -> scout -> swap -> price -> scout -> skeptic
-      -> (swap, max 2 reworks) -> judge -> effort -> commit -> done
+      -> (swap, max 2 reworks) -> judge -> effort -> commit -> plain -> done
 The browser drives the loop (one short HTTP request per step) and keeps the state, so runs can resume.
 """
-from app.agents import diagram, judge, parser, pricer, pricing_model, profiler, scout, skeptic, swap, total_cost
+from app.agents import (diagram, judge, parser, plain_chat, pricer, pricing_model, profiler, scout, skeptic, swap,
+                        total_cost)
 from app.llm import BudgetExceeded
 from app.models import Option, RunState
 from app.pricing import resolve_service
@@ -21,7 +22,7 @@ def _parse(state: RunState) -> None:
 
 
 AGENTS = {"parse": _parse, "profile": profiler.run, "price": pricer.run, "scout": scout.run, "swap": swap.run,
-          "skeptic": skeptic.run, "judge": judge.run, "effort": total_cost.run, "commit": pricing_model.run}
+          "skeptic": skeptic.run, "judge": judge.run, "effort": total_cost.run, "commit": pricing_model.run, "plain": plain_chat.run}
 
 
 def _start_pricing(state: RunState) -> None:
@@ -62,6 +63,8 @@ def _next(state: RunState) -> str:
         case "effort":
             return "commit"
         case "commit":
+            return "plain"
+        case "plain":
             return "done"
     raise ValueError(f"Unknown step {state.step}")
 

@@ -1,12 +1,13 @@
 """End-to-end pipeline from recorded LLM replies (tests/fixtures/llm) and price snapshots (data/price_snapshots).
 No network, no spend. Re-record after changing prompts:
-  LLM_FIXTURES=record PRICE_SNAPSHOT_WRITE=1 MODEL_SMART=claude-haiku python -m scripts.run_pipeline
+  LLM_FIXTURES=record PRICE_SNAPSHOT_WRITE=1 MODEL_SMART=claude-sonnet-5-5 python -m scripts.run_pipeline
+(Pricer, Swap, Skeptic and Judge run on Sonnet as in production; Haiku as Pricer misprices AKS and SQL.)
 """
 import urllib.error
 
 import pytest
 
-from app import pricing
+from app import llm, pricing
 from scripts.run_pipeline import DEMO, run
 
 
@@ -14,7 +15,8 @@ from scripts.run_pipeline import DEMO, run
 def offline(monkeypatch):
     monkeypatch.setenv("LLM_FIXTURES", "replay")
     monkeypatch.setenv("MODEL_FAST", "claude-haiku")
-    monkeypatch.setenv("MODEL_SMART", "claude-haiku")  # fixtures were recorded with Haiku in every role
+    monkeypatch.setenv("MODEL_SMART", "claude-sonnet-5-5")  # as recorded
+    monkeypatch.setitem(llm._thinking_off, "claude-sonnet-5-5", "between_tools")  # the key the recording used
 
     def no_network(*a, **kw):
         raise urllib.error.URLError("offline test")
@@ -29,7 +31,7 @@ def offline(monkeypatch):
 def test_demo_run_end_to_end(offline):
     s = run(DEMO)
     assert s.step == "done" and not s.error
-    assert s.llm_calls <= 15
+    assert s.llm_calls <= 16
 
     # Original: AKS uptime SLA + 3 x D4s v5 + SQL GP 4 vCore + its SQL license + Redis P1, West Europe
     # (the recorded Pricer may add a small storage line on top).
@@ -51,6 +53,9 @@ def test_demo_run_end_to_end(offline):
     for p in s.plans:
         assert p.commitments and p.commitments.three_year <= p.commitments.one_year <= p.commitments.payg + 0.01
     assert s.ops_rate > 0 and s.today_ops_hours > 0
+    # M3: the plain-chat baseline ran, and data flows were read for the architecture diagram.
+    assert s.baseline and s.baseline.today > 0
+    assert s.connections and all(a in ids or a == "users" for a, b in s.connections for ids in [{c.id for c in s.components}])
     # Rejections carry who rejected and why; Skeptic ones cite a Learn page.
     assert all(r.reason and (r.by != "Skeptic" or r.source_url.startswith("https://learn.microsoft.com"))
                for r in s.rejections)
@@ -99,7 +104,7 @@ def test_api_round_trip(offline):
     assert client.post("/api/run/start", json={"text": "hi"}).status_code == 422  # too short
     assert client.post("/api/run/start", json={"image": "data:text/html;base64,PGgxPg=="}).status_code == 422
     state = client.post("/api/run/start", json={"text": DEMO}).json()
-    for _ in range(20):
+    for _ in range(30):
         if state["step"] == "confirm":
             assert client.post("/api/run/step", json=state).status_code == 400  # must confirm first
             state["confirmed"] = True
