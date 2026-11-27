@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"rejections\": [{\"option_id\": \"c3.r1a1\", \"rule_id\": \"sql-serverless-auto-pause\", \"reason\": \"The Web API serves about 2,000 users during business hours, and the first connection after an auto-pause waits up to about a minute while the serverless database resumes, which is a user-facing delay the workload may not tolerate.\"}]}",
+ "cost": 0.000461
+}

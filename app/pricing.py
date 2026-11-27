@@ -54,10 +54,11 @@ def _fetch_all(flt: str) -> list[dict]:
             break
     else:
         raise ValueError(f"Price filter matches more than {len(items)} rows; narrow it: {flt}")
-    # The API returns duplicate rows; keep the newest per meter/price type/term/tier.
+    # The API returns duplicate rows; keep the newest per meter/SKU/price type/term/tier.
+    # (Sizes share a meterId: SQL '2 vCore' and '40 vCore' are both meter 'vCore'.)
     latest = {}
     for it in sorted(items, key=lambda i: i.get("effectiveStartDate", "")):
-        latest[(it["meterId"], it["type"], it.get("reservationTerm"), it["tierMinimumUnits"])] = it
+        latest[(it["meterId"], it["skuId"], it["type"], it.get("reservationTerm"), it["tierMinimumUnits"])] = it
     return list(latest.values())
 
 
@@ -94,15 +95,27 @@ def _service_for_product(product: str) -> str | None:
     return names.pop() if len(names) == 1 else None  # unknown or ambiguous -> None
 
 
+# Common names that are neither a service name nor an exact product name in the price API.
+ALIASES = {
+    "azure cache for redis": "Redis Cache", "azure redis cache": "Redis Cache",
+    "azure sql": "SQL Database", "azure sql database": "SQL Database",
+    "azure sql managed instance": "SQL Managed Instance", "azure functions": "Functions",
+    "aks": "Azure Kubernetes Service", "azure virtual machines": "Virtual Machines", "vm": "Virtual Machines",
+    "azure blob storage": "Storage", "blob storage": "Storage", "web app": "Azure App Service",
+    "app service": "Azure App Service", "container apps": "Azure Container Apps",
+}
+
+
 def resolve_service(name: str) -> str | None:
     """Exact API serviceName for `name`, else None. Never fuzzy-matches.
 
-    1. A service name, case-insensitive ('redis cache' -> 'Redis Cache').
+    1. A service name or a known alias, case-insensitive ('redis cache', 'Azure Cache for Redis' -> 'Redis Cache').
     2. Else an exact, case-sensitive product name, looked up live, since marketing names
        differ from billing names ('Azure OpenAI' -> 'Foundry Models', 'Static Web Apps' -> 'Azure App Service').
     """
     name = name.strip()
-    return {n.lower(): n for n in services()}.get(name.lower()) or _service_for_product(name)
+    key = name.lower()
+    return {n.lower(): n for n in services()}.get(key) or ALIASES.get(key) or _service_for_product(name)
 
 
 def parse_uom(uom: str) -> tuple[int, str | None]:

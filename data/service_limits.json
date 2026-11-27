@@ -1,0 +1,149 @@
+{
+ "_note": "Facts the Skeptic may cite. Each rule links to Microsoft Learn. Drafted with AI help at build time; set verified=true after a human checks the linked page.",
+ "rules": [
+  {
+   "id": "functions-consumption-timeout",
+   "services": ["Functions"],
+   "applies_to": "Consumption plan",
+   "fact": "Function executions time out after 5 minutes by default and at most 10 minutes; HTTP-triggered functions must respond within 230 seconds.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout",
+   "verified": false
+  },
+  {
+   "id": "functions-consumption-cold-start",
+   "services": ["Functions"],
+   "applies_to": "Consumption plan",
+   "fact": "Apps scale to zero when idle, so the first request after idle has a cold start delay.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale",
+   "verified": false
+  },
+  {
+   "id": "functions-consumption-no-vnet",
+   "services": ["Functions"],
+   "applies_to": "Consumption plan (not Flex Consumption)",
+   "fact": "The Consumption plan does not support virtual network integration; Flex Consumption, Premium and Dedicated plans do.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options",
+   "verified": false
+  },
+  {
+   "id": "container-apps-scale-to-zero-cold-start",
+   "services": ["Azure Container Apps"],
+   "applies_to": "Apps with minimum replicas = 0",
+   "fact": "Container Apps can scale to zero replicas; the first request after scale-in waits for a replica to start (cold start). Set minimum replicas >= 1 to avoid it (idle replicas are billed at the lower idle rate).",
+   "source_url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+   "verified": false
+  },
+  {
+   "id": "container-apps-consumption-size",
+   "services": ["Azure Container Apps"],
+   "applies_to": "Consumption workload profile",
+   "fact": "A replica on the Consumption profile can use at most 4 vCPU and 8 GiB memory; larger needs a Dedicated workload profile.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/container-apps/workload-profiles-overview",
+   "verified": false
+  },
+  {
+   "id": "app-service-request-timeout",
+   "services": ["Azure App Service"],
+   "applies_to": "All plans",
+   "fact": "Requests that take longer than 230 seconds are cut off by the App Service front end; long work must run in the background.",
+   "source_url": "https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/web-apps-performance-faqs",
+   "verified": false
+  },
+  {
+   "id": "app-service-free-shared-no-sla",
+   "services": ["Azure App Service"],
+   "applies_to": "Free (F1) and Shared (D1) tiers",
+   "fact": "Free and Shared tiers run on shared VMs with CPU quotas, have no SLA and are meant for development and testing, not production.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+   "verified": false
+  },
+  {
+   "id": "app-service-basic-no-autoscale-slots",
+   "services": ["Azure App Service"],
+   "applies_to": "Basic (B1-B3) tier",
+   "fact": "Basic plans support manual scale-out only (no autoscale) and no deployment slots; autoscale and slots start at Standard.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+   "verified": false
+  },
+  {
+   "id": "vm-spot-eviction",
+   "services": ["Virtual Machines", "Azure Kubernetes Service"],
+   "applies_to": "Spot VMs and Spot node pools",
+   "fact": "Spot VMs can be evicted at any time when Azure needs the capacity or the price exceeds your max, and have no SLA. Only for interruptible work.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms",
+   "verified": false
+  },
+  {
+   "id": "vm-b-series-burstable",
+   "services": ["Virtual Machines"],
+   "applies_to": "B-series (burstable) sizes",
+   "fact": "B-series VMs earn CPU credits below a baseline and spend them to burst; sustained high CPU drops to the baseline once credits run out. Not for steady high-CPU loads.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable",
+   "verified": false
+  },
+  {
+   "id": "aks-free-tier-no-sla",
+   "services": ["Azure Kubernetes Service"],
+   "applies_to": "Free tier",
+   "fact": "The AKS Free tier has no financially backed uptime SLA for the API server; the Standard tier adds the Uptime SLA and is recommended for production.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers",
+   "verified": false
+  },
+  {
+   "id": "sql-serverless-auto-pause",
+   "services": ["SQL Database"],
+   "applies_to": "General Purpose serverless with auto-pause enabled",
+   "fact": "Serverless databases can auto-pause after an idle delay; the first connection after a pause waits while the database resumes, which can take up to about a minute.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/serverless-tier-overview",
+   "verified": false
+  },
+  {
+   "id": "sql-basic-dtu-size",
+   "services": ["SQL Database"],
+   "applies_to": "DTU Basic tier",
+   "fact": "The Basic DTU tier allows a maximum database size of 2 GB and 5 DTUs; only for very small, light databases.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/resource-limits-dtu-single-databases",
+   "verified": false
+  },
+  {
+   "id": "postgres-burstable-no-ha",
+   "services": ["Azure Database for PostgreSQL"],
+   "applies_to": "Flexible Server, Burstable tier",
+   "fact": "High availability (zone-redundant or same-zone standby) is not supported on the Burstable tier; use General Purpose or Memory Optimized when HA is required.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-high-availability",
+   "verified": false
+  },
+  {
+   "id": "mysql-burstable-no-ha",
+   "services": ["Azure Database for MySQL"],
+   "applies_to": "Flexible Server, Burstable tier",
+   "fact": "High availability is not supported on the Burstable tier; use General Purpose or Business Critical when HA is required.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-high-availability",
+   "verified": false
+  },
+  {
+   "id": "redis-basic-no-sla",
+   "services": ["Redis Cache"],
+   "applies_to": "Basic tier",
+   "fact": "The Basic tier is a single node with no replication and no SLA; it is for development and testing. Standard adds a replica and an SLA.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview#service-tiers",
+   "verified": false
+  },
+  {
+   "id": "redis-premium-only-features",
+   "services": ["Redis Cache"],
+   "applies_to": "Basic and Standard tiers",
+   "fact": "Data persistence, clustering and virtual network injection need the Premium tier (or higher); Basic and Standard lack them.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview#feature-comparison",
+   "verified": false
+  },
+  {
+   "id": "residency-allowed-regions",
+   "services": ["*"],
+   "applies_to": "Any option",
+   "fact": "Data residency: resources must run in one of the run's allowed regions. Moving to a region outside the allowed list breaks the requirement.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/reliability/regions-list",
+   "verified": false
+  }
+ ]
+}
