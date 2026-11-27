@@ -86,10 +86,23 @@ def services() -> dict[str, list[str]]:
     return {s["serviceName"]: s["serviceFamily"] for s in json.loads(SERVICES_FILE.read_text())["services"]}
 
 
+@lru_cache(maxsize=256)
+def _service_for_product(product: str) -> str | None:
+    # First page is enough: we only need which service bills this product.
+    url = API + "?" + urllib.parse.urlencode({"api-version": API_VERSION, "$filter": odata(productName=product)})
+    names = {r["serviceName"] for r in _get(url)["Items"]}
+    return names.pop() if len(names) == 1 else None  # unknown or ambiguous -> None
+
+
 def resolve_service(name: str) -> str | None:
-    """Exact API serviceName for `name` (case-insensitive), else None. Never guesses: marketing names
-    differ from billing names (Azure OpenAI is billed under 'Foundry Models')."""
-    return {n.lower(): n for n in services()}.get(name.strip().lower())
+    """Exact API serviceName for `name`, else None. Never fuzzy-matches.
+
+    1. A service name, case-insensitive ('redis cache' -> 'Redis Cache').
+    2. Else an exact, case-sensitive product name, looked up live, since marketing names
+       differ from billing names ('Azure OpenAI' -> 'Foundry Models', 'Static Web Apps' -> 'Azure App Service').
+    """
+    name = name.strip()
+    return {n.lower(): n for n in services()}.get(name.lower()) or _service_for_product(name)
 
 
 def parse_uom(uom: str) -> tuple[int, str | None]:
