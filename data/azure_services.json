@@ -1,0 +1,1159 @@
+{
+ "generated": "2026-11-27",
+ "source": "https://prices.azure.com/api/retail/prices?api-version=2023-01-01-preview",
+ "count": 192,
+ "services": [
+  {
+   "serviceName": "Advanced Container Networking Services",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "AI Ops",
+   "serviceFamily": [
+    "Telecommunications"
+   ]
+  },
+  {
+   "serviceName": "AKS Edge Essentials",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "AKS on Azure Stack HCI",
+   "serviceFamily": [
+    "Containers"
+   ]
+  },
+  {
+   "serviceName": "API Management",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "App Configuration",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Application Gateway",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Application Insights",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Automation",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Active Directory B2C",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Azure Active Directory for External Identities",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Azure Adaptive Virtual Patching",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Analysis Services",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure API Center",
+   "serviceFamily": [
+    "Integration"
+   ]
+  },
+  {
+   "serviceName": "Azure API for FHIR",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Azure App Service",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Azure App Testing",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Azure Arc",
+   "serviceFamily": [
+    "Azure Arc"
+   ]
+  },
+  {
+   "serviceName": "Azure Arc Enabled Databases",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Arc-enabled AKS",
+   "serviceFamily": [
+    "Containers"
+   ]
+  },
+  {
+   "serviceName": "Azure Bastion",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Blockchain",
+   "serviceFamily": [
+    "Blockchain"
+   ]
+  },
+  {
+   "serviceName": "Azure Bot Service",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Azure Chaos Studio",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Cloud HSM",
+   "serviceFamily": [
+    "Azure Security"
+   ]
+  },
+  {
+   "serviceName": "Azure Cognitive Search",
+   "serviceFamily": [
+    "Web"
+   ]
+  },
+  {
+   "serviceName": "Azure confidential ledger",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Azure Container Apps",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Azure Cosmos DB",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Data Explorer",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Data Factory",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Data Factory v2",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Data Share",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Database for MariaDB",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Database for MySQL",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Database Migration Service",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Databricks",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure DDOS Protection",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Device Registry",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Azure DevOps",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Azure DNS",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Firewall",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Firewall Manager",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Fluid Relay",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Azure Front Door Service",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Grafana Service",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Azure IoT Operations",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Azure IoT Security",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Azure Kubernetes Service",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Azure Lab Services",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Azure Local",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Azure Machine Learning",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Azure Mainframe Modernization Agents",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Azure Managed Instance for Apache Cassandra",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Maps",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Azure Monitor",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Multicloud Interconnect",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure NetApp Files",
+   "serviceFamily": [
+    "Storage"
+   ]
+  },
+  {
+   "serviceName": "Azure Operator Nexus",
+   "serviceFamily": [
+    "Telecommunications"
+   ]
+  },
+  {
+   "serviceName": "Azure Orbital",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Orbital Edge",
+   "serviceFamily": [
+    "Azure Stack"
+   ]
+  },
+  {
+   "serviceName": "Azure Policy",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Programmable Connectivity",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Purview",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Remote Rendering",
+   "serviceFamily": [
+    "Mixed Reality"
+   ]
+  },
+  {
+   "serviceName": "Azure Resource Mover",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Route Server",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Azure Site Recovery",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Spring Cloud",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Azure SQL Edge",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Azure Stack Edge",
+   "serviceFamily": [
+    "Azure Stack"
+   ]
+  },
+  {
+   "serviceName": "Azure Stack HCI",
+   "serviceFamily": [
+    "Azure Stack"
+   ]
+  },
+  {
+   "serviceName": "Azure Stack Hub",
+   "serviceFamily": [
+    "Azure Stack"
+   ]
+  },
+  {
+   "serviceName": "Azure Synapse Analytics",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Azure Update Manager",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure Virtual Enclaves",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Azure VM Image Builder",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Backup",
+   "serviceFamily": [
+    "Storage"
+   ]
+  },
+  {
+   "serviceName": "Bandwidth",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "BizTalk Services",
+   "serviceFamily": [
+    "Integration"
+   ]
+  },
+  {
+   "serviceName": "Change Tracking and Inventory",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Cloud Services",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Community Training",
+   "serviceFamily": [
+    "Web"
+   ]
+  },
+  {
+   "serviceName": "Container Instances",
+   "serviceFamily": [
+    "Containers"
+   ]
+  },
+  {
+   "serviceName": "Container Registry",
+   "serviceFamily": [
+    "Containers"
+   ]
+  },
+  {
+   "serviceName": "Content Delivery Network",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Data Box",
+   "serviceFamily": [
+    "Storage"
+   ]
+  },
+  {
+   "serviceName": "Data Catalog",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Data Lake Store",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Dataverse",
+   "serviceFamily": [
+    "Power Platform"
+   ]
+  },
+  {
+   "serviceName": "Digital Twins",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Durable Task Scheduler",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Dynamics 365 for Customer Insights",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Email",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "Energy Data Manager",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Event Grid",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Event Hubs",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "ExpressRoute",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Firmware Analysis",
+   "serviceFamily": [
+    "Azure Arc"
+   ]
+  },
+  {
+   "serviceName": "Foundry Models",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Foundry Tools",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Functions",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "GitHub",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "GitHub AE",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "HDInsight",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "High Volume Email",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "HPC Cache",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Insight and Analytics",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Intelligent Recommendations",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "IoT Central",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "IoT Hub",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Key Vault",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Load Balancer",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Log Analytics",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Logic Apps",
+   "serviceFamily": [
+    "Integration"
+   ]
+  },
+  {
+   "serviceName": "Machine Learning Studio",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Messaging",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Azure Payment HSM",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Azure Peering Service",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Copilot Studio",
+   "serviceFamily": [
+    "Microsoft 365 Copilot"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Defender",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Defender Experts",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Defender for Cloud",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Discovery",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Dragon Copilot",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Entra",
+   "serviceFamily": [
+    "Azure Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Entra Domain Services",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Entra Verified ID",
+   "serviceFamily": [
+    "Azure Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Fabric",
+   "serviceFamily": [
+    "Data"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Genomics",
+   "serviceFamily": [
+    "AI + Machine Learning"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Graph data connect",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Graph Services",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Planetary Computer Pro",
+   "serviceFamily": [
+    "Data"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Playwright Testing",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Purview",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Microsoft Security Copilot",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "MS Bing Services",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Multi-Factor Authentication",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "NAT Gateway",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Network Traversal",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "Network Watcher",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Notification Hubs",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Packet Core",
+   "serviceFamily": [
+    "Telecommunications"
+   ]
+  },
+  {
+   "serviceName": "Perception",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Phone Numbers",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "PlayFab",
+   "serviceFamily": [
+    "Gaming"
+   ]
+  },
+  {
+   "serviceName": "Power Apps",
+   "serviceFamily": [
+    "Power Platform"
+   ]
+  },
+  {
+   "serviceName": "Power Automate",
+   "serviceFamily": [
+    "Power Platform"
+   ]
+  },
+  {
+   "serviceName": "Power BI",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Power BI Embedded",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Power Pages",
+   "serviceFamily": [
+    "Power Platform"
+   ]
+  },
+  {
+   "serviceName": "Private Mobile Network",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Quantum Computing",
+   "serviceFamily": [
+    "Quantum Computing"
+   ]
+  },
+  {
+   "serviceName": "Redis Cache",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Resiliency",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Routing",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "SAP Embrace",
+   "serviceFamily": [
+    "Other"
+   ]
+  },
+  {
+   "serviceName": "Scheduler",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Sentinel",
+   "serviceFamily": [
+    "Management and Governance"
+   ]
+  },
+  {
+   "serviceName": "Service Bus",
+   "serviceFamily": [
+    "Integration"
+   ]
+  },
+  {
+   "serviceName": "Service Fabric",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Service Fabric Mesh",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "SignalR",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "SMS",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "Specialized Compute",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "SQL Data Warehouse",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "SQL Database",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "SQL DB Edge",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "SQL Managed Instance",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "SQL Server Stretch Database",
+   "serviceFamily": [
+    "Databases"
+   ]
+  },
+  {
+   "serviceName": "Storage",
+   "serviceFamily": [
+    "Storage"
+   ]
+  },
+  {
+   "serviceName": "StorSimple",
+   "serviceFamily": [
+    "Storage"
+   ]
+  },
+  {
+   "serviceName": "Stream Analytics",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Syntex",
+   "serviceFamily": [
+    "Microsoft Syntex"
+   ]
+  },
+  {
+   "serviceName": "Test Base",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Time Series Insights",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Traffic Manager",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Trusted Signing",
+   "serviceFamily": [
+    "Security"
+   ]
+  },
+  {
+   "serviceName": "Virtual Machines",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Virtual Machines Licenses",
+   "serviceFamily": [
+    "Compute"
+   ]
+  },
+  {
+   "serviceName": "Virtual Network",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Virtual WAN",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Visual Studio Codespaces",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Visual Studio Subscription",
+   "serviceFamily": [
+    "Developer Tools"
+   ]
+  },
+  {
+   "serviceName": "Voice",
+   "serviceFamily": [
+    "Azure Communication Services"
+   ]
+  },
+  {
+   "serviceName": "Voice Core",
+   "serviceFamily": [
+    "Telecommunications"
+   ]
+  },
+  {
+   "serviceName": "VPN Gateway",
+   "serviceFamily": [
+    "Networking"
+   ]
+  },
+  {
+   "serviceName": "Web PubSub",
+   "serviceFamily": [
+    "Analytics"
+   ]
+  },
+  {
+   "serviceName": "Windows 10 IoT Core Services",
+   "serviceFamily": [
+    "Internet of Things"
+   ]
+  },
+  {
+   "serviceName": "Windows 365 Agents",
+   "serviceFamily": [
+    "Windows 365"
+   ]
+  },
+  {
+   "serviceName": "Windows Virtual Desktop",
+   "serviceFamily": [
+    "Windows Virtual Desktop"
+   ]
+  }
+ ]
+}

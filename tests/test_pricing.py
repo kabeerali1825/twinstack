@@ -1,0 +1,54 @@
+"""Offline checks for app/pricing.py, using rows shaped like real API responses (westeurope, Nov 2026)."""
+import pytest
+
+from app.pricing import monthly_cost, odata, parse_uom, resolve_service, services
+
+
+def row(price, uom="1 Hour", type="Consumption", term=None, tier=0.0):
+    return {"unitPrice": price, "unitOfMeasure": uom, "type": type, "reservationTerm": term,
+            "tierMinimumUnits": tier}
+
+
+def test_vm_pay_as_you_go_and_reservations():
+    assert monthly_cost([row(0.115)]) == pytest.approx(83.95)                       # D2s v5 Linux, 730 h
+    assert monthly_cost([row(0.115)], qty=2) == pytest.approx(167.90)
+    assert monthly_cost([row(622.0, type="Reservation", term="1 Year")]) == pytest.approx(51.8333, abs=1e-3)
+    assert monthly_cost([row(1194.0, type="Reservation", term="3 Years")]) == pytest.approx(33.1667, abs=1e-3)
+
+
+def test_per_second_units():
+    # Container Apps vCPU active: $0.000034/s, one vCPU busy all month
+    assert monthly_cost([row(3.4e-05, "1 Second")]) == pytest.approx(3.4e-05 * 730 * 3600)
+
+
+def test_tiers_with_free_grant():
+    # Functions executions, unit '10': first 25,000 units (250k executions) free
+    tiers = [row(0.0, "10"), row(4e-06, "10", tier=25000.0)]
+    assert monthly_cost(tiers, qty=200_000) == 0.0
+    assert monthly_cost(tiers, qty=1_250_000) == pytest.approx(100_000 * 4e-06)
+
+
+def test_volume_tiers():
+    tiers = [row(0.05, "1 GB/Month"), row(0.04, "1 GB/Month", tier=100.0)]
+    assert monthly_cost(tiers, qty=150) == pytest.approx(100 * 0.05 + 50 * 0.04)
+
+
+@pytest.mark.parametrize("uom,expected", [
+    ("1 Hour", (1, "Hour")), ("1/Month", (1, "Month")), ("1 GB/Month", (1, "Month")), ("10K", (10_000, None)),
+    ("1M", (1_000_000, None)), ("1 GiB Second", (1, "Second")), ("10K/Month", (10_000, "Month")),
+    ("1 GiB/Hour", (1, "Hour")), ("100", (100, None)), ("1 MB", (1, None)), ("1/Year", (1, "Year")),
+])
+def test_parse_uom(uom, expected):
+    assert parse_uom(uom) == expected
+
+
+def test_odata_escapes_quotes():
+    assert odata(serviceName="Virtual Machines", skuName="it's") == \
+        "serviceName eq 'Virtual Machines' and skuName eq 'it''s'"
+
+
+def test_service_catalog():
+    assert len(services()) > 150
+    assert resolve_service("virtual machines") == "Virtual Machines"
+    assert resolve_service(" Redis Cache ") == "Redis Cache"
+    assert resolve_service("Azure OpenAI") is None  # billed as 'Foundry Models'; must not fuzzy-match
