@@ -1,0 +1,10 @@
+{
+ "_note": "Region groups (armRegionName) used for residency. A run searches every region in its allowed group. Max 18 per group (API filter limit).",
+ "EU": ["westeurope", "northeurope", "swedencentral", "francecentral", "germanywestcentral", "italynorth", "polandcentral", "spaincentral"],
+ "Europe": ["westeurope", "northeurope", "swedencentral", "francecentral", "germanywestcentral", "italynorth", "polandcentral", "spaincentral", "uksouth", "ukwest", "switzerlandnorth", "norwayeast"],
+ "UK": ["uksouth", "ukwest"],
+ "US": ["eastus", "eastus2", "centralus", "northcentralus", "southcentralus", "westus", "westus2", "westus3", "westcentralus"],
+ "Canada": ["canadacentral", "canadaeast"],
+ "Asia Pacific": ["southeastasia", "eastasia", "japaneast", "japanwest", "koreacentral", "centralindia", "southindia"],
+ "Australia": ["australiaeast", "australiasoutheast"]
+}

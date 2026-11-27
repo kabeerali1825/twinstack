@@ -1,0 +1,10 @@
+.venv/
+.env
+.env.*
+tests/
+scripts/
+.claude/
+.vs/
+.vscode/
+.pytest_cache/
+**/__pycache__/

@@ -1,16 +1,27 @@
-"""LiteLLM gateway wrapper: model routing, per-run call cap, spend tracking, Pydantic-validated JSON.
+"""LiteLLM gateway wrapper: model routing, per-run call cap, spend tracking, Pydantic-validated JSON,
+and record/replay fixtures so development and tests don't spend budget.
 
 The API key is read from env only and never logged or returned.
+
+LLM_FIXTURES=record  -> real calls, each reply saved to tests/fixtures/llm/<hash>.json
+LLM_FIXTURES=replay  -> no network; replies come from those files (missing file = error)
 """
+import hashlib
+import json
 import os
+import time
+import urllib.request
 from dataclasses import dataclass
 from functools import cache
+from pathlib import Path
 from typing import TypeVar
 
-from openai import OpenAI
+from openai import BadRequestError, OpenAI
 from pydantic import BaseModel, ValidationError
 
 MAX_CALLS_PER_RUN = 15
+_thinking_off: dict[str, str] = {}  # model -> thinking type that turns thinking off
+FIXTURES = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "llm"
 T = TypeVar("T", bound=BaseModel)
 
 
@@ -20,8 +31,9 @@ class BudgetExceeded(RuntimeError):
 
 @dataclass
 class Usage:
-    calls: int = 0
-    cost_usd: float = 0.0
+    """Anything with these two fields works as usage, e.g. RunState."""
+    llm_calls: int = 0
+    ai_cost_usd: float = 0.0
 
 
 @cache
@@ -35,7 +47,21 @@ def _client() -> OpenAI:
     )
 
 
-def _create(**kwargs) -> tuple[str, float]:
+_spend_cache: tuple[float, float] = (0.0, 0.0)  # (checked_at, spend)
+
+
+def key_spend(max_age: float = 60) -> float:
+    """Total USD spent on the key so far, from the gateway (cached per instance for `max_age` seconds)."""
+    global _spend_cache
+    if time.time() - _spend_cache[0] > max_age:
+        url = os.environ["LITELLM_BASE_URL"].rsplit("/v1", 1)[0] + "/key/info"
+        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {os.environ['LITELLM_API_KEY']}"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            _spend_cache = (time.time(), float(json.load(r)["info"]["spend"]))
+    return _spend_cache[1]
+
+
+def _call_api(**kwargs) -> tuple[str, float]:
     raw = _client().chat.completions.with_raw_response.create(**kwargs)
     resp = raw.parse()
     # LiteLLM sends the per-call USD cost in this header (verified for both models).
@@ -43,14 +69,42 @@ def _create(**kwargs) -> tuple[str, float]:
     return resp.choices[0].message.content or "", cost
 
 
-def chat(messages: list[dict], usage: Usage, *, smart: bool = False, max_tokens: int = 800) -> str:
+def _create(**kwargs) -> tuple[str, float]:
+    mode = os.environ.get("LLM_FIXTURES", "")
+    if not mode:
+        return _call_api(**kwargs)
+    key = hashlib.sha256(json.dumps(kwargs, sort_keys=True).encode()).hexdigest()[:20]
+    path = FIXTURES / f"{key}.json"
+    if mode == "replay":
+        if not path.exists():
+            raise RuntimeError(f"No recorded LLM reply {path.name}; run once with LLM_FIXTURES=record")
+        saved = json.loads(path.read_text())
+        return saved["text"], saved["cost"]
+    text, cost = _call_api(**kwargs)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"model": kwargs["model"], "text": text, "cost": cost}, indent=1))
+    return text, cost
+
+
+def chat(messages: list[dict], usage, *, smart: bool = False, max_tokens: int = 800) -> str:
     """One LLM call. smart=True -> MODEL_SMART (Sonnet), else MODEL_FAST (Haiku)."""
-    if usage.calls >= MAX_CALLS_PER_RUN:
+    if usage.llm_calls >= MAX_CALLS_PER_RUN:
         raise BudgetExceeded(f"This run hit its limit of {MAX_CALLS_PER_RUN} AI calls.")
-    usage.calls += 1  # counted before the call, so failed calls count too
+    usage.llm_calls += 1  # counted before the call, so failed calls count too
     model = os.environ["MODEL_SMART" if smart else "MODEL_FAST"]
-    text, cost = _create(model=model, messages=messages, max_tokens=max_tokens)
-    usage.cost_usd += cost
+    # The gateway enables extended thinking by default; on structured tasks it can spend the whole
+    # max_tokens budget thinking and return empty content, so it's switched off. Models differ in how:
+    # Haiku takes "disabled", Sonnet 5.5 asks for "between_tools" (and says so in a 400 error).
+    try:
+        text, cost = _create(model=model, messages=messages, max_tokens=max_tokens,
+                             extra_body={"thinking": {"type": _thinking_off.get(model, "disabled")}})
+    except BadRequestError as e:
+        if "between_tools" not in str(e) or _thinking_off.get(model) == "between_tools":
+            raise
+        _thinking_off[model] = "between_tools"
+        text, cost = _create(model=model, messages=messages, max_tokens=max_tokens,
+                             extra_body={"thinking": {"type": "between_tools"}})
+    usage.ai_cost_usd += cost
     return text
 
 
@@ -59,7 +113,7 @@ def _json_part(text: str) -> str:
     return text[text.find("{"): text.rfind("}") + 1]
 
 
-def chat_json(messages: list[dict], schema: type[T], usage: Usage, *, smart: bool = False,
+def chat_json(messages: list[dict], schema: type[T], usage, *, smart: bool = False,
               max_tokens: int = 1500) -> T:
     """LLM call whose reply must validate as `schema`. Retries once with the error, then raises."""
     text = chat(messages, usage, smart=smart, max_tokens=max_tokens)

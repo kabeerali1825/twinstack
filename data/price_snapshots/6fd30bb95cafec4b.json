@@ -1,0 +1,1799 @@
+{
+ "filter": "serviceName eq 'Azure Database for PostgreSQL' and skuName eq '2 vCore' and (armRegionName eq 'francecentral' or armRegionName eq 'germanywestcentral' or armRegionName eq 'italynorth' or armRegionName eq 'northeurope' or armRegionName eq 'polandcentral' or armRegionName eq 'spaincentral' or armRegionName eq 'swedencentral' or armRegionName eq 'westeurope' or armRegionName eq 'Global')",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "Global",
+   "location": "Global",
+   "effectiveStartDate": "2017-12-01T00:00:00Z",
+   "meterId": "95167e9f-e85b-44bc-91d0-0079ecf6f757",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQHV",
+   "skuId": "DZH318Z0BQHV/00DH",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen4",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "Global",
+   "location": "Global",
+   "effectiveStartDate": "2018-03-16T00:00:00Z",
+   "meterId": "56ed2980-b2b3-482d-a6d4-4b0cd62202a2",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BQHR",
+   "skuId": "DZH318Z0BQHR/00S9",
+   "productName": "Azure Database for PostgreSQL Single Server General Purpose - Compute Gen4",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2018-05-01T00:00:00Z",
+   "meterId": "84800805-cfee-41dc-ac93-5408dae97885",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00CN",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.085,
+   "unitPrice": 0.085,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2018-05-01T00:00:00Z",
+   "meterId": "c8f72298-bd18-4816-8b44-f69768693d5d",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00CM",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0728,
+   "unitPrice": 0.0728,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2018-05-01T00:00:00Z",
+   "meterId": "f8f5220c-48bd-4de3-ab31-44c303a3d49b",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00CP",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2019-09-01T00:00:00Z",
+   "meterId": "4d5a1455-545b-4d09-a77e-aa159c3a862a",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00GQ",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0728,
+   "unitPrice": 0.0728,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2020-05-31T00:00:00Z",
+   "meterId": "59c6aaa2-f09f-4b18-8f6c-4239415590f7",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQHV",
+   "skuId": "DZH318Z0BQHV/00CM",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen4",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2020-05-31T00:00:00Z",
+   "meterId": "7f249008-9ed1-4ed2-ad3c-e2c766ef428d",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQHV",
+   "skuId": "DZH318Z0BQHV/00CQ",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen4",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.092,
+   "unitPrice": 0.092,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "04de1d89-78f9-533b-8dda-eae504938f25",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/009Z",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0736,
+     "retailPrice": 0.0736,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0956,
+   "unitPrice": 0.0956,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "21e676c8-0a87-5b81-9ed9-3cf37187d726",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/004M",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07648,
+     "retailPrice": 0.07648,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.298,
+   "unitPrice": 0.298,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "2c48a140-699a-5460-bcc4-461ae9e96ee3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/0094",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2384,
+     "retailPrice": 0.2384,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2384,
+     "retailPrice": 0.2384,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "30dd88a0-c518-57bd-8314-439384ce5944",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/008H",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "33fa986c-8921-595d-ba8a-3773dbde3003",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/001S",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.278,
+   "unitPrice": 0.278,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "37f8fb64-d84d-5150-8445-86bca0923843",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/006V",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2224,
+     "retailPrice": 0.2224,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2224,
+     "retailPrice": 0.2224,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "4b62e52a-cee5-58e0-9751-8bdb7a921df0",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/00B6",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.278,
+   "unitPrice": 0.278,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "5d954cc2-7912-53c7-b5fa-c9d750d4ddd7",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/0064",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2224,
+     "retailPrice": 0.2224,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2224,
+     "retailPrice": 0.2224,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.198,
+   "unitPrice": 0.198,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "801804bb-b5b3-5cbf-ae00-e470e2a65f86",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/0067",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1584,
+     "retailPrice": 0.1584,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "803b0b74-233a-5f84-a6c6-151c74752039",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/006K",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "863cc209-9369-5ba0-87f8-8f31d620b00f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00CB",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "87f8c4c7-5da2-5d19-a7f5-41b1180f1429",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/0065",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.206,
+   "unitPrice": 0.206,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "8a159f25-0292-5bed-a721-dc879529b932",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/007M",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1648,
+     "retailPrice": 0.1648,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1648,
+     "retailPrice": 0.1648,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "96dcc820-89a1-5706-b656-2fdf899eeee6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/00C0",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "9d8aaaf0-e2a7-5214-a749-9e155342391f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/006M",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.198,
+   "unitPrice": 0.198,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "b759f84d-55ec-5cec-a49f-b777b05abc72",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/0027",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1584,
+     "retailPrice": 0.1584,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1584,
+     "retailPrice": 0.1584,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "cf5da097-61aa-5f89-838e-46b4c928ee4c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/001K",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.206,
+   "unitPrice": 0.206,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "db93c69a-c4c1-59ac-9b74-0bf5ffd0f8c9",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/005K",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1648,
+     "retailPrice": 0.1648,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "e919bbde-bb1d-5680-817f-2ac420fb285f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/006F",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "ea089c83-8390-5aa1-ba63-de098e2b8475",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/005S",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.298,
+   "unitPrice": 0.298,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-03-01T00:00:00Z",
+   "meterId": "fdeae038-8b1f-5910-90a1-22aa2f1899e9",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/002R",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2384,
+     "retailPrice": 0.2384,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2384,
+     "retailPrice": 0.2384,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "14c64ebe-8b18-5ab9-b53e-5d2a3f418840",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/00CD",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "541e1d44-53c2-547f-8cad-e526cfe05126",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/00CD",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "869ccaa1-84e4-5b7a-bb31-47df230368bd",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00JG",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "89177f27-45d5-599d-bfd1-700cd2a1f34e",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/00F9",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "aa5c1e67-3457-5631-b90a-1cd0ca7ca3b8",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/00GQ",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "edf401c2-0330-56e3-9588-eb6c4b4c47e7",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00DJ",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.257,
+   "unitPrice": 0.257,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-07-01T00:00:00Z",
+   "meterId": "7c8b7a2c-ed23-5927-a77f-8d661f8750e2",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/008B",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2056,
+     "retailPrice": 0.2056,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2056,
+     "retailPrice": 0.2056,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.187,
+   "unitPrice": 0.187,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-07-01T00:00:00Z",
+   "meterId": "985152a7-c23a-5340-b5cc-7a060f9bf040",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/009R",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1496,
+     "retailPrice": 0.1496,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1496,
+     "retailPrice": 0.1496,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.187,
+   "unitPrice": 0.187,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-07-01T00:00:00Z",
+   "meterId": "e1994966-86d8-5fdd-b2fe-476405cbb29e",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/008D",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1496,
+     "retailPrice": 0.1496,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.257,
+   "unitPrice": 0.257,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-07-01T00:00:00Z",
+   "meterId": "e1d77430-0fdc-55de-84f6-c1f8b4d4fa37",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/00B6",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2056,
+     "retailPrice": 0.2056,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2056,
+     "retailPrice": 0.2056,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "1868b1d3-c8f0-5507-a17c-5de8c2e5b694",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/00N5",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "55f0b2be-fc34-5d5e-8f6a-d4f9ef6a948a",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/00QH",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "6d5ec975-9ff0-543d-b14d-0c4ebfa1b8b3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/00HB",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "a2a11228-12eb-5c44-811b-19873c2d9e4e",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00F3",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "c7ba6f8c-9148-54ff-b93f-c0ec2f6de2fd",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00JW",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "fb008f75-0a7e-5626-9d58-0a41afab74ff",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/00DK",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0796,
+   "unitPrice": 0.0796,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2024-07-01T00:00:00Z",
+   "meterId": "54d63758-bd10-5d1b-945f-3a3fabc1d15f",
+   "meterName": "2 vCore",
+   "productId": "DZH318Z0BQJ3",
+   "skuId": "DZH318Z0BQJ3/00J5",
+   "productName": "Azure Database for PostgreSQL Single Server Basic - Compute Gen5",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "0a4f126d-8e44-543b-b385-1a2bd9200f0f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDVH",
+   "skuId": "DZH318Z0KDVH/00J0",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Eadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Azure_Database_for_PostgreSQL_Flexible_Server_Memory_Purpose_Eadsv5_Series_Compute_2_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "2f703a90-2787-5284-bc6f-d03dbce382af",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KF1X",
+   "skuId": "DZH318Z0KF1X/00DK",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Dadsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ads_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.302,
+   "unitPrice": 0.302,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "3671156c-c45a-5210-8797-b935a8c1bed9",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDX1",
+   "skuId": "DZH318Z0KDX1/00J0",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Edsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_E2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2416,
+     "retailPrice": 0.2416,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.212,
+   "unitPrice": 0.212,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "ec059923-e295-5da8-82e8-e9bffb99ece0",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00DK",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Standard_D2ds_v5",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1696,
+     "retailPrice": 0.1696,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0996,
+   "unitPrice": 0.0996,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "ede468f0-3a6c-57f0-87c7-7df66d709604",
+   "meterName": "vCore",
+   "productId": "DZH318Z0JX31",
+   "skuId": "DZH318Z0JX31/00CW",
+   "productName": "Azure Cosmos DB for PostgreSQL Compute- Burstable",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "2 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07968,
+     "retailPrice": 0.07968,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2622,
+   "unitPrice": 0.2622,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "f1fae131-0c8a-524b-a77b-a0f5dc5481c6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/008N",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.10488,
+     "retailPrice": 0.10488,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.10488,
+     "retailPrice": 0.10488,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2858,
+   "unitPrice": 0.2858,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "4f5a70fc-505e-57bb-9a22-92f3a8b8e4cc",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/0090",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.24672,
+   "unitPrice": 0.24672,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "b69be6bd-0f83-5a3f-a840-c504413df654",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/00HB",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.098688,
+     "retailPrice": 0.098688,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.098688,
+     "retailPrice": 0.098688,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2858,
+   "unitPrice": 0.2858,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "3afaeb34-1c28-522e-ae30-39e96b8255e4",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/00RX",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2858,
+   "unitPrice": 0.2858,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "a1d54a64-883f-5ccf-8f95-cbeea4bccdee",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/00RM",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.28,
+   "unitPrice": 0.28,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "ab273883-1f41-56d1-b5b7-ad01513aeb31",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/0082",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.112,
+     "retailPrice": 0.112,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.112,
+     "retailPrice": 0.112,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2858,
+   "unitPrice": 0.2858,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "a51d38a3-2e2e-5c47-83d5-f9fd71734115",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/008H",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.2858,
+   "unitPrice": 0.2858,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "89fec3ca-bd8a-5861-a755-9d9607a570bf",
+   "meterName": "vCore",
+   "productId": "DZH318Z0DCRZ",
+   "skuId": "DZH318Z0DCRZ/00WG",
+   "productName": "Azure Database for PostgreSQL Flexible Server Memory Optimized Esv3 Series Compute",
+   "skuName": "2 vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_Memory_Optimized_Esv3Series_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.11432,
+     "retailPrice": 0.11432,
+     "term": "3 Years"
+    }
+   ]
+  }
+ ]
+}

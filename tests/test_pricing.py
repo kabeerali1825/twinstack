@@ -1,6 +1,9 @@
 """Offline checks for app/pricing.py, using rows shaped like real API responses (westeurope, Nov 2026)."""
+import urllib.parse
+
 import pytest
 
+from app import pricing
 from app.pricing import monthly_cost, odata, parse_uom, resolve_service, services
 
 
@@ -51,4 +54,21 @@ def test_service_catalog():
     assert len(services()) > 150
     assert resolve_service("virtual machines") == "Virtual Machines"
     assert resolve_service(" Redis Cache ") == "Redis Cache"
-    assert resolve_service("Azure OpenAI") is None  # billed as 'Foundry Models'; must not fuzzy-match
+
+
+def test_resolve_by_product_name(monkeypatch):
+    by_product = {
+        "Azure OpenAI": [{"serviceName": "Foundry Models"}] * 3,
+        "Shared": [{"serviceName": "A"}, {"serviceName": "B"}],
+    }
+
+    def fake_get(url):
+        product = next((p for p in by_product if urllib.parse.quote_plus(f"'{p}'") in url), None)
+        return {"Items": by_product.get(product, [])}
+
+    monkeypatch.setattr(pricing, "_get", fake_get)
+    pricing._service_for_product.cache_clear()
+    assert resolve_service("Azure OpenAI") == "Foundry Models"
+    assert resolve_service("Shared") is None          # billed by two services: ambiguous
+    assert resolve_service("Azure DevOpz") is None    # no fuzzy matching
+    pricing._service_for_product.cache_clear()

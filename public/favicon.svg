@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Favicon cut of the Split T: wider gaps so they stay open at 16 px. -->
+  <style>
+    .a { fill: #494D5F } .b { fill: #8458B3 }
+    @media (prefers-color-scheme: dark) { .a { fill: #A0D2EB } .b { fill: #D0BDF4 } }
+  </style>
+  <rect class="a" x="20" y="28" width="98" height="68" rx="18"/>
+  <rect class="b" x="138" y="28" width="98" height="68" rx="18"/>
+  <rect class="b" x="92" y="116" width="72" height="50" rx="14"/>
+  <rect class="b" x="92" y="182" width="72" height="50" rx="14"/>
+</svg>

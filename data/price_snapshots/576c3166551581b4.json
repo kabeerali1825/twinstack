@@ -1,0 +1,1909 @@
+{
+ "filter": "serviceName eq 'Azure Container Apps' and skuName eq 'Standard' and (armRegionName eq 'francecentral' or armRegionName eq 'germanywestcentral' or armRegionName eq 'italynorth' or armRegionName eq 'northeurope' or armRegionName eq 'polandcentral' or armRegionName eq 'spaincentral' or armRegionName eq 'swedencentral' or armRegionName eq 'westeurope' or armRegionName eq 'Global')",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.4e-05,
+   "unitPrice": 3.4e-05,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "0426badc-b719-5201-b141-b2d5c4943b7d",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.822e-05,
+     "retailPrice": 2.822e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.89e-05,
+     "retailPrice": 2.89e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "05396e31-2622-5cc8-9bb4-06d0ac9c6047",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.4e-05,
+   "unitPrice": 2.4e-05,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "1e8e24a4-ee86-5d4b-92b0-b3ec61e2bcac",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 1.992e-05,
+     "retailPrice": 1.992e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.04e-05,
+     "retailPrice": 2.04e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "27beb741-e49b-5a71-9f81-8a6703defc18",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "397782ca-aeab-5405-865a-55eebcb9817e",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "3ba64b1c-cb46-5ee0-b086-a68736392ac0",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.4e-05,
+   "unitPrice": 2.4e-05,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "4ea1c35d-d999-57d0-88f2-e689d3475fcd",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 1.992e-05,
+     "retailPrice": 1.992e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.04e-05,
+     "retailPrice": 2.04e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.4e-05,
+   "unitPrice": 2.4e-05,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "4ebd2e58-3f2c-58a5-a442-8460e472dce7",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 1.992e-05,
+     "retailPrice": 1.992e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.04e-05,
+     "retailPrice": 2.04e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "735749ab-b696-535f-9ad5-6f996878a6d7",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "7b7747f8-2c0b-5b6b-a6d9-d998e92f6bcc",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "7c930da8-0777-5729-8384-84010d2555da",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "8449b446-8a19-59a9-ab21-9af573de640b",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "8a9b3feb-b601-58d8-ab9d-a0ddb2ea0db2",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "8e8ae177-d34d-5b69-85d1-11362d03118d",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "b0e8dad1-2d3f-594d-8b67-2bbeba27dc67",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.56,
+   "unitPrice": 0.56,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "b110d175-46b6-5bbc-adde-cf3438ed87f0",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.4648,
+     "retailPrice": 0.4648,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.476,
+     "retailPrice": 0.476,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "c3d4faaa-f00a-56c0-8d12-07908220e5f0",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "c43d1f5d-5a92-5222-80a3-228227a1ddd8",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "ca327ab4-a987-53dc-9ccb-4734daea6091",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.4e-05,
+   "unitPrice": 2.4e-05,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "ca334160-f3b7-5d18-a825-d17d21f0c9d2",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 1.992e-05,
+     "retailPrice": 1.992e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.04e-05,
+     "retailPrice": 2.04e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "cbd8bb07-72da-5846-a87e-54ba8239c091",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "cea8b5c0-c6fe-59cf-baa7-123dbc4c6bb8",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "d2ea2778-6103-5bca-a22d-97bdfaefa4f6",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "d340c8f8-92e9-5847-a50e-010980805161",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2022-06-01T00:00:00Z",
+   "meterId": "e657862d-a18e-5def-a442-5191f5b612cd",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2023-09-01T00:00:00Z",
+   "meterId": "d9189095-950b-5e21-84cd-e43e8084951c",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-12-01T00:00:00Z",
+   "meterId": "76e4d742-a5cc-5b4d-9bd0-eab4f1062b72",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.4e-05,
+   "unitPrice": 3.4e-05,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-12-01T00:00:00Z",
+   "meterId": "83e351fc-b068-5d88-b5b9-6f242d91c0c2",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.822e-05,
+     "retailPrice": 2.822e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.89e-05,
+     "retailPrice": 2.89e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-12-01T00:00:00Z",
+   "meterId": "a4eb1686-5fa4-5de0-abaa-2c683fbb3518",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-12-01T00:00:00Z",
+   "meterId": "d7a58277-bf10-574e-a82b-d8abc6a0385d",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-12-01T00:00:00Z",
+   "meterId": "f0528e0d-184e-52a3-aa6e-8c0601490df6",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.4e-05,
+   "unitPrice": 3.4e-05,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "0eac9400-b3dd-53de-bb30-45c8092eaa8d",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.822e-05,
+     "retailPrice": 2.822e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.89e-05,
+     "retailPrice": 2.89e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "0edc9f25-e759-5941-9004-63cf61605325",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "5769c54d-3009-5681-a064-c39ee4e45e0c",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.4,
+   "unitPrice": 0.4,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "5e1bdd1f-1baa-5d9f-b88e-2c8a743e4e3e",
+   "meterName": "Standard Requests",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1M",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.332,
+     "retailPrice": 0.332,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.34,
+     "retailPrice": 0.34,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "f1428309-bcbc-5e3b-b3cf-de0e0f0e3300",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.4e-06,
+     "retailPrice": 3.4e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "555b7bf7-afa5-5ea8-8be5-ee13e57207d8",
+   "meterName": "Standard Memory Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "a1ccf6cd-7a01-531b-8aa3-247a367cf625",
+   "meterName": "Standard Memory Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GiB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3e-06,
+   "unitPrice": 3e-06,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "ed392e90-7816-5708-b0f8-6476465a3414",
+   "meterName": "Standard vCPU Idle Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.49e-06,
+     "retailPrice": 2.49e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.55e-06,
+     "retailPrice": 2.55e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.4e-05,
+   "unitPrice": 2.4e-05,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-02-01T00:00:00Z",
+   "meterId": "fd502ea3-8dbb-5b9f-a3c4-d529c1e72679",
+   "meterName": "Standard vCPU Active Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 1.992e-05,
+     "retailPrice": 1.992e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.04e-05,
+     "retailPrice": 2.04e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2026-02-01T00:00:00Z",
+   "meterId": "3677c1f7-35ce-5f2c-bfad-fcae15421fe0",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2026-02-01T00:00:00Z",
+   "meterId": "c47b5ef7-0a5e-528b-b429-48a08576c4eb",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000J",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "0d3c3dc1-991e-553d-aea5-00cc2f6f9291",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "2d16a767-9bf0-5c59-b27b-32d8cb26ec78",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "3dcc610e-7a11-51ad-8035-7091d31cc60d",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "432cc8dd-e8ab-5bfb-9535-576a86d9cb49",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "4e0605c8-a74a-5cf6-9a3f-496589b3f2f6",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000H",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "5504d122-4b5d-5314-ad14-2e16e0fcfccc",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 8.8e-05,
+   "unitPrice": 8.8e-05,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "8194fe1f-befa-55ec-9642-9c55525c8364",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.304e-05,
+     "retailPrice": 7.304e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 7.48e-05,
+     "retailPrice": 7.48e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.1e-05,
+   "unitPrice": 9.1e-05,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "94c100c2-f42b-5505-b600-c80a6f7d93e3",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.553e-05,
+     "retailPrice": 7.553e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 7.735e-05,
+     "retailPrice": 7.735e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000661,
+   "unitPrice": 0.000661,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "98f53877-f8b6-587e-9aa9-278a9cb15fac",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000Q",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00054863,
+     "retailPrice": 0.00054863,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.00056185,
+     "retailPrice": 0.00056185,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000635,
+   "unitPrice": 0.000635,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "b708ccaf-3a31-5cae-8018-d86c2b3771ad",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0007",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00052705,
+     "retailPrice": 0.00052705,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.00053975,
+     "retailPrice": 0.00053975,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "d82c31e0-d182-5823-8e2b-9556c24868a6",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000C",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "e110677e-8256-5a0e-8263-01ff839fbee5",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/0001",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.000688,
+   "unitPrice": 0.000688,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "e1e0de95-f310-5f13-8242-6d73f7be405b",
+   "meterName": "Standard NC A100 v4 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000F",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.00057104,
+     "retailPrice": 0.00057104,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0005848,
+     "retailPrice": 0.0005848,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 9.5e-05,
+   "unitPrice": 9.5e-05,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2026-04-01T00:00:00Z",
+   "meterId": "f0a5ccea-a5c1-5e20-8552-993340b0b109",
+   "meterName": "Standard NC T4 v3 GPU Usage",
+   "productId": "DZH318Z0B0NC",
+   "skuId": "DZH318Z0B0NC/000W",
+   "productName": "Azure Container Apps",
+   "skuName": "Standard",
+   "serviceName": "Azure Container Apps",
+   "serviceId": "DZH319F70F09",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 7.885e-05,
+     "retailPrice": 7.885e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 8.075e-05,
+     "retailPrice": 8.075e-05,
+     "term": "1 Year"
+    }
+   ]
+  }
+ ]
+}

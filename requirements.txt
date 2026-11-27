@@ -1,4 +1,4 @@
-fastapi
-openai
-pydantic
-python-dotenv
+fastapi==0.165.0
+openai==3.60.0
+pydantic==2.14.4
+python-dotenv==1.2.4
