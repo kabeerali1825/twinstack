@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "The alternative is a Standard tier C6 cache (6 GB), which is a whole-resource meter priced per hour, running all month on a single instance.\n\n```json\n{\"options\": [{\"option_id\": \"c4.r3a1\", \"meters\": [{\"index\": 0, \"count\": 1, \"count_means\": \"instances\", \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard C6 (6 GB) cache, one instance, billed all month as a provisioned cache; the whole-size SKU is priced at 2.1/hour, so no per-node meter is needed.\"}], \"problem\": \"\"}]}\n```",
- "cost": 0.0004367
-}

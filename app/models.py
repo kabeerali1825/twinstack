@@ -47,6 +47,7 @@ class Option(BaseModel):
     rationale: str = ""
     tradeoffs: list[str] = []
     also_replaces: list[str] = []     # other component ids this option makes unnecessary (AKS nodes -> Container Apps)
+    is_fix: bool = False              # proposed to fix an issue in today's design (may cost more)
     meters: list[MeterPick] = []      # chosen by the Pricer
     priced: bool = False              # Pricer has run on it (meters may still be empty)
     scouted: bool = False             # Region Scout has run on it
@@ -78,6 +79,15 @@ class Rejection(BaseModel):
     reason: str
     source_url: str = ""
     by: str = "Skeptic"
+
+
+class Issue(BaseModel):
+    """Something in TODAY's design that doesn't fit the requirements."""
+    component_id: str
+    kind: Literal["rule", "advice"]   # rule: breaks a cited rule, must be fixed; advice: a judgement call, shown only
+    rule: str = ""                    # rule id from data/service_limits.json (empty for advice)
+    reason: str
+    source_url: str = ""
 
 
 class PlanItem(BaseModel):
@@ -119,8 +129,11 @@ class RunState(BaseModel):
     options: list[Option] = []
     candidates: list[Candidate] = []
     rejections: list[Rejection] = []
+    issues: list[Issue] = []          # problems the Skeptic found in today's design
     plans: list[Plan] = []
     original_total: float = 0
+    fixed_total: float = 0            # today's design with the cheapest fix for each rule issue (0 = no fixes)
+    fit_rules_checked: int = 0        # rules today's design was checked against (0 = not checked yet)
     swap_round: int = 0
     swap_had_new: bool = True         # last Service Swap round added something; if not, stop reworking
     timeline: list[Event] = []

@@ -104,4 +104,12 @@ def run_step(state: RunState, request: Request) -> RunState:
 # Local dev: serve the frontend from the same process. On Vercel, /public is served statically.
 PUBLIC = Path(__file__).resolve().parent.parent / "public"
 if PUBLIC.is_dir():
+    @app.middleware("http")
+    async def revalidate_static(request: Request, call_next):
+        # Browsers otherwise reuse a stale app.js after an edit; Vercel already sends max-age=0 in production.
+        response = await call_next(request)
+        if not request.url.path.startswith("/api/"):
+            response.headers["Cache-Control"] = "no-cache"
+        return response
+
     app.mount("/", StaticFiles(directory=PUBLIC, html=True), name="public")

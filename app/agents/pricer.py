@@ -64,9 +64,11 @@ Rules:
 - Alternatives replace today's setup for the SAME workload. Under each alternative you see how today's setup was
   priced: keep those assumptions (operating system, data volumes, request counts, storage size, users) unless the
   alternative's details change them. Never switch Windows/Linux silently.
-- Requirements apply to every option. If they ask for zone-redundant or high availability for a database that
-  bills a standby server (PostgreSQL or MySQL Flexible Server), the standby is a second server: count 2,
-  count_means "instances". For SQL Database use its "Zone Redundancy" meter when listed.
+- High availability: an ORIGINAL is priced as it is today, so include an HA standby only if its details say HA or a
+  standby is configured or enabled today ("HA required" or "needs HA" is a requirement, not a setup: don't price it
+  for the original). For alternatives, follow the requirements: if they ask for zone-redundant or high
+  availability for a database that bills a standby server (PostgreSQL or MySQL Flexible Server), the standby is a
+  second server: count 2, count_means "instances". For SQL Database use its "Zone Redundancy" meter when listed.
 - Some services bill the software license as a separate meter (e.g. product "... - SQL License", per vCore): include it
   (count = vCores) unless the details mention Azure Hybrid Benefit or bring-your-own license. Serverless prices
   already include the license.
