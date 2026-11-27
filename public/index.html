@@ -3,115 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TwinStack: same architecture, cheaper twin</title>
-  <meta name="description" content="Upload an Azure architecture diagram or describe it. Agents find a cheaper way to run it, with live Azure prices and a source for every number.">
+  <title>TwinStack</title>
+  <meta name="description" content="Find a cheaper way to run an Azure architecture, priced with live Azure meters.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <header class="masthead">
-    <div class="wrap">
-      <a class="brand" href="/">TwinStack</a>
-      <p class="tagline">Same architecture. Cheaper twin.</p>
-    </div>
+<body data-view="start">
+  <header class="bar">
+    <a class="brand" href="/">TwinStack</a>
+    <nav class="examples" aria-label="Saved examples">
+      <span class="muted">Examples</span>
+      <button type="button" class="chip" data-demo="aks-sql-redis">AKS web API</button>
+      <button type="button" class="chip" data-demo="contoso-bookings">Contoso diagram</button>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <section id="intro" class="intro">
-      <h1>Find a cheaper way to run your Azure architecture, with proof for every number.</h1>
-      <p class="lede">Give us a diagram or a description. A team of AI agents reads it, checks live Azure prices in every allowed
-        region, proposes better-fitting services, has a skeptic reject anything that breaks a limit, and builds three plans.
-        Every price links to its Azure meter; every rejection links to Microsoft Learn.</p>
-    </section>
-
-    <section id="input" class="panel" aria-labelledby="input-h">
-      <h2 id="input-h">Your architecture</h2>
-      <div class="tabs" role="tablist">
-        <button role="tab" id="tab-text" aria-selected="true" aria-controls="pane-text">Describe it</button>
-        <button role="tab" id="tab-image" aria-selected="false" aria-controls="pane-image">Upload a diagram</button>
+  <main>
+    <section id="start" class="start" aria-labelledby="start-h">
+      <h1 id="start-h">Find a cheaper way to run your Azure architecture</h1>
+      <div class="composer" id="composer">
+        <label for="text" class="sr-only">Describe the architecture</label>
+        <textarea id="text" rows="4" maxlength="4000"
+          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or attach a diagram."></textarea>
+        <div class="composer-foot">
+          <input type="file" id="file" accept="image/png,image/jpeg,image/webp" class="sr-only">
+          <label for="file" class="btn ghost">Attach diagram</label>
+          <span id="attachment" class="attachment" hidden>
+            <img id="preview" alt="Attached diagram">
+            <button type="button" class="btn ghost small" id="remove-image" aria-label="Remove the diagram">Remove</button>
+          </span>
+          <span class="grow"></span>
+          <button type="button" class="btn primary" id="analyze">Analyze</button>
+        </div>
       </div>
-      <div id="pane-text" role="tabpanel" aria-labelledby="tab-text">
-        <label for="text" class="sr-only">Architecture description</label>
-        <textarea id="text" rows="5" maxlength="4000"
-          placeholder="Web API on AKS with 3 Standard_D4s_v5 nodes, Azure SQL Database General Purpose 4 vCore, Redis Premium P1, West Europe. About 2,000 users, busy in business hours. Data must stay in the EU."></textarea>
-        <button type="button" class="link" id="use-example">Use this example</button>
-      </div>
-      <div id="pane-image" role="tabpanel" aria-labelledby="tab-image" hidden>
-        <label class="drop" id="drop">
-          <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
-          <span id="drop-text">Drop a PNG or JPG diagram here, or choose a file. Draw.io exports, whiteboard photos and
-            AI-drawn diagrams all work.</span>
-          <img id="preview" alt="Your diagram" hidden>
-        </label>
-        <button type="button" class="link" id="use-sample">Use a sample diagram (Contoso Bookings, made up)</button>
-        <label for="image-notes" class="field-label">Anything the diagram doesn't show (optional)</label>
-        <input id="image-notes" maxlength="1000" placeholder="e.g. busy in business hours, data must stay in the EU">
-      </div>
-      <div class="actions">
-        <button type="button" class="primary" id="analyze">Find the cheaper twin</button>
-        <span class="hint">Takes about a minute. Live analyses are limited to 3 per hour.</span>
-      </div>
-      <div class="examples">
-        <span>Or open a saved example, free and instant:</span>
-        <button type="button" data-demo="aks-sql-redis">Web API on AKS (text)</button>
-        <button type="button" data-demo="contoso-bookings">Contoso Bookings (diagram)</button>
-      </div>
+      <p class="start-note">Uses live Azure prices and takes about a minute. 3 analyses per hour.
+        Or try <button type="button" class="link" id="use-example">the example text</button> or
+        <button type="button" class="link" id="use-sample">a sample diagram</button>.</p>
       <p class="error" id="input-error" role="alert" hidden></p>
     </section>
 
-    <section id="progress" hidden aria-labelledby="progress-h">
-      <h2 id="progress-h" class="sr-only">Progress</h2>
-      <ol class="pipeline" id="pipeline"></ol>
-    </section>
+    <div class="workspace" id="workspace" hidden>
+      <div class="main-pane">
+        <section id="confirm" class="card pad" hidden aria-labelledby="confirm-h">
+          <h2 id="confirm-h">Check the components</h2>
+          <p class="muted">Edit anything that's wrong before pricing. Highlighted rows are guesses.</p>
+          <img id="confirm-image" class="figure" alt="The diagram being analyzed" hidden>
+          <div class="table-scroll">
+            <table class="edit">
+              <thead><tr><th>Service</th><th>Size</th><th>Count</th><th>Region</th><th>Details</th><th><span class="sr-only">Remove</span></th></tr></thead>
+              <tbody id="comp-rows"></tbody>
+            </table>
+          </div>
+          <button type="button" class="btn ghost small" id="add-row">Add component</button>
+          <datalist id="services"></datalist>
+          <div class="fields">
+            <label>Regions to search <select id="region-group"></select></label>
+            <label>Requirements <input id="notes" maxlength="500" placeholder="e.g. EU data residency, 99.9% uptime"></label>
+          </div>
+          <div class="row-end">
+            <button type="button" class="btn ghost" id="restart-1">Start over</button>
+            <button type="button" class="btn primary" id="confirm-btn">Find savings</button>
+          </div>
+          <p class="error" id="confirm-error" role="alert" hidden></p>
+        </section>
 
-    <section id="confirm" class="panel" hidden aria-labelledby="confirm-h">
-      <h2 id="confirm-h">Check what the agents read</h2>
-      <p>Fix anything that's wrong before we price it. Rows in amber were guesses.</p>
-      <img id="confirm-image" class="confirm-image" alt="The diagram the agents read" hidden>
-      <div class="table-scroll">
-        <table class="components">
-          <thead><tr><th>Service</th><th>Size / SKU</th><th>Count</th><th>Region</th><th>Details</th><th><span class="sr-only">Remove</span></th></tr></thead>
-          <tbody id="comp-rows"></tbody>
-        </table>
-      </div>
-      <button type="button" class="link" id="add-row">Add a component</button>
-      <datalist id="services"></datalist>
-      <div class="confirm-grid">
-        <label>Search these regions
-          <select id="region-group"></select>
-        </label>
-        <label>Requirements
-          <input id="notes" maxlength="500" placeholder="e.g. EU data residency, 99.9% uptime">
-        </label>
-      </div>
-      <div class="actions">
-        <button type="button" class="primary" id="confirm-btn">Looks right, find savings</button>
-        <button type="button" id="restart-1">Start over</button>
-      </div>
-      <p class="error" id="confirm-error" role="alert" hidden></p>
-    </section>
+        <section id="waiting" class="card pad waiting" hidden aria-live="polite">
+          <h2 id="waiting-title">Working on it</h2>
+          <p class="muted" id="waiting-text"></p>
+        </section>
 
-    <section id="results" hidden aria-labelledby="verdict"></section>
+        <section id="results" hidden aria-labelledby="results-h"></section>
 
-    <section id="log-section" hidden aria-labelledby="log-h">
-      <div class="log-head">
-        <h2 id="log-h">What the agents did</h2>
-        <span id="ai-cost" class="hint"></span>
+        <div id="run-error" class="card pad run-error" role="alert" hidden>
+          <p id="run-error-text"></p>
+          <div class="row-end">
+            <button type="button" class="btn ghost" id="restart-2">Start over</button>
+            <button type="button" class="btn primary" id="retry">Retry this step</button>
+          </div>
+        </div>
       </div>
-      <ol class="log" id="log"></ol>
-      <div id="run-error" class="run-error" role="alert" hidden>
-        <p id="run-error-text"></p>
-        <button type="button" id="retry">Try this step again</button>
-        <button type="button" id="restart-2">Start over</button>
-      </div>
-    </section>
+
+      <aside class="activity" aria-labelledby="activity-h">
+        <details id="activity-box" open>
+          <summary><h2 id="activity-h">Agent activity</h2><span id="ai-cost" class="muted num"></span></summary>
+          <ol class="stepper" id="stepper"></ol>
+          <ol class="log" id="log"></ol>
+        </details>
+      </aside>
+    </div>
   </main>
 
-  <footer class="wrap footer">
-    <p>Read-only: TwinStack never connects to an Azure account. Prices come from the public Azure Retail Prices API.
-      Plans are estimates; check them before you buy.</p>
+  <footer class="foot muted">
+    Read-only: never connects to an Azure account. Prices from the public Azure Retail Prices API; plans are estimates.
   </footer>
   <script src="/app.js"></script>
 </body>

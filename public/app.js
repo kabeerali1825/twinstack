@@ -4,22 +4,40 @@
 
 const STORE = "twinstack.run";
 const STAGES = [
-  ["parse", "Read"], ["confirm", "You confirm"], ["price", "Pricer"], ["scout", "Region Scout"],
+  ["parse", "Read the input"], ["confirm", "You confirm"], ["price", "Pricer"], ["scout", "Region Scout"],
   ["swap", "Service Swap"], ["skeptic", "Skeptic"], ["judge", "Judge"],
 ];
+const WORKING = {
+  parse: "Reading your architecture", price: "Matching each part to Azure price meters",
+  scout: "Pricing every allowed region", swap: "Looking for better-fitting services",
+  skeptic: "Checking alternatives against service limits", judge: "Building the three plans",
+};
+const DEMO_IMAGES = { "contoso-bookings": "/demos/contoso-bookings.png" };
+const REGION_NAMES = {
+  westeurope: "West Europe", northeurope: "North Europe", swedencentral: "Sweden Central", francecentral: "France Central",
+  germanywestcentral: "Germany West Central", italynorth: "Italy North", polandcentral: "Poland Central",
+  spaincentral: "Spain Central", uksouth: "UK South", ukwest: "UK West", switzerlandnorth: "Switzerland North",
+  norwayeast: "Norway East", eastus: "East US", eastus2: "East US 2", centralus: "Central US", northcentralus: "North Central US",
+  southcentralus: "South Central US", westus: "West US", westus2: "West US 2", westus3: "West US 3",
+  westcentralus: "West Central US", canadacentral: "Canada Central", canadaeast: "Canada East",
+  southeastasia: "Southeast Asia", eastasia: "East Asia", japaneast: "Japan East", japanwest: "Japan West",
+  koreacentral: "Korea Central", centralindia: "Central India", southindia: "South India",
+  australiaeast: "Australia East", australiasoutheast: "Australia Southeast",
+};
+const region = (r) => REGION_NAMES[r] || r;
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 const $ = (id) => document.getElementById(id);
 
-let S = null;          // the RunState, exactly as the server returns it
-let meta = null;       // { services, region_groups }
-let image = "";        // resized diagram as a data URI
-let planIdx = 0;       // selected plan tab
+let S = null;          // the RunState, as the server returns it
+let meta = { services: [], region_groups: {} };
+let image = "";        // attached diagram, resized, as a data URI
+let planIdx = 0;
 
-// ---------- small helpers ----------
+// ---------- helpers ----------
 function h(tag, attrs = {}, ...kids) {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
-    if (k.startsWith("aria-") && v != null) { el.setAttribute(k, String(v)); continue; }  // "true"/"false"
+    if (k.startsWith("aria-") && v != null) { el.setAttribute(k, String(v)); continue; }
     if (v == null || v === false) continue;
     if (k === "class") el.className = v;
     else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
@@ -28,8 +46,22 @@ function h(tag, attrs = {}, ...kids) {
   for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid.nodeType ? kid : String(kid));
   return el;
 }
+const svg = (d) => {
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  s.setAttribute("viewBox", "0 0 12 12"); s.setAttribute("aria-hidden", "true");
+  const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  p.setAttribute("d", d); p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor");
+  p.setAttribute("stroke-width", "1.5"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round");
+  s.append(p); return s;
+};
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const show = (id, on = true) => { $(id).hidden = !on; };
+const money = (n) => usd.format(n);
+const signed = (n) => (Math.abs(n) < 0.005 ? "No change" : `${n < 0 ? "−" : "+"}${usd.format(Math.abs(n))}`);
+const unitPrice = (p) => (p >= 0.01 || p === 0 ? usd.format(p) : `$${p.toPrecision(3)}`);
+// Quantities are stored in base units (5,000,000 requests); show them in the meter's unit ('1M' -> 5).
+const unitSize = (unit) => { const m = /^(\d+)([KM]?)/.exec(unit) || [0, 1, ""]; return +m[1] * ({ K: 1e3, M: 1e6 }[m[2]] || 1); };
+const inUnits = (qty, unit) => +(qty / unitSize(unit)).toPrecision(4);
 
 async function api(path, body) {
   const r = await fetch(path, body === undefined ? {} : {
@@ -44,32 +76,25 @@ async function api(path, body) {
 }
 
 function save() {
-  try {
-    // Keep the image only until it has been read; it is large.
-    localStorage.setItem(STORE, JSON.stringify(S.step === "parse" ? S : { ...S, input_image: "" }));
-  } catch { /* storage full or blocked: the run still works, it just won't resume */ }
+  if (S.saved) return;
+  try { localStorage.setItem(STORE, JSON.stringify(S.step === "parse" ? S : { ...S, input_image: "" })); }
+  catch { /* storage full or blocked: the run still works, it just won't resume */ }
 }
 function clearRun() {
   try { localStorage.removeItem(STORE); } catch {}
   S = null; planIdx = 0;
-  for (const id of ["progress", "confirm", "results", "log-section", "run-error"]) show(id, false);
-  show("input"); show("intro");
+  document.body.dataset.view = "start";
+  show("workspace", false); show("start"); show("run-error", false);
+  window.scrollTo(0, 0);
 }
 
 // ---------- input ----------
-function selectTab(which) {
-  const text = which === "text";
-  $("tab-text").setAttribute("aria-selected", text);
-  $("tab-image").setAttribute("aria-selected", !text);
-  show("pane-text", text); show("pane-image", !text);
-}
-
 async function readImage(file) {
-  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error("Use a PNG, JPG or WebP image.");
+  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error("Attach a PNG, JPG or WebP image.");
   const url = URL.createObjectURL(file);
   try {
     const img = await new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = url; });
-    const scale = Math.min(1, 1500 / Math.max(img.width, img.height));  // ~1,500 px: cheaper vision tokens
+    const scale = Math.min(1, 1500 / Math.max(img.width, img.height));  // ~1,500 px keeps vision tokens low
     const c = h("canvas", { width: Math.round(img.width * scale), height: Math.round(img.height * scale) });
     const ctx = c.getContext("2d");
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
@@ -78,39 +103,39 @@ async function readImage(file) {
   } finally { URL.revokeObjectURL(url); }
 }
 
-async function takeFile(file) {
-  const err = $("input-error");
+async function attach(file) {
+  show("input-error", false);
   try {
     image = await readImage(file);
-    $("preview").src = image; show("preview"); show("drop-text", false); show("input-error", false);
-  } catch (e) { err.textContent = e.message || "Couldn't read that image."; show("input-error"); }
+    $("preview").src = image; show("attachment");
+  } catch (e) { $("input-error").textContent = e.message || "That image couldn't be read."; show("input-error"); }
 }
+function detach() { image = ""; $("file").value = ""; show("attachment", false); }
 
 async function analyze() {
-  const useImage = $("tab-image").getAttribute("aria-selected") === "true";
-  const body = useImage ? { image, text: $("image-notes").value } : { text: $("text").value };
-  const btn = $("analyze"), err = $("input-error");
+  const text = $("text").value.trim();
   show("input-error", false);
-  if (useImage && !image) { err.textContent = "Choose a diagram image first."; show("input-error"); return; }
-  btn.disabled = true;
+  if (!image && text.length < 10) {
+    $("input-error").textContent = "Describe the architecture or attach a diagram first.";
+    show("input-error"); $("text").focus(); return;
+  }
+  $("analyze").disabled = true;
   try {
-    S = await api("/api/run/start", body);
+    S = await api("/api/run/start", { text, image });
     save();
-    show("intro", false); show("input", false);
     await drive();
-  } catch (e) { err.textContent = e.message; show("input-error"); }
-  finally { btn.disabled = false; }
+  } catch (e) { $("input-error").textContent = e.message; show("input-error"); }
+  finally { $("analyze").disabled = false; }
 }
 
 // ---------- the loop ----------
 async function drive() {
   let retries = 0;
-  render();
   const waiting = () => !S || ["done", "failed"].includes(S.step) || (S.step === "confirm" && !S.confirmed);
+  render();
   while (!waiting()) {
-    try {
-      S = await api("/api/run/step", S);
-    } catch (e) { runError(e.message); return; }
+    try { S = await api("/api/run/step", S); }
+    catch (e) { runError(e.message); return; }
     save();
     if (S.error) {
       if (retries++ < 1) { render(); await sleep(1500); continue; }
@@ -121,54 +146,55 @@ async function drive() {
   }
   render();
 }
-
-function runError(msg) {
-  $("run-error-text").textContent = msg;
-  show("run-error"); render();
-}
+function runError(msg) { $("run-error-text").textContent = msg; show("run-error"); render(); }
 
 // ---------- rendering ----------
 function render() {
   if (!S) return;
-  show("progress"); show("log-section");
-  renderPipeline(); renderLog();
+  const done = S.step === "done" && S.plans.length > 0;
+  document.body.dataset.view = done ? "result" : "run";
+  show("start", false); show("workspace");
+  renderActivity();
   show("confirm", S.step === "confirm");
   if (S.step === "confirm") renderConfirm();
-  show("results", S.step === "done" && S.plans.length > 0);
-  if (S.step === "done") renderResults();
+  const working = !done && S.step !== "confirm" && S.step !== "failed" && $("run-error").hidden;
+  show("waiting", working);
+  if (working) {
+    $("waiting-title").textContent = WORKING[S.step] || "Working";
+    $("waiting-text").textContent = S.timeline.length ? S.timeline[S.timeline.length - 1].message : "";
+  }
+  show("results", done);
+  if (done) renderResults();
 }
 
-function renderPipeline() {
+function renderActivity() {
   const order = STAGES.map((s) => s[0]);
   let reached = S.step === "done" ? order.length : order.indexOf(S.step);
   if (S.swap_round > 0) reached = Math.max(reached, order.indexOf("swap"));
   if (S.options.some((o) => o.reviewed)) reached = Math.max(reached, order.indexOf("skeptic"));
-  $("pipeline").replaceChildren(...STAGES.map(([key, label], i) => {
+  $("stepper").replaceChildren(...STAGES.map(([key, label], i) => {
     const now = key === S.step;
     const cls = now ? (key === "confirm" ? "wait" : "now") : i < reached || S.step === "done" ? "done" : "";
-    return h("li", { class: cls, "aria-current": now ? "step" : null }, label);
+    return h("li", { class: cls, "aria-current": now ? "step" : null }, h("span", { class: "dot" }), label);
   }));
-}
-
-function renderLog() {
   $("log").replaceChildren(...S.timeline.map((e) => {
-    const msg = e.data == null ? h("div", { class: "msg" }, e.message)
+    const msg = e.data == null ? h("span", { class: "msg" }, e.message)
       : h("details", { class: "msg" }, h("summary", {}, e.message), h("pre", {}, JSON.stringify(e.data, null, 2)));
-    return h("li", { class: e.kind }, h("span", { class: "agent" }, e.agent), msg);
+    return h("li", { class: `k-${e.kind}` }, h("span", { class: "agent" }, e.agent), msg);
   }));
-  const calls = `${S.llm_calls} AI call${S.llm_calls === 1 ? "" : "s"}`;
-  $("ai-cost").textContent = S.llm_calls ? `${calls}, $${S.ai_cost_usd.toFixed(4)} so far` : "";
+  const log = $("log");
+  if (S.step !== "done") log.scrollTop = log.scrollHeight;
+  $("activity-box").open = S.step !== "done";
+  $("ai-cost").textContent = S.llm_calls
+    ? `${S.llm_calls} AI call${S.llm_calls === 1 ? "" : "s"}, $${S.ai_cost_usd.toFixed(3)}` : "";
 }
 
 function compRow(c) {
-  const cell = (field, attrs = {}) => h("td", {}, h("input", {
-    value: c[field] ?? "", "data-f": field, "aria-label": field, ...attrs,
-  }));
-  const tr = h("tr", { class: c.confidence === "low" ? "low" : null, "data-id": c.id },
-    cell("service", { list: "services" }), cell("sku"), cell("quantity", { type: "number", min: "0", step: "any" }),
-    cell("region"), cell("details"),
-    h("td", {}, h("button", { type: "button", class: "link", onclick: () => tr.remove(), "aria-label": "Remove this component" }, "Remove")));
-  if (c.confidence === "low") tr.title = "The agent was unsure about this one";
+  const cell = (field, label, attrs = {}) => h("td", {}, h("input", { value: c[field] ?? "", "data-f": field, "aria-label": label, ...attrs }));
+  const tr = h("tr", { class: c.confidence === "low" ? "low" : null, "data-id": c.id, title: c.confidence === "low" ? "The agent wasn't sure about this one" : null },
+    cell("service", "Service", { list: "services" }), cell("sku", "Size"),
+    cell("quantity", "Count", { type: "number", min: "0", step: "any" }), cell("region", "Region"), cell("details", "Details"),
+    h("td", {}, h("button", { type: "button", class: "btn ghost small", onclick: () => tr.remove(), "aria-label": `Remove ${c.service || "this row"}` }, "Remove")));
   return tr;
 }
 
@@ -178,9 +204,9 @@ function renderConfirm() {
   $("comp-rows").replaceChildren(...S.components.map(compRow));
   $("confirm-image").src = image || "";
   show("confirm-image", Boolean(image) && S.components.some((c) => c.source === "diagram"));
-  const groups = meta?.region_groups || {};
   const current = [...S.constraints.allowed_regions].sort().join();
-  const opts = Object.entries(groups).map(([g, list]) => h("option", { value: g, selected: [...list].sort().join() === current }, `${g} (${list.length} regions)`));
+  const opts = Object.entries(meta.region_groups).map(([g, list]) =>
+    h("option", { value: g, selected: [...list].sort().join() === current }, `${g} (${list.length} regions)`));
   const home = S.components[0]?.region || "westeurope";
   opts.push(h("option", { value: "__home", selected: !opts.some((o) => o.selected) }, `Only ${home}`));
   $("region-group").replaceChildren(...opts);
@@ -188,9 +214,8 @@ function renderConfirm() {
 }
 
 async function confirmComponents() {
-  const rows = [...$("comp-rows").querySelectorAll("tr")];
   let n = Math.max(0, ...S.components.map((c) => +c.id.slice(1) || 0));
-  S.components = rows.map((tr) => {
+  S.components = [...$("comp-rows").querySelectorAll("tr")].map((tr) => {
     const get = (f) => tr.querySelector(`[data-f="${f}"]`).value.trim();
     const old = S.components.find((c) => c.id === tr.dataset.id);
     return {
@@ -207,125 +232,124 @@ async function confirmComponents() {
   S.confirmed = true;
   show("confirm-error", false);
   $("confirm-btn").disabled = true;
-  try {
-    await drive();
-  } catch (e) { $("confirm-error").textContent = e.message; show("confirm-error"); }
+  try { await drive(); }
+  catch (e) { $("confirm-error").textContent = e.message; show("confirm-error"); }
   finally { $("confirm-btn").disabled = false; }
 }
 
-// ---------- results: two itemized bills ----------
+// ---------- results ----------
 const opt = (id) => S.options.find((o) => o.id === id);
 const comp = (id) => S.components.find((c) => c.id === id);
 const cand = (oid, region) => S.candidates.find((c) => c.option_id === oid && c.region === region);
+const label = (o) => `${o.service}${o.sku ? " " + o.sku : ""}`;
 
-const unitPrice = (p) => (p >= 0.01 || p === 0 ? usd.format(p) : `$${p.toPrecision(3)}`);
-
-function meterLines(c) {
-  if (!c) return h("div", { class: "meters" }, "No price lines.");
-  return h("div", { class: "meters" }, c.lines.map((l) => h("div", {},
-    h("span", {}, `${l.meter}: ${+l.qty.toPrecision(4)} × ${unitPrice(l.unit_price)} per ${l.unit}`,
-      h("br"), h("code", { title: "Azure meterId" }, l.meter_id)),
-    h("span", {}, usd.format(l.monthly)))));
+function meterList(title, c) {
+  return h("div", {}, h("h3", {}, title),
+    c ? c.lines.map((l) => h("div", { class: "meter" },
+      h("span", {}, `${l.meter}: ${inUnits(l.qty, l.unit)} × ${unitPrice(l.unit_price)} per ${l.unit}`, h("code", { title: "Azure meterId" }, l.meter_id)),
+      h("span", { class: "amount" }, money(l.monthly))))
+      : h("div", { class: "meter muted" }, "Not needed in this plan"));
 }
 
-function billLine(o, c, region, cost, { changed = false, gone = null } = {}) {
-  const label = `${o.service}${o.sku ? " " + o.sku : ""}`;
-  const sub = gone ? `Not needed: covered by ${gone}` : `${region}${o.is_original ? "" : ": " + o.rationale}`;
-  const body = gone ? h("div", { class: "meters" }, "Its work moves to the option above.")
-    : h("div", {}, meterLines(c), o.tradeoffs.length ? h("div", { class: "meters" }, "Trade-offs: " + o.tradeoffs.join("; ")) : null);
-  return h("details", { class: `line${changed ? " changed" : ""}${gone ? " gone" : ""}` },
-    h("summary", {}, h("span", { class: "what" }, label, h("small", {}, sub)), h("span", { class: "cost" }, usd.format(cost))),
-    body);
+function compareRow(it) {
+  const c = comp(it.component_id), orig = opt(`${c.id}.orig`), today = cand(orig.id, c.region);
+  const todayCost = today ? today.monthly_cost : 0;
+  const o = opt(it.option_id), twin = it.replaced_by ? null : cand(it.option_id, it.region);
+  const covers = o.also_replaces.map((id) => comp(id)).filter(Boolean).map((x) => x.service).join(", ");
+  const planSub = it.replaced_by ? `Covered by ${label(o)}`
+    : !o.is_original ? `${label(o)} in ${region(it.region)}${covers ? `, also replaces ${covers}` : ""}`
+    : it.region !== c.region ? `Same, moved to ${region(it.region)}` : "Same";
+  const delta = it.monthly_cost - todayCost;
+  const detail = h("tr", { class: "detail", hidden: true },
+    h("td", { colspan: 4 },
+      h("div", { class: "meters" }, meterList(`Today, ${region(c.region)}`, today), meterList(it.replaced_by ? "Plan" : `Plan, ${region(it.region)}`, twin)),
+      !o.is_original && !it.replaced_by && o.rationale ? h("p", { class: "why" }, o.rationale) : null,
+      !o.is_original && !it.replaced_by && o.tradeoffs.length ? h("p", { class: "why" }, "Trade-offs: " + o.tradeoffs.join("; ")) : null));
+  const toggle = h("button", { type: "button", class: "toggle", "aria-expanded": false, "aria-label": `Show price meters for ${label(orig)}` }, svg("M4.5 2.5 8 6l-3.5 3.5"));
+  const flip = () => { const open = detail.hidden; detail.hidden = !open; toggle.setAttribute("aria-expanded", String(open)); };
+  toggle.addEventListener("click", (e) => { e.stopPropagation(); flip(); });
+  const row = h("tr", { class: "item", onclick: flip },
+    h("td", {}, toggle, h("span", { class: "what" }, label(orig)), h("span", { class: "sub" }, region(c.region))),
+    h("td", { class: "r amount" }, money(todayCost)),
+    h("td", { class: "r" }, h("span", { class: `amount${it.replaced_by ? " gone" : ""}` }, money(it.monthly_cost)), h("span", { class: "sub" }, planSub)),
+    h("td", { class: `r amount delta${delta < -0.005 ? " save" : ""}` }, signed(delta)));
+  return [row, detail];
 }
 
 function renderResults() {
-  const plans = S.plans;
-  const plan = plans[Math.min(planIdx, plans.length - 1)];
-  const cheapest = plans[0];
-  const orig = S.original_total;
-  const yearly = usd.format(cheapest.savings * 12);
+  const plans = S.plans, plan = plans[Math.min(planIdx, plans.length - 1)], orig = S.original_total;
+  const summary = h("div", { class: "card summary" },
+    h("div", {},
+      h("h1", { id: "results-h" }, plan.savings > 0 ? h("span", { class: "save" }, `Save ${money(plan.savings)} a month`) : "No saving in this plan"),
+      h("p", {}, plan.savings > 0
+        ? `${plan.name} plan: ${plan.savings_pct}% less than today, about ${money(plan.savings * 12)} a year.`
+        : `${plan.name} plan keeps today's setup.`),
+      S.saved ? h("p", {}, `Saved example, recorded ${new Date(S.timeline[0].t * 1000).toLocaleDateString()} with live prices.`) : null),
+    h("dl", { class: "figs" },
+      h("div", {}, h("dt", {}, "Today"), h("dd", {}, money(orig))),
+      h("div", {}, h("dt", {}, plan.name), h("dd", { class: "save" }, money(plan.monthly_total)))));
 
-  const verdict = h("p", { class: "verdict", id: "verdict" },
-    `Your design costs ${usd.format(orig)} a month. `,
-    h("span", { class: "twin" }, `Its cheaper twin costs ${usd.format(cheapest.monthly_total)}.`));
-  const sub = h("p", { class: "verdict-sub" },
-    `That's ${usd.format(cheapest.savings)} less a month (${cheapest.savings_pct}%), about ${yearly} a year, `
-    + `with every price from live Azure meters. Pick a plan to see what changes.`);
-
-  const tabs = h("div", { class: "plan-tabs", role: "tablist", "aria-label": "Plans" }, plans.map((p, i) =>
+  const seg = h("div", { class: "segmented", role: "tablist", "aria-label": "Plans" }, plans.map((p, i) =>
     h("button", { type: "button", role: "tab", "aria-selected": i === planIdx, onclick: () => { planIdx = i; renderResults(); } },
-      p.name, h("small", {}, `${usd.format(p.monthly_total)} a month, saves ${p.savings_pct}%`))));
+      p.name, h("small", {}, `${money(p.monthly_total)}/mo`))));
+  const where = plan.region === "original regions" ? "Each part stays in its region" : `Everything in ${region(plan.region)}`;
 
-  const summary = h("div", { class: "plan-summary" },
-    h("p", {}, plan.summary || "The lowest total that passed every check, all in one region."),
-    plan.tradeoffs.length ? h("ul", {}, plan.tradeoffs.map((t) => h("li", {}, t))) : null);
+  const table = h("table", { class: "compare" },
+    h("thead", {}, h("tr", {}, h("th", {}, "Component"), h("th", { class: "r" }, "Today"), h("th", { class: "r" }, plan.name), h("th", { class: "r" }, "Change"))),
+    h("tbody", {}, plan.items.flatMap(compareRow)),
+    h("tfoot", {}, h("tr", {}, h("td", {}, "Per month"), h("td", { class: "r amount" }, money(orig)),
+      h("td", { class: "r amount" }, money(plan.monthly_total)), h("td", { class: `r amount delta${plan.savings > 0 ? " save" : ""}` }, signed(-plan.savings)))));
 
-  const origBill = h("div", { class: "bill" },
-    h("h3", {}, "Today", h("span", {}, usd.format(orig))),
-    h("div", { class: "where" }, "As described, in its current regions"),
-    plan.items.map((it) => {
-      const c = comp(it.component_id), o = opt(`${c.id}.orig`), cd = cand(o.id, c.region);
-      return billLine(o, cd, c.region, cd ? cd.monthly_cost : 0);
-    }),
-    h("div", { class: "bill-total" }, h("span", {}, "Per month"), h("span", {}, usd.format(orig))));
-
-  const twinBill = h("div", { class: "bill twin" },
-    h("h3", {}, `${plan.name} twin`, h("span", {}, usd.format(plan.monthly_total))),
-    h("div", { class: "where" }, plan.region === "original regions" ? "Each component stays in its region" : `Everything in ${plan.region}`),
-    plan.items.map((it) => {
-      const o = opt(it.option_id), c = comp(it.component_id);
-      if (it.replaced_by) return billLine(opt(`${c.id}.orig`), null, it.region, 0, { gone: `${o.service} ${o.sku || ""}`.trim() });
-      return billLine(o, cand(it.option_id, it.region), it.region, it.monthly_cost,
-        { changed: !o.is_original || it.region !== c.region });
-    }),
-    h("div", { class: "bill-total" }, h("span", {}, "Per month"), h("span", {}, usd.format(plan.monthly_total))));
+  const planCard = h("div", { class: "card" },
+    h("div", { class: "plan-head" }, seg, h("span", { class: "muted" }, where)),
+    h("div", { class: "plan-text" }, h("p", {}, plan.summary || "The lowest total that passed every check, in one region."),
+      plan.tradeoffs.length ? h("ul", {}, plan.tradeoffs.map((t) => h("li", {}, t))) : null),
+    h("div", { class: "table-scroll" }, table));
 
   const rej = S.rejections.map((r) => {
     const o = opt(r.option_id);
-    return h("li", {}, h("span", { class: "who" }, `${r.by} rejected ${o ? `${o.service} ${o.sku || ""}` : r.option_id}`), ": ", r.reason,
-      r.source_url ? [" ", h("a", { href: r.source_url, target: "_blank", rel: "noopener" }, "Read the rule")] : null);
+    return h("li", {}, h("span", { class: "who" }, `${r.by} rejected ${o ? label(o) : r.option_id}. `), r.reason,
+      r.source_url ? [" ", h("a", { href: r.source_url, target: "_blank", rel: "noopener" }, "Rule source")] : null);
   });
+  const rejCard = h("div", { class: "card section" }, h("h2", {}, "Rejected alternatives"),
+    rej.length ? h("ul", { class: "rejections" }, rej) : h("p", { class: "muted" }, "None. Every alternative passed the checks."));
+
+  const actions = h("div", { class: "result-actions" },
+    h("span", { class: "muted" }, `This analysis made ${S.llm_calls} AI calls and cost ${S.ai_cost_usd < 0.01 ? "under 1 cent" : money(S.ai_cost_usd)}.`),
+    h("button", { type: "button", class: "btn primary", onclick: clearRun }, "Analyze another"));
 
   $("results").replaceChildren(...[
-    S.saved ? h("p", { class: "hint" }, `Saved example, recorded ${new Date(S.timeline[0].t * 1000).toLocaleDateString()} with live Azure prices. Viewing it costs nothing.`) : null,
-    S.demo_image ? h("img", { class: "result-image", src: S.demo_image, alt: "The diagram the agents read" }) : null,
-    verdict, sub, tabs, summary, h("div", { class: "bills" }, origBill, twinBill),
-    h("div", { class: "subsection" }, h("h2", {}, "What the skeptic turned down"),
-      rej.length ? h("ul", { class: "rejections" }, rej) : h("p", {}, "Nothing: every alternative passed the checks.")),
-    h("div", { class: "actions subsection" },
-      h("button", { type: "button", class: "primary", onclick: () => { clearRun(); window.scrollTo(0, 0); } }, "Analyze another architecture"),
-      h("span", { class: "hint" }, `This analysis used ${S.llm_calls} AI calls and cost ${S.ai_cost_usd < 0.01 ? "under 1 cent" : usd.format(S.ai_cost_usd)} in AI.`)),
+    S.demo_image ? h("img", { class: "figure", src: S.demo_image, alt: "The diagram that was analyzed" }) : null,
+    summary, planCard, rejCard, actions,
   ].filter(Boolean));
 }
-
-const DEMO_IMAGES = { "contoso-bookings": "/demos/contoso-bookings.png" };
 
 async function openDemo(name) {
   try {
     S = { ...(await api(`/demos/${name}.json`)), saved: true, demo_image: DEMO_IMAGES[name] || "" };
-    planIdx = 0;
-    show("intro", false); show("input", false);
-    render(); window.scrollTo(0, 0);
-  } catch (e) { $("input-error").textContent = "That saved example isn't available right now."; show("input-error"); }
-}
-
-async function useSample() {
-  const blob = await (await fetch(DEMO_IMAGES["contoso-bookings"])).blob();
-  await takeFile(new File([blob], "contoso-bookings.png", { type: "image/png" }));
+    planIdx = 0; render(); window.scrollTo(0, 0);
+  } catch { $("input-error").textContent = "That example isn't available right now."; show("input-error"); }
 }
 
 // ---------- wiring ----------
-$("tab-text").onclick = () => selectTab("text");
-$("tab-image").onclick = () => selectTab("image");
-$("use-example").onclick = () => { $("text").value = $("text").placeholder; $("text").focus(); };
-$("file").onchange = (e) => e.target.files[0] && takeFile(e.target.files[0]);
-const drop = $("drop");
-drop.ondragover = (e) => { e.preventDefault(); drop.classList.add("over"); };
-drop.ondragleave = () => drop.classList.remove("over");
-drop.ondrop = (e) => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && takeFile(e.dataTransfer.files[0]); };
+$("file").onchange = (e) => e.target.files[0] && attach(e.target.files[0]);
+$("remove-image").onclick = detach;
+const composer = $("composer");
+composer.ondragover = (e) => { e.preventDefault(); composer.classList.add("over"); };
+composer.ondragleave = () => composer.classList.remove("over");
+composer.ondrop = (e) => { e.preventDefault(); composer.classList.remove("over"); e.dataTransfer.files[0] && attach(e.dataTransfer.files[0]); };
+$("text").onkeydown = (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) analyze(); };
 $("analyze").onclick = analyze;
+$("use-example").onclick = () => {
+  $("text").value = "Web API on AKS with 3 Standard_D4s_v5 nodes, Azure SQL Database General Purpose 4 vCore provisioned, "
+    + "Redis Premium P1 cache, all in West Europe. About 2,000 users, busy in business hours, quiet at night. Data must stay in the EU.";
+  $("text").focus();
+};
+$("use-sample").onclick = async () => {
+  const blob = await (await fetch(DEMO_IMAGES["contoso-bookings"])).blob();
+  await attach(new File([blob], "contoso-bookings.png", { type: "image/png" }));
+};
 for (const b of document.querySelectorAll("[data-demo]")) b.onclick = () => openDemo(b.dataset.demo);
-$("use-sample").onclick = useSample;
 $("add-row").onclick = () => $("comp-rows").append(compRow({ id: "", service: "", quantity: 1, region: S.components[0]?.region || "westeurope" }));
 $("confirm-btn").onclick = confirmComponents;
 $("retry").onclick = () => { show("run-error", false); drive(); };
@@ -335,10 +359,9 @@ for (const id of ["restart-1", "restart-2"]) $(id).onclick = clearRun;
   try {
     meta = await api("/api/meta");
     $("services").replaceChildren(...meta.services.map((s) => h("option", { value: s })));
-  } catch { meta = { services: [], region_groups: {} }; }
+  } catch { /* the confirm step still works with free text */ }
   try { S = JSON.parse(localStorage.getItem(STORE)); } catch { S = null; }
   if (!S) return;
   if (S.step === "parse" && !S.input_image && !S.input_text) { clearRun(); return; }
-  show("intro", false); show("input", false);
   if (["confirm", "done", "failed"].includes(S.step)) render(); else drive();  // resume an unfinished run
 })();
