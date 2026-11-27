@@ -97,6 +97,7 @@ class Plan(BaseModel):
     savings_pct: float
     summary: str = ""
     tradeoffs: list[str] = []
+    note: str = ""                    # code-written note, e.g. why the plan did or didn't move region
 
 
 class Event(BaseModel):
@@ -121,6 +122,7 @@ class RunState(BaseModel):
     plans: list[Plan] = []
     original_total: float = 0
     swap_round: int = 0
+    swap_had_new: bool = True         # last Service Swap round added something; if not, stop reworking
     timeline: list[Event] = []
     llm_calls: int = 0
     ai_cost_usd: float = 0

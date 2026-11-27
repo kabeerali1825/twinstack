@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"alternatives\": [{\"component_id\": \"c4\", \"service\": \"Redis Cache\", \"sku\": \"C3\", \"details\": \"Standard tier, 6 GB cache, single replica (no SLA-backed zone redundancy)\", \"rationale\": \"Standard tier provides the same 6 GB capacity at a lower price, dropping only Premium-only features such as VNet injection, persistence and clustering that the stated requirements do not mention.\", \"tradeoffs\": [\"No data persistence or RDB/AOF backup\", \"No VNet injection or private-link-only networking\", \"Single node with no replica SLA; a cache outage flushes data\", \"Tier-level SLA is lower than Premium\"], \"also_replaces\": []}]}",
+ "cost": 0.0004546
+}

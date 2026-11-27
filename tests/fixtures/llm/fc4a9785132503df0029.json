@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"options\": [{\"option_id\": \"c4.r2a1\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard C3 (6 GB, replicated) is the closest match to the stated Standard tier 6 GB cache; provisioned, billed all month\"}], \"problem\": \"\"}, {\"option_id\": \"c4.r2a2\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard C2 (2.5 GB, replicated) matches the stated Standard tier 2.5 GB cache; provisioned, billed all month\"}], \"problem\": \"\"}]}",
- "cost": 0.0005675999999999999
-}

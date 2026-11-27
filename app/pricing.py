@@ -115,7 +115,13 @@ def resolve_service(name: str) -> str | None:
     """
     name = name.strip()
     key = name.lower()
-    return {n.lower(): n for n in services()}.get(key) or ALIASES.get(key) or _service_for_product(name)
+    known = {n.lower(): n for n in services()}.get(key) or ALIASES.get(key)
+    if known:
+        return known
+    try:
+        return _service_for_product(name)
+    except (urllib.error.URLError, TimeoutError):
+        return None  # can't check right now: treat as unknown; the confirm step flags it for the user
 
 
 def parse_uom(uom: str) -> tuple[int, str | None]:

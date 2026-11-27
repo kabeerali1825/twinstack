@@ -51,7 +51,8 @@ def _next(state: RunState) -> str:
         case "swap":
             return "price"
         case "skeptic":
-            return "swap" if skeptic.needs_rework(state) and state.swap_round < MAX_SWAP_ROUNDS else "judge"
+            rework = skeptic.needs_rework(state) and state.swap_round < MAX_SWAP_ROUNDS and state.swap_had_new
+            return "swap" if rework else "judge"
         case "judge":
             return "done"
     raise ValueError(f"Unknown step {state.step}")

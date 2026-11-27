@@ -138,6 +138,14 @@
    "verified": false
   },
   {
+   "id": "event-hubs-basic-limits",
+   "services": ["Event Hubs"],
+   "applies_to": "Basic tier",
+   "fact": "Event Hubs Basic allows one consumer group, one day of event retention, and no Capture. Capture (writing events straight to storage) needs Standard or higher.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-quotas",
+   "verified": false
+  },
+  {
    "id": "residency-allowed-regions",
    "services": ["*"],
    "applies_to": "Any option",

@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"rejections\": [{\"option_id\": \"c1.r1a2\", \"rule_id\": \"app-service-request-timeout\", \"reason\": \"The Web API's requests may run long and App Service cuts off any request exceeding 230 seconds, which is a risk the requirements do not rule out, but the alternative itself is otherwise viable, so this is only a conditional concern and not a clear violation.\"}, {\"option_id\": \"c4.r1a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"The current P1 Premium cache's clustering, persistence and virtual network features are not stated as unused, and the Standard C2/C3 alternative lacks them, so it clearly breaks this rule if any of those features are in use.\"}]}",
- "cost": 0.00047139999999999997
-}

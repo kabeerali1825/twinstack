@@ -56,6 +56,9 @@ def run(state: RunState) -> None:
                 found.append(Candidate(option_id=o.id, component_id=o.component_id, region=region,
                                        monthly_cost=round(sum(l.monthly for l in lines), 2), lines=lines))
         state.candidates += found
+        if o.is_original and any(c.region == home and c.monthly_cost == 0 for c in found):
+            state.log("Region Scout", "warn", f"{o.id}: {o.service} prices at $0.00. Its real cost is probably billed "
+                                              f"elsewhere (e.g. compute as Virtual Machines); add that as a component.")
         if found:
             best = min(found, key=lambda c: c.monthly_cost)
             state.log("Region Scout", "output", f"{o.id}: sold in {len(found)} regions, cheapest {best.region} "

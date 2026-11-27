@@ -1,5 +1,6 @@
 """Service Swap agent (smart model): proposes cheaper, better-fitting Azure services or SKUs per component."""
 import json
+import re
 
 from pydantic import BaseModel
 
@@ -31,9 +32,12 @@ that still meet the stated requirements. Consider:
 - a smaller, newer or cheaper SKU of the same service (newer VM generations, AMD 'as' sizes, Burstable for light load,
   a lower tier such as Redis Premium -> Standard when Premium features aren't needed).
 Do NOT propose region moves, reservations, savings plans or Spot: other steps handle those.
-If a component has no sensible cheaper option, propose nothing for it.
+If a component has no sensible cheaper option, propose nothing for it. Never re-propose an idea listed in
+"rejected_before"; if nothing else fits, propose nothing.
 Components work together (see "architecture"). If an alternative also makes other components unnecessary (Container Apps
 replacing an AKS cluster AND its node-pool VMs), list their ids in also_replaces and size it for the whole workload.
+Only list a component that disappears entirely; never one the alternative still uses or writes into (e.g. Event
+Hubs Capture still needs the storage account it writes to).
 
 Reply with JSON only:
 {"alternatives": [{"component_id": str, "service": str, "sku": str, "details": str, "rationale": str,
@@ -68,6 +72,7 @@ def run(state: RunState) -> None:
         state.log("Service Swap", "output", "Nothing to rework")
         return
     state.log("Service Swap", "start", f"Round {state.swap_round}: looking for cheaper designs for {len(targets)} components")
+    state.swap_had_new = False
     out = llm.chat_json(
         [{"role": "system", "content": SYSTEM % {"n": MAX_ALTERNATIVES, "services": json.dumps(sorted(services()))}},
          {"role": "user", "content": json.dumps({
@@ -77,6 +82,8 @@ def run(state: RunState) -> None:
         _Out, state, smart=True, max_tokens=800 + 700 * len(targets))
 
     target_ids = {t["component_id"] for t in targets}
+    norm = lambda s: re.sub(r"[\s_-]", "", (s or "").lower())  # 'P0 v3' == 'P0v3', 'Standard_D2ds_v5' == 'standardd2dsv5'
+    tried = {(o.component_id, o.service, norm(o.sku)) for o in state.options}
     count = {}
     for a in out.alternatives:
         if a.component_id not in target_ids or count.get(a.component_id, 0) >= MAX_ALTERNATIVES:
@@ -85,6 +92,10 @@ def run(state: RunState) -> None:
         if not service:
             state.log("Service Swap", "warn", f"Dropped '{a.service}': not an Azure billing service")
             continue
+        if (a.component_id, service, norm(a.sku)) in tried:  # already priced and judged; repeating it wastes a call
+            state.log("Service Swap", "warn", f"Dropped a repeat of an earlier idea for {a.component_id}: {service} {a.sku or ''}")
+            continue
+        tried.add((a.component_id, service, norm(a.sku)))
         count[a.component_id] = count.get(a.component_id, 0) + 1
         all_ids = {c.id for c in state.components}
         option = Option(id=f"{a.component_id}.r{state.swap_round}a{count[a.component_id]}", component_id=a.component_id,
@@ -93,5 +104,6 @@ def run(state: RunState) -> None:
                         also_replaces=[i for i in a.also_replaces if i in all_ids and i != a.component_id])
         state.options.append(option)
         covers = f" (also replaces {', '.join(option.also_replaces)})" if option.also_replaces else ""
+        state.swap_had_new = True
         state.log("Service Swap", "output", f"{option.id}: {service} {a.sku or ''}{covers}: {a.rationale}",
                   option.model_dump(include={"service", "sku", "details", "rationale", "tradeoffs", "also_replaces"}))

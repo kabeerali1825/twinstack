@@ -28,6 +28,9 @@ SYSTEM = """You are a strict Azure reviewer. Each alternative replaces an origin
 Reject an alternative ONLY if it clearly breaks one of the rules below given the stated requirements and the
 component's details (e.g. a 15-minute batch job on Functions Consumption breaks its timeout; a production database
 needing HA on a Burstable tier). Do not reject for reasons not covered by a rule. If unsure, keep it.
+Alternatives may be combined into one plan. If two alternatives conflict under a rule (one needs a feature the other
+removes, e.g. Event Hubs Capture needs Standard tier but another alternative moves Event Hubs to Basic), reject the
+one with the smaller saving and say which alternative it conflicts with.
 List ONLY the alternatives you reject. Never list an alternative to say it is fine or "should not be rejected";
 an empty list is a good answer.
 
@@ -55,10 +58,14 @@ def run(state: RunState) -> None:
         else:
             best = min(x.monthly_cost for x in state.candidates if x.option_id == o.id)
             originals = [home_cost(cid) for cid in [o.component_id, *o.also_replaces]]
-            if None in originals or best < sum(originals):
+            if best == 0 and not any(c == 0 for c in originals if c is not None):
+                why = "prices at $0.00, so the meters picked don't capture its real cost"
+                rule, by = "zero-price", "Cost check"
+            elif None in originals or best < sum(originals):
                 continue
-            why = f"costs ${best:,.2f}/mo at best, not less than the ${sum(originals):,.2f}/mo it replaces"
-            rule, by = "not-cheaper", "Cost check"
+            else:
+                why = f"costs ${best:,.2f}/mo at best, not less than the ${sum(originals):,.2f}/mo it replaces"
+                rule, by = "not-cheaper", "Cost check"
         o.reviewed = True
         state.rejections.append(Rejection(option_id=o.id, rule=rule, reason=why, by=by))
         state.log(by, "reject", f"{o.id} {o.service} {o.sku or ''}: {why}")
