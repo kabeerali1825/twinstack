@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"alternatives\": [{\"component_id\": \"c4\", \"service\": \"Redis Cache\", \"sku\": \"C3\", \"details\": \"Standard tier, C3 size (6 GB), no clustering or persistence needed, EU region\", \"rationale\": \"The Premium P1 features (persistence, clustering, VNet injection) are not stated as requirements, and Standard C3 provides a similar 6 GB cache at a much lower price while keeping the workload in the EU.\", \"tradeoffs\": [\"No data persistence or RDB/AOF backup\", \"No clustering or sharding beyond a single node\", \"No VNet injection, so network isolation relies on firewall rules and private endpoints where available\", \"Standard uses a replicated pair with SLA, not the Premium zone-redundancy options\"], \"also_replaces\": []}]}",
- "cost": 0.0004697999999999999
-}

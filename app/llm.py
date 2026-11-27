@@ -19,7 +19,7 @@ from typing import TypeVar
 from openai import BadRequestError, OpenAI
 from pydantic import BaseModel, ValidationError
 
-MAX_CALLS_PER_RUN = 18  # a typical run makes 9-12 (incl. Profiler and Total Cost); 3 rework rounds can reach ~15
+MAX_CALLS_PER_RUN = 18  # a typical run makes 10-13 (incl. Profiler, Total Cost, Plain Chat); 3 rework rounds ~16
 _thinking_off: dict[str, str] = {}  # model -> thinking type that turns thinking off
 FIXTURES = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "llm"
 T = TypeVar("T", bound=BaseModel)

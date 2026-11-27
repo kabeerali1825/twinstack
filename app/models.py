@@ -146,6 +146,13 @@ class Plan(BaseModel):
     migration_hours: float = 0        # one-off hours to get from today's setup to this plan
 
 
+class Baseline(BaseModel):
+    """What a plain AI chat (no tools, no live prices) estimated, shown for comparison only."""
+    today: float
+    cheaper: float
+    suggestions: list[str] = []
+
+
 class Event(BaseModel):
     agent: str
     kind: Literal["start", "tool", "output", "reject", "warn", "error", "done"]
@@ -163,6 +170,7 @@ class RunState(BaseModel):
     components: list[Component] = []
     constraints: Constraints = Constraints(allowed_regions=[])
     questions: list[Question] = []    # from the Workload Profiler, answered on the confirm screen
+    connections: list[tuple[str, str]] = []  # data flows (component id or "users") for the architecture diagram
     options: list[Option] = []
     candidates: list[Candidate] = []
     rejections: list[Rejection] = []
@@ -173,6 +181,7 @@ class RunState(BaseModel):
     fit_rules_checked: int = 0        # rules today's design was checked against (0 = not checked yet)
     ops_rate: float = 0               # USD per ops hour used by the Total Cost step (0 = not run)
     today_ops_hours: float = 0
+    baseline: Baseline | None = None  # Plain Chat step: a no-tools chat estimate, for comparison
     swap_round: int = 0
     swap_had_new: bool = True         # last Service Swap round added something; if not, stop reworking
     timeline: list[Event] = []

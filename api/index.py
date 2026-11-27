@@ -25,7 +25,7 @@ MAX_COMPONENTS = 25
 
 
 class StartRequest(BaseModel):
-    text: str = Field(default="", max_length=4000)
+    text: str = Field(default="", max_length=200_000)  # pasted text, Mermaid, or a draw.io / ARM / Bicep file
     image: str = Field(default="", max_length=MAX_IMAGE_CHARS)
 
     @model_validator(mode="after")

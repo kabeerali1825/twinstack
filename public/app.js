@@ -6,24 +6,24 @@ const STORE = "twinstack.run";
 const STAGES = [
   ["parse", "Read the input"], ["profile", "Workload Profiler"], ["confirm", "You confirm"], ["price", "Pricer"], ["scout", "Region Scout"],
   ["swap", "Service Swap"], ["skeptic", "Skeptic"], ["judge", "Judge"], ["effort", "Total Cost"],
-  ["commit", "Pricing Model"],
+  ["commit", "Pricing Model"], ["plain", "Plain chat check"],
 ];
 const WORKING = {
   parse: "Reading your architecture", price: "Matching each part to Azure price meters",
   scout: "Pricing every allowed region", swap: "Looking for better-fitting services",
   skeptic: "Checking alternatives against service limits", judge: "Building the three plans",
   commit: "Checking reservations and savings plans", profile: "Working out what to ask you",
-  effort: "Estimating ops and migration effort",
+  effort: "Estimating ops and migration effort", plain: "Asking a plain AI chat, for comparison",
 };
 const DEMO_IMAGES = { "contoso-bookings": "/demos/contoso-bookings.png" };
 // One color per agent (see [data-agent] in styles.css).
 const AGENT_KEY = {
   Parser: "reader", "Diagram Reader": "reader", You: "you", Pricer: "pricer", "Region Scout": "scout",
   "Service Swap": "swap", Skeptic: "skeptic", Judge: "judge", "Cost check": "cost", System: "system",
-  "Pricing Model": "model", "Workload Profiler": "profiler", "Total Cost": "cost",
+  "Pricing Model": "model", "Workload Profiler": "profiler", "Total Cost": "cost", "Plain Chat": "system",
 };
 const STAGE_AGENT = { parse: "reader", profile: "profiler", confirm: "you", price: "pricer", scout: "scout", swap: "swap", skeptic: "skeptic",
-  judge: "judge", effort: "cost", commit: "model" };
+  judge: "judge", effort: "cost", commit: "model", plain: "system" };
 const REGION_NAMES = {
   westeurope: "West Europe", northeurope: "North Europe", swedencentral: "Sweden Central", francecentral: "France Central",
   germanywestcentral: "Germany West Central", italynorth: "Italy North", polandcentral: "Poland Central",
@@ -119,8 +119,20 @@ async function readImage(file) {
   } finally { URL.revokeObjectURL(url); }
 }
 
+const TEXT_FILE = /\.(drawio|xml|json|bicep|mmd|md|txt)$/i;
+const MAX_TEXT = 200_000;
+
 async function attach(file) {
   show("input-error", false);
+  if (TEXT_FILE.test(file.name)) {  // draw.io / ARM / Bicep / Mermaid: read as text into the box; the server extracts it
+    const text = await file.text();
+    if (text.length > MAX_TEXT) {
+      $("input-error").textContent = `${file.name} is too large (${text.length.toLocaleString()} characters; the limit is ${MAX_TEXT.toLocaleString()}).`;
+      show("input-error"); return;
+    }
+    detach(); $("text").value = text; $("text").focus();
+    return;
+  }
   try {
     image = await readImage(file);
     $("preview").src = image; show("attachment");
@@ -131,6 +143,10 @@ function detach() { image = ""; $("file").value = ""; show("attachment", false);
 async function analyze() {
   const text = $("text").value.trim();
   show("input-error", false);
+  if (text.length > MAX_TEXT) {
+    $("input-error").textContent = `That's too long (${text.length.toLocaleString()} characters; the limit is ${MAX_TEXT.toLocaleString()}).`;
+    show("input-error"); return;
+  }
   if (!image && text.length < 10) {
     $("input-error").textContent = "Describe the architecture or attach a diagram first.";
     show("input-error"); $("text").focus(); return;
@@ -402,7 +418,10 @@ function renderResults() {
 
   const actions = h("div", { class: "result-actions" },
     h("span", { class: "muted" }, `This analysis made ${S.llm_calls} AI calls and cost ${S.ai_cost_usd < 0.01 ? "under 1 cent" : money(S.ai_cost_usd)}.`),
-    h("button", { type: "button", class: "btn primary", onclick: clearRun }, "Analyze another"));
+    h("span", { class: "result-buttons" },
+      h("button", { type: "button", class: "btn", onclick: downloadReport }, "Download report (.md)"),
+      h("button", { type: "button", class: "btn", onclick: (e) => downloadPdf(e.currentTarget) }, "Download PDF"),
+      h("button", { type: "button", class: "btn primary", onclick: clearRun }, "Analyze another")));
 
   const imgCard = S.demo_image ? h("div", { class: "card section" }, h("h2", {}, "Diagram analyzed"),
     h("img", { class: "figure", src: S.demo_image, alt: "The diagram that was analyzed" })) : null;
@@ -434,7 +453,186 @@ function renderResults() {
         i.kind === "rule" ? h("a", { href: i.source_url, target: "_blank", rel: "noopener" }, "Rule source")
           : h("span", { class: "tag" }, "Advice, not enforced"));
     }))) : null;
-  $("results").replaceChildren(...[summary, fixCard, planCard, rejCard, imgCard, actions].filter(Boolean));
+  // Plain Chat: the same question asked of a no-tools chat. Its numbers are shown, never used.
+  const b = S.baseline;
+  const meters = S.candidates.filter((c) => c.option_id.endsWith(".orig") && c.region === comp(c.component_id)?.region)
+    .reduce((n, c) => n + c.lines.length, 0);
+  const off = b && orig ? Math.round(100 * (b.today - orig) / orig) : 0;
+  const chatCard = b ? h("div", { class: "card section baseline" },
+    h("h2", {}, "A plain AI chat vs TwinStack"),
+    h("p", { class: "muted" }, "We asked an AI chat the same question with no tools and no live prices."),
+    h("div", { class: "table-scroll" }, h("table", { class: "compare" },
+      h("thead", {}, h("tr", {}, h("th", {}), h("th", { class: "r" }, "Plain chat"), h("th", { class: "r" }, "TwinStack"))),
+      h("tbody", {},
+        h("tr", {}, h("td", {}, "Today's bill"), h("td", { class: "r amount" }, money(b.today)), h("td", { class: "r amount" }, money(orig))),
+        h("tr", {}, h("td", {}, "Cheapest option"), h("td", { class: "r amount" }, money(b.cheaper)), h("td", { class: "r amount" }, money(plans[0].monthly_total))),
+        h("tr", {}, h("td", {}, "Backed by"), h("td", { class: "r" }, "Memory"),
+          h("td", { class: "r" }, `${meters} live price meters, ${S.fit_rules_checked} rules, ${S.rejections.length} rejected options`))))),
+    h("p", {}, Math.abs(off) < 5 ? "The chat's guess for today's bill was close this time, but it can't show where any number comes from."
+      : `The chat's guess for today's bill was ${Math.abs(off)}% ${off > 0 ? "too high" : "too low"}.`),
+    b.suggestions.length ? h("details", { class: "commit-lines" }, h("summary", {}, "What the chat suggested"),
+      h("ul", {}, b.suggestions.map((s) => h("li", {}, s)))) : null) : null;
+  $("results").replaceChildren(...[summary, fixCard, planCard, archDiagrams(plan), chatCard, rejCard, imgCard, actions].filter(Boolean));
+}
+
+// ---------- architecture diagrams: today vs the selected plan, drawn by code with Mermaid ----------
+let mermaidLib = null;
+async function mermaidApi() {
+  if (!mermaidLib) {
+    mermaidLib = (await import("https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs")).default;
+    mermaidLib.initialize({
+      startOnLoad: false, securityLevel: "strict", theme: "base",  // strict: labels are sanitized, no scripts
+      themeVariables: { fontFamily: "Geologica, sans-serif", fontSize: "13px", lineColor: "#868BA0", primaryTextColor: "#33364A" },
+    });
+  }
+  return mermaidLib;
+}
+const mmd = (s) => String(s).replace(/"/g, "#quot;").replace(/</g, "#lt;").replace(/>/g, "#gt;");
+
+function archCode(nodes, edges) {
+  const usesUsers = edges.some(([a, b]) => a === "users" || b === "users");
+  return ["flowchart LR",
+    usesUsers ? 'users(["Users"]):::users' : "",
+    ...nodes.map((n) => `${n.id}["${n.lines.map(mmd).join("<br/>")}"]:::${n.cls}`),
+    ...edges.map(([a, b]) => `${a} --> ${b}`),
+    "classDef same fill:#FFFFFF,stroke:#C9D0E0,color:#33364A",
+    "classDef chg fill:#EFE8FB,stroke:#8458B3,stroke-width:2px,color:#33364A",
+    "classDef users fill:#E2F1F9,stroke:#3E8FBF,color:#33364A",
+  ].filter(Boolean).join("\n");
+}
+
+function archDiagrams(plan) {
+  const edges = (S.connections || []).filter(([a, b]) => [a, b].every((x) => x === "users" || comp(x)));
+  const todayNodes = S.components.map((c) => {
+    const cd = cand(`${c.id}.orig`, c.region);
+    return { id: c.id, cls: "same", lines: [label(c), `${region(c.region)}${cd ? `, ${money(cd.monthly_cost)}/mo` : ""}`] };
+  });
+  const covered = Object.fromEntries(plan.items.filter((i) => i.replaced_by).map((i) => [i.component_id, opt(i.replaced_by).component_id]));
+  const planNodes = plan.items.filter((i) => !i.replaced_by).map((i) => {
+    const o = opt(i.option_id), c = comp(i.component_id);
+    const merged = Object.keys(covered).filter((k) => covered[k] === i.component_id).map((k) => comp(k).service);
+    return { id: i.component_id, cls: !o.is_original || i.region !== c.region ? "chg" : "same",
+      lines: [label(o), `${region(i.region)}, ${money(i.monthly_cost)}/mo`, ...(merged.length ? [`replaces ${merged.join(", ")}`] : [])] };
+  });
+  const to = (x) => covered[x] || x;
+  const planEdges = [...new Set(edges.map(([a, b]) => `${to(a)} ${to(b)}`))].map((e) => e.split(" ")).filter(([a, b]) => a !== b);
+  const box = (title, code) => {
+    const el = h("div", { class: "arch-box" }, h("h3", {}, title), h("div", { class: "arch-svg muted" }, "Drawing…"));
+    mermaidApi().then((m) => m.render(`arch-${Math.random().toString(36).slice(2)}`, code))
+      .then(({ svg }) => { el.lastChild.innerHTML = svg; el.lastChild.classList.remove("muted"); })  // Mermaid output, strict mode
+      .catch(() => { el.lastChild.textContent = "The diagram couldn't be drawn (no connection to the diagram library)."; });
+    return el;
+  };
+  return h("div", { class: "card section arch" },
+    h("h2", {}, "Architecture"),
+    h("p", { class: "muted" }, edges.length ? "Highlighted boxes change in this plan." : "Highlighted boxes change in this plan. No connections were read from the input, so only the parts are shown."),
+    h("div", { class: "arch-grid" }, box("Today", archCode(todayNodes, edges)), box(`${plan.name} plan`, archCode(planNodes, planEdges))));
+}
+
+// ---------- report export (built from the run itself: no AI call, nothing sent anywhere) ----------
+function reportMarkdown() {
+  const md = [], cell = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
+  const today = (c) => cand(`${c.id}.orig`, c.region);
+  md.push(`# TwinStack report`, "",
+    `Generated ${new Date().toLocaleString()} from a run on ${new Date(S.timeline[0].t * 1000).toLocaleString()}. `
+    + `Prices from the Azure Retail Prices API (pay-as-you-go, USD). AI cost of the analysis: $${S.ai_cost_usd.toFixed(3)} `
+    + `(${S.llm_calls} calls).`, "");
+  md.push(`## Summary`, "", `| | Region | Per month | Saving vs today |`, `|---|---|---|---|`,
+    `| Today | ${[...new Set(S.components.map((c) => region(c.region)))].join(", ")} | ${money(S.original_total)} | |`,
+    ...S.plans.map((p) => `| ${p.name} | ${p.region === "original regions" ? "Original regions" : region(p.region)} | ${money(p.monthly_total)} | ${money(p.savings)} (${p.savings_pct}%) |`), "");
+  if (S.constraints.notes) md.push(`**Requirements:** ${S.constraints.notes}`, "");
+
+  const rule = (S.issues || []).filter((i) => i.kind === "rule");
+  md.push(`## Fit check of today's design`, "");
+  if (!rule.length && S.fit_rules_checked) md.push(`Passed: ${S.fit_rules_checked} rules checked, no problems found.`, "");
+  if (!S.fit_rules_checked && !(S.issues || []).length) md.push("Not available for this run (recorded before the fit check existed).", "");
+  for (const i of S.issues || []) {
+    const c = comp(i.component_id);
+    md.push(`- **${c ? label(c) : i.component_id}** (${i.kind === "rule" ? "must fix" : "advice"}): ${i.reason}`
+      + (i.source_url ? ` [Rule source](${i.source_url})` : ""));
+  }
+  if (S.fixed_total) md.push("", `Fixing today's design: ${money(S.original_total)} → ${money(S.fixed_total)} a month.`);
+  md.push("");
+
+  for (const p of S.plans) {
+    md.push(`## ${p.name} plan: ${money(p.monthly_total)} a month`, "");
+    if (p.summary) md.push(p.summary, "");
+    if (p.note) md.push(`> ${p.note}`, "");
+    md.push(`| Component | Today | ${p.name} | Per month |`, `|---|---|---|---|`);
+    for (const it of p.items) {
+      const c = comp(it.component_id), o = opt(it.option_id), t = today(c);
+      md.push(`| ${cell(label(opt(`${c.id}.orig`)))} | ${t ? money(t.monthly_cost) : "-"} | `
+        + `${cell(it.replaced_by ? `Covered by ${label(o)}` : `${label(o)}, ${region(it.region)}`)} | ${money(it.monthly_cost)} |`);
+    }
+    if (p.tradeoffs.length) md.push("", "**Trade-offs:**", ...p.tradeoffs.map((t) => `- ${t}`));
+    const cm = p.commitments;
+    if (cm && cm.three_year < cm.payg - 0.005) {
+      md.push("", `**With commitments:** ${money(cm.payg)} pay-as-you-go, ${money(cm.one_year)} with 1-year, `
+        + `${money(cm.three_year)} with 3-year.`, ...cm.lines.map((l) => `- ${l.meter}: ${l.how_one_year} → ${money(l.one_year)}; ${l.how_three_year} → ${money(l.three_year)}`));
+      if (cm.hybrid_benefit) md.push(`- Azure Hybrid Benefit could remove ${money(cm.hybrid_benefit)} of SQL licence cost.`);
+    }
+    if (S.ops_rate) md.push("", `**People effort:** ${p.ops_hours} ops hours a month (today ${S.today_ops_hours}) at `
+      + `${money(S.ops_rate)}/h; one-off migration ${p.migration_hours} hours. AI estimate, for comparison only.`);
+    md.push("", `**Price lines (Azure meter IDs):**`);
+    for (const it of p.items.filter((i) => !i.replaced_by)) {
+      for (const l of cand(it.option_id, it.region)?.lines || []) {
+        md.push(`- ${l.meter}: ${inUnits(l.qty, l.unit)} × ${unitPrice(l.unit_price)} per ${l.unit} = ${money(l.monthly)} (meterId \`${l.meter_id}\`)`);
+      }
+    }
+    md.push("");
+  }
+
+  if (S.baseline) md.push(`## A plain AI chat vs TwinStack`, "", "The same question asked of an AI chat with no tools or live prices.", "",
+    `| | Plain chat | TwinStack |`, `|---|---|---|`,
+    `| Today's bill | ${money(S.baseline.today)} | ${money(S.original_total)} |`,
+    `| Cheapest option | ${money(S.baseline.cheaper)} | ${money(S.plans[0].monthly_total)} |`, "",
+    ...S.baseline.suggestions.map((s) => `- Chat suggested: ${cell(s)}`), "");
+  md.push(`## Rejected alternatives`, "");
+  if (!S.rejections.length) md.push("None.");
+  for (const r of S.rejections) {
+    const o = opt(r.option_id);
+    md.push(`- **${o ? label(o) : r.option_id}**, rejected by ${r.by}: ${r.reason}` + (r.source_url ? ` [Rule source](${r.source_url})` : ""));
+  }
+  md.push("", `## Agent activity`, "", ...S.timeline.map((e) => `- **${e.agent}**: ${e.message}`), "",
+    "---", "Read-only analysis: TwinStack never connects to an Azure account. Plans are estimates; check them before you buy.");
+  return md.join("\n");
+}
+
+// Download PDF: html2pdf (lazy-loaded) renders a light copy of the results to an A4 PDF in the browser. Nothing is uploaded.
+let pdfLib = null;
+async function downloadPdf(btn) {
+  const text = btn.textContent;
+  btn.disabled = true; btn.textContent = "Making PDF…";
+  try {
+    pdfLib ||= await new Promise((ok, fail) => document.head.append(h("script", {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js",
+      onload: () => ok(window.html2pdf), onerror: () => fail(new Error("couldn't load the PDF library")) })));
+    const copy = $("results").cloneNode(true);
+    copy.removeAttribute("id");
+    copy.classList.add("pdf");
+    for (const d of copy.querySelectorAll("details")) d.open = true;
+    // The renderer draws an SVG at its natural size (cropped), so give each diagram a fixed size that fits A4.
+    for (const s of copy.querySelectorAll(".arch-svg svg")) {
+      const vb = s.viewBox.baseVal, w = Math.min(vb.width, 640);
+      s.setAttribute("width", w); s.setAttribute("height", w * vb.height / vb.width); s.style.maxWidth = "none";
+    }
+    await pdfLib().set({
+      margin: 10, filename: `twinstack-report-${new Date().toISOString().slice(0, 10)}.pdf`,
+      image: { type: "jpeg", quality: 0.95 }, html2canvas: { scale: 2, backgroundColor: "#ffffff", scrollX: 0, scrollY: 0 },  // scroll: else a scrolled page gives a blank first page
+      jsPDF: { unit: "mm", format: "a4" }, pagebreak: { mode: ["css", "legacy"], avoid: ["tr", ".commit-figs", ".arch-box", "li"] },
+    }).from(copy).save();
+  } catch (e) {
+    alert(`The PDF couldn't be made (${e.message}). Download the report (.md) instead.`);
+  } finally {
+    btn.disabled = false; btn.textContent = text;
+  }
+}
+
+function downloadReport() {
+  const blob = new Blob([reportMarkdown()], { type: "text/markdown" });
+  const a = h("a", { href: URL.createObjectURL(blob), download: `twinstack-report-${new Date().toISOString().slice(0, 10)}.md` });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
 async function openDemo(name) {

@@ -29,11 +29,11 @@
       <h1 id="start-h">Find a cheaper way to run your Azure architecture</h1>
       <div class="composer" id="composer">
         <label for="text" class="sr-only">Describe the architecture</label>
-        <textarea id="text" rows="4" maxlength="4000"
-          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or paste a Mermaid diagram, or a screenshot of your diagram (Ctrl+V)."></textarea>
-        <div class="composer-foot">
-          <input type="file" id="file" accept="image/png,image/jpeg,image/webp" class="sr-only">
-          <label for="file" class="btn ghost" title="Or paste an image with Ctrl+V, or drop a file here">Attach diagram</label>
+        <textarea id="text" rows="4" maxlength="200000"
+          placeholder="Describe it, e.g. Web API on AKS with 3 D4s_v5 nodes, Azure SQL General Purpose 4 vCore, Redis Premium P1 in West Europe. EU only. Or paste a screenshot (Ctrl+V), a Mermaid diagram, or attach a draw.io, ARM or Bicep file."></textarea>        <div class="composer-foot">
+          <input type="file" id="file" class="sr-only"
+            accept="image/png,image/jpeg,image/webp,.drawio,.xml,.json,.bicep,.mmd,.md,.txt">
+          <label for="file" class="btn ghost" title="Image, draw.io, ARM (.json), Bicep or Mermaid. You can also paste or drop it here">Attach file</label>
           <span id="attachment" class="attachment" hidden>
             <img id="preview" alt="Attached diagram">
             <button type="button" class="btn ghost small" id="remove-image" aria-label="Remove the diagram">Remove</button>

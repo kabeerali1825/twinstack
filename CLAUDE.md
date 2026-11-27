@@ -116,6 +116,7 @@ Rules for Claude Code when writing the app:
 | 7 | **Fit Checker / Skeptic** | Reject options that break limits or rules (timeouts, missing features, SLA, zone support, residency, spot for prod…); send back for rework, **max 2 loops** | Sonnet |
 | 8 | **Total Cost Agent** | Add people/ops effort cost next to the Azure bill (e.g. AKS needs Kubernetes skills) | Haiku |
 | 9 | **Judge** | Build the Cheapest / Balanced / Safest plans with savings, trade-offs and reasons | Sonnet |
+| 10 | **Plain Chat** (added in M3) | Ask a no-tools chat the same question; its guess is shown next to TwinStack's numbers, never used in a plan | Sonnet |
 
 **Pipeline:**
 `diagram|text → Diagram Reader / Parser → HUMAN CONFIRM → Workload Profiler → Service Swap → Region Scout → Pricing-Model → Fit Checker/Skeptic (↺ max 2) → Total Cost → Judge → 3 plans`
@@ -206,7 +207,7 @@ Rules for Claude Code when writing the app:
 - **Budget split:** ~$12 development, ~$3 final testing, **~$10 reserved for judging**.
 - **Develop without spending:** record real LLM responses once, then **replay fixtures** during UI/pipeline work. Use Haiku for everything until the final polish; switch the Sonnet agents on at the end.
 - **Per-call:** always set `max_tokens`; keep prompts tight; send only needed context.
-- **Per-run caps:** max ~15 LLM calls per run; Skeptic max 2 retry loops; hard stop with a clear message if exceeded. No unbounded loops anywhere.
+- **Per-run caps:** max 18 LLM calls per run (`MAX_CALLS_PER_RUN`; typical run 9-13); Skeptic max 2 retry loops; hard stop with a clear message if exceeded. No unbounded loops anywhere.
 - **Concurrency:** at most ~5 parallel LLM calls (semaphore); retry HTTP 429 with exponential backoff (60 RPM limit).
 - **Cached demos:** one-click demo architectures show **saved full results** (cost $0, still work if the key expires or runs out). Judges can still run their own input live.
 - **Live-run limits:** e.g. 3 live runs per visitor per hour, plus a global kill switch env var (e.g. `LIVE_RUNS_ENABLED=false`) when spend nears the reserve.
@@ -246,6 +247,10 @@ Rules for Claude Code when writing the app:
 - draw.io (`.drawio` XML) and Bicep/ARM template input (deterministic parsing)
 - Side-by-side "plain Claude chat estimate vs TwinStack" comparison
 - Report export (Markdown/PDF), one-click demos with cached results, polish
+
+**Status (Nov 2026):** M1, M2 and M3 built. M3 = networking/storage pricing (no code change needed), draw.io / ARM /
+Bicep input (`app/formats.py`, exact extraction in code), Markdown report + print-to-PDF, before/after architecture
+diagrams (Mermaid, from parsed `connections`), Plain Chat comparison, re-recorded demos and fixtures.
 
 **Out of scope:** deploying/changing anything in Azure; accessing any Azure account; other clouds (AWS/GCP).
 

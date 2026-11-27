@@ -1,9 +1,10 @@
 /* Tool-style UI. Surfaces separate by tone and ring shadows, not decorative borders.
    Radii are concentric (outer = inner + padding). Transitions name their properties. */
+/* .pdf: the Download PDF copy always takes the light tokens, even in dark mode. */
 /* Palette (chosen by the user): sky #A0D2EB, mist #E5EAF5, lilac #D0BDF4, purple #8458B3, slate #494D5F.
    Text colors are darkened shades of the slate/purple/sky so they pass 4.5:1 on white.
    One hue per agent, all from the same family, so hand-offs read at a glance. */
-:root {
+:root, .pdf {
   --canvas: #F4F6FB;
   --surface: #FFFFFF;
   --sunken: #E5EAF5;
@@ -36,7 +37,7 @@
   --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
   :root {
     --canvas: #252836; --surface: #2F3342; --sunken: #3A3F51;
     --ink: #E5EAF5; --ink-2: #B7BDD2; --ink-3: #8F95AB;
@@ -248,7 +249,7 @@ body[data-view="result"] .log .agent { font-size: 13px; }
 @media (max-width: 600px) { body[data-view="result"] .log li { grid-template-columns: 1fr; gap: 0; } }
 
 /* ---------- results ---------- */
-#results { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+#results, .pdf { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .compare { min-width: 600px; }   /* scrolls inside its card on phones instead of crushing columns */
 /* The headline result gets the palette's sky-to-lilac sweep; everything else stays quiet. */
 .summary { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; padding: 24px;
@@ -261,7 +262,7 @@ body[data-view="result"] .log .agent { font-size: 13px; }
 .figs dt { font-size: 12.5px; color: var(--ink-2); }
 .figs dd { margin: 2px 0 0; font-size: 1.35rem; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--ink); }
 .figs dd.save { color: var(--hero-accent); }
-@media (prefers-color-scheme: dark) { .figs > div { background: rgb(0 0 0 / 0.18); } }
+@media screen and (prefers-color-scheme: dark) { .figs > div { background: rgb(0 0 0 / 0.18); } }
 
 .segmented { display: inline-flex; gap: 2px; padding: 4px; background: var(--sunken); border-radius: 14px; flex-wrap: wrap; }
 .segmented button {
@@ -349,6 +350,30 @@ tr.detail td { background: var(--canvas); padding: 4px 16px 14px; }
 main { flex: 1; }
 .foot { width: 100%; max-width: 1240px; margin: 48px auto 0; padding: 20px; font-size: 12.5px; }
 
+.result-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.arch > p { font-size: 13.5px; margin-bottom: 12px; }
+.arch-grid { display: grid; gap: 12px; }
+/* Diagrams stay light in both themes (like the analyzed-diagram image), so the PDF matches the screen. */
+.arch-box { background: #F7F8FC; border-radius: 12px; padding: 12px; min-width: 0; }
+.arch-box h3 { font-size: 13px; color: #5A5F73; font-weight: 400; margin-bottom: 8px; }
+.arch-svg { overflow-x: auto; font-size: 13px; }
+.arch-svg svg { max-width: 100%; height: auto; }
+
+/* Print / Save as PDF: just the result, on white, with every detail row open */
+/* Download PDF: a light, static copy of the results (built by html2pdf from a clone tagged .pdf). */
+.pdf { background: #fff; color: var(--ink); font-family: var(--font); --canvas: #fff; --sunken: #f2f2f2; }
+.pdf .result-buttons, .pdf .toggle { display: none !important; }
+.pdf .segmented button:not([aria-selected="true"]) { display: none; }  /* name the exported plan only */
+.pdf .segmented, .pdf .segmented button[aria-selected="true"] { background: none; box-shadow: none; padding-left: 0; }
+.pdf .segmented button[aria-selected="true"], .pdf .segmented button[aria-selected="true"] small { color: #33364A; font-size: 1.05rem; }
+.pdf .card, .pdf .summary { box-shadow: none !important; border: 1px solid #ccc; }
+.pdf .summary { background: #fff !important; }
+.pdf tr.detail { display: table-row !important; }
+.pdf .table-scroll { overflow: visible; }
+.pdf .compare { min-width: 0; }
+.pdf a { color: inherit; }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0ms !important; }
 }
+.baseline .compare th:not(:first-child), .baseline .compare td:not(:first-child) { width: 32%; }
