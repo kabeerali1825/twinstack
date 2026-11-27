@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TwinStack</title>
+</head>
+<body>
+  <h1>TwinStack</h1>
+  <p>Same architecture. Cheaper twin.</p>
+  <p>API: <span id="status">checking…</span></p>
+  <script>
+    fetch("/api/health").then(r => r.json())
+      .then(j => document.getElementById("status").textContent = j.ok ? "up" : "down")
+      .catch(() => document.getElementById("status").textContent = "down");
+  </script>
+</body>
+</html>
