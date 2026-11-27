@@ -1,9 +1,10 @@
 """Step machine: each call runs exactly one agent step on a RunState and moves it to the next step.
 
-parse -> confirm (human) -> price -> scout -> swap -> price -> scout -> skeptic -> (swap, max 2 reworks) -> judge -> done
+parse -> profile -> confirm (human, answers questions) -> price -> scout -> swap -> price -> scout -> skeptic
+      -> (swap, max 2 reworks) -> judge -> effort -> commit -> done
 The browser drives the loop (one short HTTP request per step) and keeps the state, so runs can resume.
 """
-from app.agents import diagram, judge, parser, pricer, scout, skeptic, swap
+from app.agents import diagram, judge, parser, pricer, pricing_model, profiler, scout, skeptic, swap, total_cost
 from app.llm import BudgetExceeded
 from app.models import Option, RunState
 from app.pricing import resolve_service
@@ -19,8 +20,8 @@ def _parse(state: RunState) -> None:
         parser.run(state)
 
 
-AGENTS = {"parse": _parse, "price": pricer.run, "scout": scout.run, "swap": swap.run,
-          "skeptic": skeptic.run, "judge": judge.run}
+AGENTS = {"parse": _parse, "profile": profiler.run, "price": pricer.run, "scout": scout.run, "swap": swap.run,
+          "skeptic": skeptic.run, "judge": judge.run, "effort": total_cost.run, "commit": pricing_model.run}
 
 
 def _start_pricing(state: RunState) -> None:
@@ -32,6 +33,7 @@ def _start_pricing(state: RunState) -> None:
         if not service:
             raise ValueError(f"{c.id}: '{c.service}' is not an Azure billing service name.")
         c.service = service
+    profiler.apply_answers(state)
     state.options = [Option(id=f"{c.id}.orig", component_id=c.id, service=c.service, sku=c.sku,
                             details=f"{c.details}; count {c.quantity:g}".strip("; "), is_original=True)
                      for c in state.components]
@@ -43,6 +45,8 @@ def _start_pricing(state: RunState) -> None:
 def _next(state: RunState) -> str:
     match state.step:
         case "parse":
+            return "profile"
+        case "profile":
             return "confirm"
         case "price":
             return "scout"
@@ -54,6 +58,10 @@ def _next(state: RunState) -> str:
             rework = skeptic.needs_rework(state) and state.swap_round < MAX_SWAP_ROUNDS and state.swap_had_new
             return "swap" if rework else "judge"
         case "judge":
+            return "effort"
+        case "effort":
+            return "commit"
+        case "commit":
             return "done"
     raise ValueError(f"Unknown step {state.step}")
 

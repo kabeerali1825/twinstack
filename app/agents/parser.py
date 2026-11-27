@@ -1,5 +1,6 @@
 """Parser agent (fast model): a text description of an architecture -> components + constraints."""
 import json
+import re
 from pathlib import Path
 from typing import Literal
 
@@ -62,10 +63,17 @@ def rules() -> str:
     return RULES % {"services": json.dumps(sorted(services())), "groups": json.dumps(list(REGION_GROUPS))}
 
 
+MERMAID = re.compile(r"^\s*(?:```\s*mermaid\s*)?(?:graph|flowchart|architecture-beta|C4\w*)\b", re.I)
+MERMAID_HINT = ("\nThe description is a Mermaid diagram: node labels name the components (their text may include "
+                "sizes, tiers and counts), arrows are data flows, subgraphs are groupings such as regions or "
+                "networks. Ignore styling lines (classDef, style, linkStyle).")
+
+
 def run(state: RunState) -> None:
-    state.log("Parser", "start", "Reading the text description")
+    mermaid = bool(MERMAID.match(state.input_text))
+    state.log("Parser", "start", "Reading the Mermaid diagram" if mermaid else "Reading the text description")
     out = llm.chat_json(
-        [{"role": "system", "content": SYSTEM % {"rules": rules()}},
+        [{"role": "system", "content": SYSTEM % {"rules": rules()} + (MERMAID_HINT if mermaid else "")},
          {"role": "user", "content": f"<description>\n{state.input_text}\n</description>"}],
         _Out, state, max_tokens=2000)
     finish(state, out, "Parser", "text")

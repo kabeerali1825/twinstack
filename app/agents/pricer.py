@@ -76,7 +76,8 @@ Rules:
 - Pick each billable thing once. The same meter name can appear under several products (e.g. "Blob Storage" and
   "General Block Blob v2"): choose the one product that matches and don't add it twice.
 - Include storage meters only when the details give a size. Skip meters for features not mentioned.
-- When a number is not given, make a reasonable assumption and say it in "why" (short).
+- Use workload facts from the requirements (users, requests or events a month, data size, busy hours) before
+  assuming anything. When a number is still not given, make a reasonable assumption and say it in "why" (short).
 - If nothing in the menu fits, return no meters and explain in "problem"."""
 
 TIME_UNITS = {"Second", "Minute", "Hour", "Day"}

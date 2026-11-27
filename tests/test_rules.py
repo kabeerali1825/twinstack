@@ -67,6 +67,49 @@ def test_fit_review_fixes_todays_design_even_if_it_costs_more(monkeypatch):
     assert all(p.savings == -270 for p in s.plans)
 
 
+def test_commitments_pick_cheapest_and_skip_licences(monkeypatch):
+    from app.agents import pricing_model as pm
+    from app.models import MeterPick, PriceLine
+
+    vm_rows = [
+        {"type": "Consumption", "meterId": "vm", "armRegionName": "westeurope", "unitPrice": 0.1,
+         "savingsPlan": [{"term": "1 Year", "unitPrice": 0.08}, {"term": "3 Years", "unitPrice": 0.06}]},
+        {"type": "Reservation", "meterId": "vm", "armRegionName": "westeurope", "reservationTerm": "1 Year", "unitPrice": 600.0},
+        {"type": "Reservation", "meterId": "vm", "armRegionName": "westeurope", "reservationTerm": "3 Years", "unitPrice": 1080.0},
+    ]
+    vm = MeterPick(service="Virtual Machines", product="VM", sku="Standard_D2s_v5", meter="D2s v5", unit="1 Hour", qty=2.5)
+    line = PriceLine(meter="VM / D2s v5", meter_id="vm", unit_price=0.1, unit="1 Hour", qty=2.5, monthly=182.5)
+    out = pm._line(vm, line, vm_rows, "westeurope", "c1")
+    # 1y: reservation 2 x 50 + 0.5 x 73 = 136.5 beats savings plan 0.08 x 730 x 2.5 = 146
+    assert out.one_year == 136.5 and "reservation (2 units)" in out.how_one_year
+    # 3y: reservation 2 x 30 + 0.5 x 73 = 96.5 beats savings plan 0.06 x 730 x 2.5 = 109.5
+    assert out.three_year == 96.5 and "3-year reservation" in out.how_three_year
+
+    lic = PriceLine(meter="SQL - SQL License / vCore", meter_id="lic", unit_price=0.1, unit="1 Hour", qty=4, monthly=292)
+    assert pm._line(vm, lic, vm_rows, "westeurope", "c2").three_year == 292      # licences aren't discounted
+
+    # A '4 vCore' row whose savings-plan rate is per vCore (0.134 vs 0.67) is scaled x4, not taken as 80% off
+    assert pm._savings_plan({"savingsPlan": [{"term": "1 Year", "unitPrice": 0.134}]}, 0.67, "4 vCore") == {1: 0.536}
+    assert pm._savings_plan({"savingsPlan": [{"term": "1 Year", "unitPrice": 0.01}]}, 0.67, "P1 v3") == {}
+
+
+def test_mermaid_is_detected():
+    from app.agents.parser import MERMAID
+    assert MERMAID.match("flowchart LR\n a --> b") and MERMAID.match("```mermaid\ngraph TD\n a-->b")
+    assert not MERMAID.match("Web API on AKS with 3 nodes")
+
+
+def test_workload_answers_go_into_requirements_once():
+    from app.agents import profiler
+    from app.models import Constraints, Question, RunState
+    s = RunState(constraints=Constraints(allowed_regions=["westeurope"], notes="EU only."))
+    s.questions = [Question(id="q1", question="Traffic pattern?", options=["Steady", "Business hours"], answer="Business hours"),
+                   Question(id="q2", question="Data size?", options=["Small", "Large"], answer="Not sure")]
+    profiler.apply_answers(s)
+    profiler.apply_answers(s)  # confirming twice must not repeat
+    assert s.constraints.notes == "EU only. Workload answers: Traffic pattern? Business hours."
+
+
 def items(*costs):
     return [PlanItem(component_id=f"c{i}", option_id=f"c{i}.orig", region="x", monthly_cost=c) for i, c in enumerate(costs)]
 

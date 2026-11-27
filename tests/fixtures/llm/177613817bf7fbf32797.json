@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "```json\n{\"alternatives\": [{\"component_id\": \"c4\", \"service\": \"Azure Managed Redis\", \"sku\": \"Balanced B0\", \"details\": \"Balanced tier, 0.5 GB memory, single instance; use for the Redis workload instead of Azure Cache for Redis Premium P1. Confirm VNet and persistence needs are covered before migrating.\", \"rationale\": \"Azure Managed Redis is the newer Redis offering and its smallest tiers are priced well below Premium P1, while still supporting the caching workload.\", \"tradeoffs\": [\"Migration from Azure Cache for Redis Premium requires client endpoint changes and a cutover plan.\", \"Feature parity (clustering, persistence options, VNet injection) must be verified against the tier chosen; smaller memory size limits cache capacity.\"], \"also_replaces\": []}]}\n```",
+ "cost": 0.0004932
+}

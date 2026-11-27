@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"findings\": [{\"option_id\": \"c4.r2a1\", \"rule_id\": \"redis-premium-only-features\", \"reason\": \"Moving the cache from Premium P1 to Standard C3 drops VNet injection and data persistence, which the Premium tier provides and Standard does not, so the current setup's features would be lost.\"}]}",
+ "cost": 0.0003032
+}

@@ -4,21 +4,26 @@
 
 const STORE = "twinstack.run";
 const STAGES = [
-  ["parse", "Read the input"], ["confirm", "You confirm"], ["price", "Pricer"], ["scout", "Region Scout"],
-  ["swap", "Service Swap"], ["skeptic", "Skeptic"], ["judge", "Judge"],
+  ["parse", "Read the input"], ["profile", "Workload Profiler"], ["confirm", "You confirm"], ["price", "Pricer"], ["scout", "Region Scout"],
+  ["swap", "Service Swap"], ["skeptic", "Skeptic"], ["judge", "Judge"], ["effort", "Total Cost"],
+  ["commit", "Pricing Model"],
 ];
 const WORKING = {
   parse: "Reading your architecture", price: "Matching each part to Azure price meters",
   scout: "Pricing every allowed region", swap: "Looking for better-fitting services",
   skeptic: "Checking alternatives against service limits", judge: "Building the three plans",
+  commit: "Checking reservations and savings plans", profile: "Working out what to ask you",
+  effort: "Estimating ops and migration effort",
 };
 const DEMO_IMAGES = { "contoso-bookings": "/demos/contoso-bookings.png" };
 // One color per agent (see [data-agent] in styles.css).
 const AGENT_KEY = {
   Parser: "reader", "Diagram Reader": "reader", You: "you", Pricer: "pricer", "Region Scout": "scout",
   "Service Swap": "swap", Skeptic: "skeptic", Judge: "judge", "Cost check": "cost", System: "system",
+  "Pricing Model": "model", "Workload Profiler": "profiler", "Total Cost": "cost",
 };
-const STAGE_AGENT = { parse: "reader", confirm: "you", price: "pricer", scout: "scout", swap: "swap", skeptic: "skeptic", judge: "judge" };
+const STAGE_AGENT = { parse: "reader", profile: "profiler", confirm: "you", price: "pricer", scout: "scout", swap: "swap", skeptic: "skeptic",
+  judge: "judge", effort: "cost", commit: "model" };
 const REGION_NAMES = {
   westeurope: "West Europe", northeurope: "North Europe", swedencentral: "Sweden Central", francecentral: "France Central",
   germanywestcentral: "Germany West Central", italynorth: "Italy North", polandcentral: "Poland Central",
@@ -223,6 +228,14 @@ function renderConfirm() {
   opts.push(h("option", { value: "__home", selected: !opts.some((o) => o.selected) }, `Only ${home}`));
   $("region-group").replaceChildren(...opts);
   $("notes").value = S.constraints.notes || "";
+
+  // Workload Profiler questions: one radio group each, "Not sure" by default.
+  const qs = S.questions || [];
+  show("questions", qs.length > 0);
+  $("question-list").replaceChildren(...qs.map((q) => h("fieldset", { class: "question", "data-q": q.id },
+    h("legend", {}, q.question, q.why ? h("small", {}, ` (${q.why})`) : null),
+    [...q.options, "Not sure"].map((choice) => h("label", { class: "choice" },
+      h("input", { type: "radio", name: q.id, value: choice, checked: (q.answer || "Not sure") === choice }), choice)))));
 }
 
 async function confirmComponents() {
@@ -241,6 +254,9 @@ async function confirmComponents() {
     allowed_regions: g === "__home" ? [S.components[0]?.region || "westeurope"] : meta.region_groups[g],
     notes: $("notes").value.trim(),
   };
+  for (const q of S.questions || []) {
+    q.answer = document.querySelector(`input[name="${q.id}"]:checked`)?.value || "";
+  }
   S.confirmed = true;
   show("confirm-error", false);
   $("confirm-btn").disabled = true;
@@ -331,12 +347,50 @@ function renderResults() {
     h("tfoot", {}, h("tr", {}, h("td", {}, "Per month"), h("td", { class: "r amount" }, money(orig)),
       h("td", { class: "r amount" }, money(plan.monthly_total)), h("td", { class: `r amount delta${plan.savings > 0 ? " save" : ""}` }, signed(-plan.savings)))));
 
+  // Pricing Model: the same plan with 1- or 3-year commitments (reservations / savings plans), computed in code.
+  const cm = plan.commitments;
+  const pct = (x) => (cm.payg ? Math.round(100 * (1 - x / cm.payg)) : 0);
+  const commit = cm && cm.three_year < cm.payg - 0.005 ? h("div", { class: "commit" },
+    h("h3", {}, "Commit to save more"),
+    h("div", { class: "commit-figs" },
+      h("div", {}, h("span", {}, "Pay as you go"), h("strong", {}, money(cm.payg))),
+      h("div", {}, h("span", {}, "1-year commitments"), h("strong", {}, money(cm.one_year)), h("small", {}, `${pct(cm.one_year)}% less`)),
+      h("div", {}, h("span", {}, "3-year commitments"), h("strong", {}, money(cm.three_year)), h("small", {}, `${pct(cm.three_year)}% less`))),
+    h("details", { class: "commit-lines" }, h("summary", {}, "What to commit to"),
+      h("ul", {}, cm.lines.map((l) => h("li", {},
+        h("span", {}, `${label(opt(plan.items.find((i) => i.component_id === l.component_id)?.option_id) || comp(l.component_id))}: ${l.meter.split(" / ").pop()}`),
+        h("span", { class: "muted" }, ` ${money(l.payg)} → ${money(l.one_year)} (${l.how_one_year}) or ${money(l.three_year)} (${l.how_three_year})`))))),
+    cm.hybrid_benefit > 0 ? h("p", { class: "muted" },
+      `Azure Hybrid Benefit: if you already own SQL Server licences with Software Assurance, about ${money(cm.hybrid_benefit)} `
+      + "a month of licence cost goes away on top of this.") : null,
+    h("p", { class: "muted small" }, "Commitments lock in a size and region for the term; pay-as-you-go is the default above."))
+    : null;
+
+  // Total Cost: Azure bill + people effort, against today. Estimates from the Total Cost agent, math in code.
+  const effort = S.ops_rate > 0 ? (() => {
+    const ops = plan.ops_hours * S.ops_rate, todayOps = S.today_ops_hours * S.ops_rate;
+    const total = plan.monthly_total + ops, todayTotal = orig + todayOps;
+    return h("div", { class: "effort" },
+      h("h3", {}, "Total cost with people effort"),
+      h("div", { class: "commit-figs" },
+        h("div", {}, h("span", {}, "Azure bill"), h("strong", {}, money(plan.monthly_total))),
+        h("div", {}, h("span", {}, `Ops effort, ${plan.ops_hours} h a month`), h("strong", {}, money(ops)),
+          h("small", { class: "muted" }, `today ${S.today_ops_hours} h`)),
+        h("div", {}, h("span", {}, "Total a month"), h("strong", {}, money(total)),
+          h("small", { class: total < todayTotal ? "" : "risk" }, `today ${money(todayTotal)}`)),
+        h("div", {}, h("span", {}, "One-off migration"), h("strong", {}, `${plan.migration_hours} h`),
+          h("small", { class: "muted" }, `about ${money(plan.migration_hours * S.ops_rate)}`))),
+      h("p", { class: "muted small" }, `Effort is an AI estimate at ${money(S.ops_rate)} an hour, based on the team skills `
+        + "you gave. Use it to compare plans, not as a quote."));
+  })() : null;
+
   const planCard = h("div", { class: "card" },
     h("div", { class: "plan-head" }, seg, h("span", { class: "muted" }, where)),
     h("div", { class: "plan-text" }, h("p", {}, plan.summary || "The lowest total that passed every check, in one region."),
       plan.tradeoffs.length ? h("ul", {}, plan.tradeoffs.map((t) => h("li", {}, t))) : null,
       plan.note ? h("p", { class: "plan-note" }, plan.note.replace(/\b[a-z]+(?:central|europe|us\d?|asia|east|west|north|south)\w*\b/g, region)) : null),
-    h("div", { class: "table-scroll" }, table));
+    h("div", { class: "table-scroll" }, table),
+    commit, effort);
 
   const rej = S.rejections.map((r) => {
     const o = opt(r.option_id);
