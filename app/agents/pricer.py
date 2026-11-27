@@ -1,4 +1,5 @@
-"""Pricer agent (fast model): picks which real price meters an option uses, and how much of each.
+"""Pricer agent (smart model): picks which real price meters an option uses, and how much of each.
+(Haiku mixed up Linux/Windows rows and SKU sizes too often; a wrong meter is a wrong price.)
 
 Code builds a numbered menu of real meters from the Retail Prices API; the LLM only picks menu numbers
 and quantities, so it can't invent a SKU and never does price math.
@@ -57,6 +58,9 @@ Rules:
 - Some services bill the software license as a separate meter (e.g. product "... - SQL License", per vCore): include it
   (count = vCores) unless the details mention Azure Hybrid Benefit or bring-your-own license. Serverless prices
   already include the license.
+- List only meters you are using. Never list a meter to say it is "not chosen" or as an alternative.
+- Pick each billable thing once. The same meter name can appear under several products (e.g. "Blob Storage" and
+  "General Block Blob v2"): choose the one product that matches and don't add it twice.
 - Include storage meters only when the details give a size. Skip meters for features not mentioned.
 - When a number is not given, make a reasonable assumption and say it in "why" (short).
 - If nothing in the menu fits, return no meters and explain in "problem"."""
@@ -149,7 +153,7 @@ def run(state: RunState) -> None:
     out = llm.chat_json(
         [{"role": "system", "content": SYSTEM},
          {"role": "user", "content": "\n\n".join(blocks)}],
-        _Out, state, max_tokens=300 + 250 * len(todo))
+        _Out, state, smart=True, max_tokens=300 + 250 * len(todo))  # meter choice is accuracy-critical
 
     picks = {p.option_id: p for p in out.options}
     for o in todo:
@@ -166,10 +170,27 @@ def run(state: RunState) -> None:
                 o.meters.append(MeterPick(service=o.service, product=r["productName"], sku=r["skuName"],
                                           meter=r["meterName"], unit=r["unitOfMeasure"], qty=qty, why=m.why,
                                           global_meter=r["armRegionName"] == "Global"))
+        # Same sku+meter picked twice: within one product it's a schedule (add up); across products it's a
+        # duplicate (e.g. Gen5 and DC-Series compute, or the same storage meter under two products): keep the first.
+        merged: dict[tuple, MeterPick] = {}
+        for m in o.meters:
+            k = (m.sku, m.meter, m.unit)
+            if k not in merged:
+                merged[k] = m
+            elif merged[k].product == m.product:
+                merged[k].qty += m.qty
+            else:
+                state.log("Pricer", "warn", f"{o.id}: dropped duplicate {m.meter} from '{m.product}'")
+        o.meters = list(merged.values())
         if o.meters and not any("License" in m.product for m in o.meters):
-            o.meters += [lic for m in o.meters if (lic := _license_for(m, o))]
+            licenses = {}
+            for m in o.meters:
+                if (lic := _license_for(m, o)) and lic.qty > licenses.get(lic.product, lic).qty - 1e-9:
+                    licenses[lic.product] = lic
+            o.meters += licenses.values()
         if o.meters:
-            state.log("Pricer", "output", f"{o.id}: billed on " + ", ".join(f"{m.meter} x{m.qty:g}" for m in o.meters),
+            state.log("Pricer", "output", f"{o.id}: billed on " + ", ".join(
+                f"{m.meter}{' (global price)' if m.global_meter else ''} x{m.qty:g}" for m in o.meters),
                       [m.model_dump() for m in o.meters])
         else:
             state.log("Pricer", "warn", f"{o.id}: no matching price meters ({p.problem if p else 'not answered'})")

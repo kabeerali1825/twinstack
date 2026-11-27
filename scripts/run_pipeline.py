@@ -3,6 +3,7 @@
   .venv/Scripts/python -m scripts.run_pipeline "Web API on AKS ..."      # live (spends budget)
   LLM_FIXTURES=record MODEL_SMART=claude-haiku ...                       # cheap dev run, saves replies
   LLM_FIXTURES=replay ...                                                 # free, from saved replies
+  IMAGE=public/demos/contoso-bookings.png ...                             # diagram input
 Prints the timeline and plans; writes the final state to the path in OUT (optional).
 """
 import os
@@ -20,8 +21,8 @@ DEMO = ("Web API on AKS with 3 Standard_D4s_v5 nodes, Azure SQL Database General
         "Data must stay in the EU.")
 
 
-def run(text: str, max_steps: int = 20) -> RunState:
-    state = RunState(input_text=text)
+def run(text: str, max_steps: int = 20, image: str = "") -> RunState:
+    state = RunState(input_text=text, input_image=image)
     shown = 0
     for _ in range(max_steps):
         if state.step == "confirm":
@@ -36,7 +37,12 @@ def run(text: str, max_steps: int = 20) -> RunState:
 
 
 if __name__ == "__main__":
-    s = run(sys.argv[1] if len(sys.argv) > 1 else DEMO)
+    image = ""
+    if os.environ.get("IMAGE"):  # IMAGE=path/to/diagram.png -> Diagram Reader instead of Parser
+        import base64
+        kind = "png" if os.environ["IMAGE"].lower().endswith(".png") else "jpeg"
+        image = f"data:image/{kind};base64," + base64.b64encode(open(os.environ["IMAGE"], "rb").read()).decode()
+    s = run(sys.argv[1] if len(sys.argv) > 1 else ("" if image else DEMO), image=image)
     print(f"\nstep={s.step} error={s.error!r} llm_calls={s.llm_calls} ai_cost=${s.ai_cost_usd:.4f}")
     print(f"original: ${s.original_total:,.2f}/mo")
     for p in s.plans:

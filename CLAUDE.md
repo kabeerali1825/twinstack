@@ -110,6 +110,7 @@ Rules for Claude Code when writing the app:
 | 2 | **Parser** | Turn text input into a component list; normalize both inputs into one schema | Haiku |
 | 3 | **Workload Profiler** | Ask only for missing info; capture traffic shape, constraints, team skills | Haiku |
 | 4 | **Service Swap Agent** | Propose better-fitting Azure services per component (AKS → Container Apps, Azure SQL → SQL serverless / PostgreSQL Flexible, nightly-job VM → Functions / Container Apps job, Redis Premium → Standard …) | Sonnet |
+| 4b | **Pricer** (added in build) | Pick the real price meters (and amounts) each option is billed on, from a code-built menu of live rows; code adds SQL licenses and does unit math | Sonnet (Haiku mixed up Linux/Windows rows and sizes) |
 | 5 | **Region Scout** | Query live prices for each candidate in every allowed region; only count SKUs actually sold there | **No LLM: code** |
 | 6 | **Pricing-Model Agent** | Compare pay-as-you-go, 1y/3y reservations, savings plans, spot (only where safe), Dev/Test, Azure Hybrid Benefit | Code (math) + Haiku (explanations) |
 | 7 | **Fit Checker / Skeptic** | Reject options that break limits or rules (timeouts, missing features, SLA, zone support, residency, spot for prod…); send back for rework, **max 2 loops** | Sonnet |

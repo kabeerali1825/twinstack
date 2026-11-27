@@ -3,13 +3,23 @@
 parse -> confirm (human) -> price -> scout -> swap -> price -> scout -> skeptic -> (swap, max 2 reworks) -> judge -> done
 The browser drives the loop (one short HTTP request per step) and keeps the state, so runs can resume.
 """
-from app.agents import judge, parser, pricer, scout, skeptic, swap
+from app.agents import diagram, judge, parser, pricer, scout, skeptic, swap
 from app.llm import BudgetExceeded
 from app.models import Option, RunState
 from app.pricing import resolve_service
 
 MAX_SWAP_ROUNDS = 3  # first proposal + 2 reworks
-AGENTS = {"parse": parser.run, "price": pricer.run, "scout": scout.run, "swap": swap.run,
+
+
+def _parse(state: RunState) -> None:
+    if state.input_image:
+        diagram.run(state)
+        state.input_image = ""  # read once; don't ship it back and forth on every step
+    else:
+        parser.run(state)
+
+
+AGENTS = {"parse": _parse, "price": pricer.run, "scout": scout.run, "swap": swap.run,
           "skeptic": skeptic.run, "judge": judge.run}
 
 

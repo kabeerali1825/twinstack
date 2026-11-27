@@ -111,6 +111,7 @@ class RunState(BaseModel):
     run_id: str = Field(default_factory=lambda: uuid.uuid4().hex[:12])
     step: str = "parse"
     input_text: str = ""
+    input_image: str = ""             # data: URI; cleared once the Diagram Reader has read it
     confirmed: bool = False
     components: list[Component] = []
     constraints: Constraints = Constraints(allowed_regions=[])

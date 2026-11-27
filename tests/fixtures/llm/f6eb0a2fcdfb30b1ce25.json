@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"options\": [{\"option_id\": \"c1.orig\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard tier cluster assumed, Uptime SLA billed hourly for the single cluster\"}], \"problem\": \"\"}, {\"option_id\": \"c2.orig\", \"meters\": [{\"index\": 0, \"count\": 3, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Pay-as-you-go D4s v5 Linux nodes, 3 nodes billed all month; autoscaling could reduce this but original option is priced as stated\"}], \"problem\": \"\"}, {\"option_id\": \"c3.orig\", \"meters\": [{\"index\": 2, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"General Purpose provisioned 4 vCore compute, Gen5 (default hardware), billed all month; SQL license included in this meter\"}], \"problem\": \"Storage and backup redundancy not stated, so storage meters omitted\"}, {\"option_id\": \"c4.orig\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Premium P1 (6 GB) whole-cache meter, billed all month\"}], \"problem\": \"\"}]}",
- "cost": 0.0009715
-}

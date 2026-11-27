@@ -1,0 +1,4998 @@
+{
+ "run_id": "ba06595e0027",
+ "step": "done",
+ "input_text": "",
+ "input_image": "",
+ "confirmed": true,
+ "components": [
+  {
+   "id": "c1",
+   "service": "Azure Front Door Service",
+   "sku": "Standard",
+   "quantity": 1.0,
+   "region": "northeurope",
+   "details": "Standard tier; global service, entry point for user traffic",
+   "confidence": "high",
+   "source": "diagram"
+  },
+  {
+   "id": "c2",
+   "service": "Azure App Service",
+   "sku": "P2 v3",
+   "quantity": 2.0,
+   "region": "northeurope",
+   "details": "Premium v3 P2v3, Linux; Bookings web + API; 2 instances",
+   "confidence": "high",
+   "source": "diagram"
+  },
+  {
+   "id": "c3",
+   "service": "Functions",
+   "sku": "EP1",
+   "quantity": 1.0,
+   "region": "northeurope",
+   "details": "Premium plan EP1; 1 instance, always ready; nightly invoice job (~20 min), so mostly idle",
+   "confidence": "high",
+   "source": "diagram"
+  },
+  {
+   "id": "c4",
+   "service": "SQL Database",
+   "sku": "8 vCore",
+   "quantity": 1.0,
+   "region": "northeurope",
+   "details": "Business Critical, 8 vCore, Gen5, zone redundant, 250 GB storage",
+   "confidence": "high",
+   "source": "diagram"
+  },
+  {
+   "id": "c5",
+   "service": "Redis Cache",
+   "sku": "C2",
+   "quantity": 1.0,
+   "region": "northeurope",
+   "details": "Standard tier C2; used for sessions",
+   "confidence": "high",
+   "source": "diagram"
+  },
+  {
+   "id": "c6",
+   "service": "Storage",
+   "sku": null,
+   "quantity": 1.0,
+   "region": "northeurope",
+   "details": "Blob storage, Hot tier, LRS; ~500 GB of invoice PDFs",
+   "confidence": "high",
+   "source": "diagram"
+  }
+ ],
+ "constraints": {
+  "allowed_regions": [
+   "westeurope",
+   "northeurope",
+   "swedencentral",
+   "francecentral",
+   "germanywestcentral",
+   "italynorth",
+   "polandcentral",
+   "spaincentral"
+  ],
+  "notes": "Production workload in North Europe; customer data must stay in the EU; ~5,000 users with peak usage 9:00-18:00; zone-redundant SQL implies HA requirement. Users box is not a billable component."
+ },
+ "options": [
+  {
+   "id": "c1.orig",
+   "component_id": "c1",
+   "service": "Azure Front Door Service",
+   "sku": "Standard",
+   "details": "Standard tier; global service, entry point for user traffic; count 1",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c2.orig",
+   "component_id": "c2",
+   "service": "Azure App Service",
+   "sku": "P2 v3",
+   "details": "Premium v3 P2v3, Linux; Bookings web + API; 2 instances; count 2",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Azure App Service",
+     "product": "Azure App Service Premium v3 Plan - Linux",
+     "sku": "P2 v3",
+     "meter": "P2 v3 App",
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "why": "Linux Premium v3 P2v3 plan, 2 instances, provisioned all month",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c3.orig",
+   "component_id": "c3",
+   "service": "Functions",
+   "sku": "EP1",
+   "details": "Premium plan EP1; 1 instance, always ready; nightly invoice job (~20 min), so mostly idle; count 1",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Functions",
+     "product": "Premium Functions",
+     "sku": "Premium",
+     "meter": "Premium vCPU Duration",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "EP1 = 1 vCPU, always-ready instance bills all month despite being mostly idle",
+     "global_meter": false
+    },
+    {
+     "service": "Functions",
+     "product": "Premium Functions",
+     "sku": "Premium",
+     "meter": "Premium Memory Duration",
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "why": "EP1 has 3.5 GiB memory, billed all month for the always-ready instance",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c4.orig",
+   "component_id": "c4",
+   "service": "SQL Database",
+   "sku": "8 vCore",
+   "details": "Business Critical, 8 vCore, Gen5, zone redundant, 250 GB storage; count 1",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+     "sku": "8 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Business Critical Gen5 8 vCore size-specific meter covers all 8 vCores, 1 database",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - SQL License",
+     "sku": "vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "why": "Business Critical SQL license billed per vCore; no Hybrid Benefit mentioned",
+     "global_meter": true
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - Storage",
+     "sku": "Business Critical",
+     "meter": "Business Critical Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "why": "250 GB data stored per month",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c5.orig",
+   "component_id": "c5",
+   "service": "Redis Cache",
+   "sku": "C2",
+   "details": "Standard tier C2; used for sessions; count 1",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Redis Cache",
+     "product": "Azure Redis Cache Standard",
+     "sku": "C2",
+     "meter": "C2 Cache",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Standard tier C2 cache, whole-resource meter, always on",
+     "global_meter": true
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c6.orig",
+   "component_id": "c6",
+   "service": "Storage",
+   "sku": null,
+   "details": "Blob storage, Hot tier, LRS; ~500 GB of invoice PDFs; count 1",
+   "is_original": true,
+   "rationale": "",
+   "tradeoffs": [],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Hot LRS",
+     "meter": "Hot LRS Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "why": "500 GB Hot LRS data stored; operations not specified so skipped",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": false,
+   "round": 0
+  },
+  {
+   "id": "c2.r1a1",
+   "component_id": "c2",
+   "service": "Azure App Service",
+   "sku": "P1v3",
+   "details": "Premium v3 P1v3 (2 vCPU, 8 GiB), Linux, 2 instances (zone redundant capable), Bookings web + API",
+   "is_original": false,
+   "rationale": "Half the vCPU/RAM per instance at roughly half the price; 5,000 users with a 9-18h peak is typically comfortable on 2x P1v3 and the 2-instance HA layout is preserved.",
+   "tradeoffs": [
+    "Less headroom per instance at peak; validate CPU/memory under load",
+    "Can add autoscale to a 3rd instance if needed"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Azure App Service",
+     "product": "Azure App Service Premium v3 Plan - Linux",
+     "sku": "P1 v3",
+     "meter": "P1 v3 App",
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "why": "P1v3 Linux App Service plan, 2 instances always on; zone redundancy has no extra meter",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c2.r1a2",
+   "component_id": "c2",
+   "service": "Azure Container Apps",
+   "sku": "Standard",
+   "details": "Consumption plan, 2 vCPU 4 GiB per replica, min 2 replicas always on, scale out on HTTP load during business hours",
+   "is_original": false,
+   "rationale": "Pay per vCPU/GiB-second with scale-out only at peak, avoiding paying for P2v3-sized instances 24/7.",
+   "tradeoffs": [
+    "Requires containerising the app and migration effort",
+    "Always-on min replicas limit savings versus idle-to-zero"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard vCPU Active Usage",
+     "unit": "1 Second",
+     "qty": 1.4,
+     "why": "2 replicas x 2 vCPU = 4 vCPU active ~35% of month (business hours, assumed)",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard vCPU Idle Usage",
+     "unit": "1 Second",
+     "qty": 2.6,
+     "why": "4 vCPU idle the remaining ~65% of month (min replicas always on)",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Memory Active Usage",
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "why": "2 replicas x 4 GiB = 8 GiB active ~35% of month",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Memory Idle Usage",
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "why": "8 GiB idle ~65% of month",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Requests",
+     "unit": "1M",
+     "qty": 5000000.0,
+     "why": "assumed ~5M HTTP requests/month",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c3.r1a1",
+   "component_id": "c3",
+   "service": "Functions",
+   "sku": "Consumption",
+   "details": "Linux Consumption plan, nightly timer trigger, ~20 min execution, 1.5 GB memory; use Flex Consumption if run exceeds the 10 min default timeout",
+   "is_original": false,
+   "rationale": "The job runs ~20 minutes a day, so billing per execution replaces an always-ready EP1 instance running 24/7 at near-zero cost.",
+   "tradeoffs": [
+    "Classic Consumption has a 10 min max timeout (extendable to 10 min only), so Flex Consumption or Durable chunking may be needed",
+    "Cold start (irrelevant for a nightly job)",
+    "No VNet integration on classic Consumption"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Functions",
+     "product": "Flex Consumption",
+     "sku": "On Demand",
+     "meter": "On Demand Execution Time",
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "why": "Flex Consumption on-demand execution: 1.5 GB x 20 min x 30 nights = 54,000 GB-s; unit is 1 GB Second so 54000 (price 0 within free grant, but usage given)",
+     "global_meter": false
+    },
+    {
+     "service": "Functions",
+     "product": "Flex Consumption",
+     "sku": "On Demand",
+     "meter": "On Demand Total Executions",
+     "unit": "10",
+     "qty": 30.0,
+     "why": "~30 executions/month = 3 units of 10 executions",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c3.r1a2",
+   "component_id": "c3",
+   "service": "Container Instances",
+   "sku": "Standard",
+   "details": "Linux, 1 vCPU 2 GiB, run once nightly for ~20 min (about 10 vCPU-hours/month), triggered by Logic Apps or a scheduler",
+   "is_original": false,
+   "rationale": "Billed only for the 20 minutes per day the container runs, avoiding an always-on premium plan.",
+   "tradeoffs": [
+    "Needs a trigger/orchestrator and containerised job",
+    "Less integrated monitoring than Functions"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Container Instances",
+     "product": "Container Instances",
+     "sku": "Standard",
+     "meter": "Standard vCPU Duration",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "1 vCPU x ~10 hours/month",
+     "global_meter": false
+    },
+    {
+     "service": "Container Instances",
+     "product": "Container Instances",
+     "sku": "Standard",
+     "meter": "Standard Memory Duration",
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "why": "2 GB memory x ~10 hours/month = 20 GB-hours",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c4.r1a1",
+   "component_id": "c4",
+   "service": "SQL Database",
+   "sku": "4 vCore",
+   "details": "General Purpose, Gen5 (standard-series), 4 vCore, zone redundant, 250 GB storage, provisioned",
+   "is_original": false,
+   "rationale": "General Purpose zone-redundant still meets the HA requirement and costs a fraction of Business Critical at 8 vCore, and 4 vCore likely fits a 5,000-user booking app.",
+   "tradeoffs": [
+    "Remote storage means higher I/O latency than Business Critical local SSD",
+    "Failover is slightly slower than Business Critical",
+    "Need to validate CPU and IOPS demand before downsizing"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+     "sku": "4 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "4 vCore Gen5 General Purpose provisioned, whole size sku, always on",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+     "sku": "4 vCore Zone Redundancy",
+     "meter": "Zone Redundancy vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "4 vCore zone redundancy add-on",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - SQL License",
+     "sku": "vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "why": "SQL license for 4 vCores (added by code)",
+     "global_meter": true
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c4.r1a2",
+   "component_id": "c4",
+   "service": "SQL Database",
+   "sku": "2-8 vCore autoscale",
+   "details": "General Purpose serverless, Gen5, min 2 / max 8 vCore, zone redundant, ~35% active (business hours), 250 GB storage, auto-pause disabled",
+   "is_original": false,
+   "rationale": "Compute is billed per second for vCores actually used so nights and weekends drop to the minimum, while peak capacity of 8 vCore is retained.",
+   "tradeoffs": [
+    "Auto-pause must stay off for a production app, so the 2 vCore minimum is always billed",
+    "Scale-up under sudden load can add latency",
+    "Same remote-storage latency as General Purpose"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database General Purpose - Serverless - Compute Gen5",
+     "sku": "1 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "why": "serverless vCore billed per vCore while active; assumed ~5 vCore average during ~35% active time",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database General Purpose - Serverless - Compute Gen5",
+     "sku": "1 vCore Zone Redundancy",
+     "meter": "Zone Redundancy vCore",
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "why": "zone redundancy serverless vCore, same assumed active vCores",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Storage",
+     "sku": "General Purpose Zone Redundancy",
+     "meter": "General Purpose Zone Redundancy Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "why": "250 GB zone-redundant General Purpose data stored",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c4.r1a3",
+   "component_id": "c4",
+   "service": "Azure Database for PostgreSQL",
+   "sku": "Standard_D4ds_v5",
+   "details": "Flexible Server, General Purpose, 4 vCore, zone-redundant HA, 256 GB storage",
+   "is_original": false,
+   "rationale": "Flexible Server zone-redundant HA is much cheaper than SQL Database Business Critical at similar compute if the app can run on PostgreSQL.",
+   "tradeoffs": [
+    "Requires migrating schema, queries and data access code from SQL Server to PostgreSQL",
+    "Only viable if the application is not tied to T-SQL features"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Azure Database for PostgreSQL",
+     "product": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+     "sku": "4 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "why": "Ddsv5 General Purpose, generic per-vCore meter at 'vCore' price? 4 vCore sku row is priced 0.396 for the whole size, so count 1",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Database for PostgreSQL",
+     "product": "Azure Database for PostgreSQL Single Server General Purpose - Storage",
+     "sku": "General Purpose",
+     "meter": "General Purpose Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "why": "256 GB storage (single server storage meter is the only storage row in menu; best available)",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c5.r1a1",
+   "component_id": "c5",
+   "service": "Redis Cache",
+   "sku": "C1",
+   "details": "Standard tier C1 (1 GB, replicated), used for session storage",
+   "is_original": false,
+   "rationale": "Session data for ~5,000 users is small, so 1 GB is likely sufficient and C1 costs about half of C2 while keeping the Standard replica.",
+   "tradeoffs": [
+    "Lower memory and network bandwidth than C2",
+    "Check session payload size and connection count first"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Redis Cache",
+     "product": "Azure Redis Cache Standard",
+     "sku": "C1",
+     "meter": "C1 Cache",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Standard C1 cache, always on",
+     "global_meter": true
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c5.r1a2",
+   "component_id": "c5",
+   "service": "Azure Cosmos DB",
+   "sku": "Serverless",
+   "details": "NoSQL API serverless, session store with TTL, low request volume, ~1 GB",
+   "is_original": false,
+   "rationale": "Session data for 5,000 users generates modest request units, so per-request billing could cost less than a fixed 24/7 cache.",
+   "tradeoffs": [
+    "Higher latency than Redis",
+    "Requires app changes to the session provider",
+    "Savings are uncertain and depend on request volume"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Azure Cosmos DB",
+     "product": "Azure Cosmos DB serverless",
+     "sku": "RUs",
+     "meter": "1M RUs",
+     "unit": "1M",
+     "qty": 2000000.0,
+     "why": "assumed ~2M RUs/month for low volume session store",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Cosmos DB",
+     "product": "Azure Cosmos DB",
+     "sku": "RUs",
+     "meter": "Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "why": "~1 GB data stored",
+     "global_meter": true
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  },
+  {
+   "id": "c6.r1a1",
+   "component_id": "c6",
+   "service": "Storage",
+   "sku": "Standard_LRS Cool",
+   "details": "Blob Storage, Cool access tier (or lifecycle policy moving PDFs older than 30-60 days from Hot to Cool), LRS, ~500 GB of invoice PDFs",
+   "is_original": false,
+   "rationale": "Invoice PDFs are written once and rarely read afterward, so Cool storage cuts the per-GB cost versus Hot.",
+   "tradeoffs": [
+    "Higher read and write operation charges",
+    "30-day minimum retention charge for early deletion",
+    "Immaterial absolute saving at ~500 GB"
+   ],
+   "also_replaces": [],
+   "meters": [
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool LRS Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "why": "500 GB cool LRS data stored",
+     "global_meter": false
+    },
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool LRS Write Operations",
+     "unit": "10K",
+     "qty": 100000.0,
+     "why": "assumed ~100K write operations/month",
+     "global_meter": false
+    },
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool Read Operations",
+     "unit": "10K",
+     "qty": 100000.0,
+     "why": "assumed ~100K read operations/month",
+     "global_meter": false
+    }
+   ],
+   "priced": true,
+   "scouted": true,
+   "reviewed": true,
+   "round": 1
+  }
+ ],
+ "candidates": [
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "francecentral",
+   "monthly_cost": 508.08,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "26ad69a4-8c73-51a0-931f-ef05f3c7c9b9",
+     "unit_price": 0.348,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 508.08
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "germanywestcentral",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "6194a791-1b65-5020-9605-cbd852fca8b5",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "italynorth",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "e251dc92-8148-5c46-9820-87c977291dfe",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "northeurope",
+   "monthly_cost": 490.56,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "c890558e-fa5f-511d-aef1-e379751f67bf",
+     "unit_price": 0.336,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 490.56
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "polandcentral",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "5ea95e37-3319-5e92-a1a0-be2aa6ebfb47",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "spaincentral",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "13e1e03c-5241-54bc-9042-00ee46fcfb5a",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "swedencentral",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "aa0923ae-1581-54fd-9b44-c6fb70a82fd2",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c2.orig",
+   "component_id": "c2",
+   "region": "westeurope",
+   "monthly_cost": 519.76,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P2 v3 App",
+     "meter_id": "0cd29c4f-1213-56ad-ba23-7c760f10aab9",
+     "unit_price": 0.356,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 519.76
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "francecentral",
+   "monthly_cost": 168.78,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "5f8e97a5-6468-4128-b153-29b7cdd4f40a",
+     "unit_price": 0.185,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 135.05
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "d6252d3a-9a94-4590-a059-1445062177bf",
+     "unit_price": 0.0132,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 33.73
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "germanywestcentral",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "beeb4650-957a-4f1c-a374-9d193d88db2d",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "07b91048-2045-4fbe-9639-10fc09fc49ca",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "italynorth",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "d231fa3a-e69b-5686-a977-5c4a36071c0f",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "2e08faf3-81e9-547f-ab8e-34a64576e330",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "northeurope",
+   "monthly_cost": 152.31,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "a075cbcc-5ac3-4b30-ad03-be69f7c099c9",
+     "unit_price": 0.167,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 121.91
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "b86a232a-3a3d-46f7-b843-c70a3364accd",
+     "unit_price": 0.0119,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.4
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "polandcentral",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "971e4104-b281-5dd9-bc79-0af7521dc2dc",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "fbb612b7-3dac-519b-97a2-259f2f3e0339",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "spaincentral",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "bafb71f4-4e67-5d6d-9074-de83d27b5c0a",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "8d23c799-93e0-567d-8d67-d23057494ba1",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "swedencentral",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "5a4a87e6-9c9f-5d25-802e-783e8516b400",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "85dfc3e7-525c-57fe-be86-b9e3ec9ff5bc",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c3.orig",
+   "component_id": "c3",
+   "region": "westeurope",
+   "monthly_cost": 154.29,
+   "lines": [
+    {
+     "meter": "Premium Functions / Premium vCPU Duration",
+     "meter_id": "2099ccfe-9c25-4ae2-9e35-6500db3b8e74",
+     "unit_price": 0.169,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 123.37
+    },
+    {
+     "meter": "Premium Functions / Premium Memory Duration",
+     "meter_id": "8fca9dc0-1307-4b8c-986c-d58505cf1e4b",
+     "unit_price": 0.0121,
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "monthly": 30.92
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "francecentral",
+   "monthly_cost": 4490.5,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "c45debef-2bd3-4a93-a219-604a2b258449",
+     "unit_price": 3.044352,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 2222.38
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "be3ef41a-3b1e-479c-bdbd-40f124d55d16",
+     "unit_price": 0.3125,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 78.12
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "germanywestcentral",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "c3f8faae-1a4a-4043-82a9-84c8d11f439f",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "cb543d09-9d88-44cf-888b-84f6b6a2b12e",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "italynorth",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "bb2337fa-48ff-5f67-a686-62ba7bcd98f9",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "e0f04b8b-356d-568d-9b8f-a4437374fa47",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "northeurope",
+   "monthly_cost": 4072.21,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "9483fb82-964a-498f-8212-9c9230dc558c",
+     "unit_price": 2.484192,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1813.46
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "57ced9e8-8490-4508-a4f3-ef716df2c21b",
+     "unit_price": 0.275,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.75
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "polandcentral",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "c8b28cd3-b1df-5636-abd3-5d18ec2b45c8",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "58bbd07b-392a-5a68-ace3-6d728b85ff92",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "spaincentral",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "5c0dcf20-3c40-57af-b72c-f6be3c0356dd",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "0e95709f-408d-53f7-b7a7-07b4c2806709",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "swedencentral",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "420b1796-0a0c-5c25-abdd-216aa146ba8c",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "cb8c663a-a9b1-5767-898a-9d664197e246",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.orig",
+   "component_id": "c4",
+   "region": "westeurope",
+   "monthly_cost": 4220.07,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5 / vCore",
+     "meter_id": "ba9a850d-fc90-4185-a349-8257ddb3ddb6",
+     "unit_price": 2.679032,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 1955.69
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - SQL License / vCore",
+     "meter_id": "e9889554-fb00-4e00-bb08-21788c9d0dc8",
+     "unit_price": 0.375,
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "monthly": 2190.0
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool Business Critical - Storage / Business Critical Data Stored",
+     "meter_id": "09d494db-0967-4fc7-a62a-9261d9ba2d7b",
+     "unit_price": 0.2975,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 74.38
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "francecentral",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "germanywestcentral",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "italynorth",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "northeurope",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "polandcentral",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "spaincentral",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "swedencentral",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.orig",
+   "component_id": "c5",
+   "region": "westeurope",
+   "monthly_cost": 164.25,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C2 Cache",
+     "meter_id": "7c8f5b20-386c-4078-85de-14d64b3e059d",
+     "unit_price": 0.225,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 164.25
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "francecentral",
+   "monthly_cost": 9.6,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "6fdbe9e5-60bf-42a7-90ca-86b97054fdb7",
+     "unit_price": 0.0192,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.6
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "germanywestcentral",
+   "monthly_cost": 9.8,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "2cae23a6-b7f2-43c1-a174-8807fa5ee984",
+     "unit_price": 0.0196,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.8
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "italynorth",
+   "monthly_cost": 9.6,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "6d8e33fc-0a98-566c-9795-34a6f15825a2",
+     "unit_price": 0.0192,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.6
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "northeurope",
+   "monthly_cost": 11.0,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "c3867359-7044-4ef7-9049-01ef23565e7b",
+     "unit_price": 0.022,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 11.0
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "polandcentral",
+   "monthly_cost": 9.8,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "88e000de-336a-5171-bf91-2cb7cf853f24",
+     "unit_price": 0.0196,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.8
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "spaincentral",
+   "monthly_cost": 9.2,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "cc820296-b658-5a8c-80e4-578da30422b7",
+     "unit_price": 0.0184,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.2
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "swedencentral",
+   "monthly_cost": 9.2,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "39d8c6c1-22c0-5719-9330-593a56b3a2e0",
+     "unit_price": 0.0184,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.2
+    }
+   ]
+  },
+  {
+   "option_id": "c6.orig",
+   "component_id": "c6",
+   "region": "westeurope",
+   "monthly_cost": 9.8,
+   "lines": [
+    {
+     "meter": "Blob Storage / Hot LRS Data Stored",
+     "meter_id": "10e5ee74-8fd6-4972-909f-65a83f92f0ce",
+     "unit_price": 0.0196,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 9.8
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "francecentral",
+   "monthly_cost": 254.04,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "eb05e8b9-2f20-5aa2-8584-be501a9eff6b",
+     "unit_price": 0.174,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 254.04
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "germanywestcentral",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "51275dc1-09ef-5d16-8370-57a178de6193",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "italynorth",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "9c2bfde3-b795-580b-a614-20a4c2b0e7af",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "northeurope",
+   "monthly_cost": 245.28,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "7e1aae62-2ff1-5284-8009-6403417c5dca",
+     "unit_price": 0.168,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 245.28
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "polandcentral",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "8de3770e-21fc-5999-99a4-168ce38c1f40",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "spaincentral",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "6df8e5dd-ee7e-5b0b-8c6d-ca8e4ec38a42",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "swedencentral",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "a19e37c1-d748-575b-a4d1-a034f2654c11",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a1",
+   "component_id": "c2",
+   "region": "westeurope",
+   "monthly_cost": 259.88,
+   "lines": [
+    {
+     "meter": "Azure App Service Premium v3 Plan - Linux / P1 v3 App",
+     "meter_id": "cc659186-8327-58c4-beb4-1900b2b64af2",
+     "unit_price": 0.178,
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "monthly": 259.88
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "francecentral",
+   "monthly_cost": 173.88,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "ca334160-f3b7-5d18-a825-d17d21f0c9d2",
+     "unit_price": 0.000024,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 88.3
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "cbd8bb07-72da-5846-a87e-54ba8239c091",
+     "unit_price": 3e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 20.5
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "735749ab-b696-535f-9ad5-6f996878a6d7",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 22.08
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "ca327ab4-a987-53dc-9ccb-4734daea6091",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 41.0
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "397782ca-aeab-5405-865a-55eebcb9817e",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "germanywestcentral",
+   "monthly_cost": 173.88,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "1e8e24a4-ee86-5d4b-92b0-b3ec61e2bcac",
+     "unit_price": 0.000024,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 88.3
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "d2ea2778-6103-5bca-a22d-97bdfaefa4f6",
+     "unit_price": 3e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 20.5
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "8e8ae177-d34d-5b69-85d1-11362d03118d",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 22.08
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "d340c8f8-92e9-5847-a50e-010980805161",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 41.0
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "8a9b3feb-b601-58d8-ab9d-a0ddb2ea0db2",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "italynorth",
+   "monthly_cost": 238.51,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "83e351fc-b068-5d88-b5b9-6f242d91c0c2",
+     "unit_price": 0.000034,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 125.09
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "76e4d742-a5cc-5b4d-9bd0-eab4f1062b72",
+     "unit_price": 4e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 27.33
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "d7a58277-bf10-574e-a82b-d8abc6a0385d",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 29.43
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "f0528e0d-184e-52a3-aa6e-8c0601490df6",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 54.66
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "a4eb1686-5fa4-5de0-abaa-2c683fbb3518",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "northeurope",
+   "monthly_cost": 173.88,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "4ebd2e58-3f2c-58a5-a442-8460e472dce7",
+     "unit_price": 0.000024,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 88.3
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "8449b446-8a19-59a9-ab21-9af573de640b",
+     "unit_price": 3e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 20.5
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "c43d1f5d-5a92-5222-80a3-228227a1ddd8",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 22.08
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "e657862d-a18e-5def-a442-5191f5b612cd",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 41.0
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "c3d4faaa-f00a-56c0-8d12-07908220e5f0",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "polandcentral",
+   "monthly_cost": 173.88,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "fd502ea3-8dbb-5b9f-a3c4-d529c1e72679",
+     "unit_price": 0.000024,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 88.3
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "ed392e90-7816-5708-b0f8-6476465a3414",
+     "unit_price": 3e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 20.5
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "555b7bf7-afa5-5ea8-8be5-ee13e57207d8",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 22.08
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "a1ccf6cd-7a01-531b-8aa3-247a367cf625",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 41.0
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "d9189095-950b-5e21-84cd-e43e8084951c",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "spaincentral",
+   "monthly_cost": 238.51,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "0eac9400-b3dd-53de-bb30-45c8092eaa8d",
+     "unit_price": 0.000034,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 125.09
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "0edc9f25-e759-5941-9004-63cf61605325",
+     "unit_price": 4e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 27.33
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "5769c54d-3009-5681-a064-c39ee4e45e0c",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 29.43
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "f1428309-bcbc-5e3b-b3cf-de0e0f0e3300",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 54.66
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "5e1bdd1f-1baa-5d9f-b88e-2c8a743e4e3e",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "swedencentral",
+   "monthly_cost": 173.88,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "4ea1c35d-d999-57d0-88f2-e689d3475fcd",
+     "unit_price": 0.000024,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 88.3
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "27beb741-e49b-5a71-9f81-8a6703defc18",
+     "unit_price": 3e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 20.5
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "05396e31-2622-5cc8-9bb4-06d0ac9c6047",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 22.08
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "7c930da8-0777-5729-8384-84010d2555da",
+     "unit_price": 3e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 41.0
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "b0e8dad1-2d3f-594d-8b67-2bbeba27dc67",
+     "unit_price": 0.4,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.0
+    }
+   ]
+  },
+  {
+   "option_id": "c2.r1a2",
+   "component_id": "c2",
+   "region": "westeurope",
+   "monthly_cost": 239.31,
+   "lines": [
+    {
+     "meter": "Azure Container Apps / Standard vCPU Active Usage",
+     "meter_id": "0426badc-b719-5201-b141-b2d5c4943b7d",
+     "unit_price": 0.000034,
+     "unit": "1 Second",
+     "qty": 1.4,
+     "monthly": 125.09
+    },
+    {
+     "meter": "Azure Container Apps / Standard vCPU Idle Usage",
+     "meter_id": "7b7747f8-2c0b-5b6b-a6d9-d998e92f6bcc",
+     "unit_price": 4e-6,
+     "unit": "1 Second",
+     "qty": 2.6,
+     "monthly": 27.33
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Active Usage",
+     "meter_id": "3ba64b1c-cb46-5ee0-b086-a68736392ac0",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "monthly": 29.43
+    },
+    {
+     "meter": "Azure Container Apps / Standard Memory Idle Usage",
+     "meter_id": "cea8b5c0-c6fe-59cf-baa7-123dbc4c6bb8",
+     "unit_price": 4e-6,
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "monthly": 54.66
+    },
+    {
+     "meter": "Azure Container Apps / Standard Requests",
+     "meter_id": "b110d175-46b6-5bbc-adde-cf3438ed87f0",
+     "unit_price": 0.56,
+     "unit": "1M",
+     "qty": 5000000.0,
+     "monthly": 2.8
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "francecentral",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "a4e39f0d-8908-5961-a561-e51dca6ee6b0",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "04bf9ffe-7320-5321-9ed7-661107c8008a",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "germanywestcentral",
+   "monthly_cost": 93.54,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "87736c3a-3f7d-5d3a-8b54-b4575b44d2ad",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 93.54
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "07ae36c6-ccab-5332-bd44-b583c6c94485",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "italynorth",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "2caec7d1-7308-5492-9fe7-8791ee6ee521",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "13646df4-af4b-5c11-9f5d-0685f2ecc265",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "northeurope",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "c91f0431-7495-5047-bd54-a4a16ecb1b70",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "bfac086d-ae13-585b-8bb3-7deb41d7cf08",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "polandcentral",
+   "monthly_cost": 93.54,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "cee19628-5ca3-58ca-b32e-d5d8d3bbe89d",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 93.54
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "d9758073-71dd-548d-b9a2-e3765c776554",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "spaincentral",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "870274ff-390e-5c9a-aa8f-8147bcc8d69d",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "b0b79568-e95b-5f21-9109-50a8b8612ea6",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "swedencentral",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "a5521323-e093-53b5-b6bf-cabc4e098293",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "784e0fc6-81bd-55cc-9f0b-3d0f628a7392",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a1",
+   "component_id": "c3",
+   "region": "westeurope",
+   "monthly_cost": 65.73,
+   "lines": [
+    {
+     "meter": "Flex Consumption / On Demand Execution Time",
+     "meter_id": "1b89c7d8-fbb8-528b-bcb8-8a439a637524",
+     "unit_price": 0.0,
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "monthly": 65.73
+    },
+    {
+     "meter": "Flex Consumption / On Demand Total Executions",
+     "meter_id": "13bbc1e0-136c-573b-8c2b-bab44bbc2179",
+     "unit_price": 0.0,
+     "unit": "10",
+     "qty": 30.0,
+     "monthly": 0.0
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "francecentral",
+   "monthly_cost": 43.22,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "9040f97b-003b-488a-877d-58ff2157e932",
+     "unit_price": 0.0486,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 35.48
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "8f8c308d-02a6-4ba8-aa9c-88a32c494f36",
+     "unit_price": 0.0053,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.74
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "germanywestcentral",
+   "monthly_cost": 41.45,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "052cc934-87f4-4576-8aeb-cefccc73d3a3",
+     "unit_price": 0.04656,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 33.99
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "7a67fd6c-2b1e-4667-819b-a643a209aa67",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "italynorth",
+   "monthly_cost": 41.48,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "281fd822-f976-5204-b3fe-30eb1f397a82",
+     "unit_price": 0.0466,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 34.02
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "42779480-5454-56dd-862a-2b00a8c01cb2",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "northeurope",
+   "monthly_cost": 36.07,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "fabb4f1d-52b7-488f-8bbd-039750dfc625",
+     "unit_price": 0.0405,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 29.57
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "e79fc446-5b54-4a04-8e24-1e6c2e466801",
+     "unit_price": 0.00445,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 6.5
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "polandcentral",
+   "monthly_cost": 41.45,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "76028df7-2c5e-5ebb-8f94-3137882aaf14",
+     "unit_price": 0.04656,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 33.99
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "4a8c6397-c9f7-53f6-8184-458b78a50998",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "spaincentral",
+   "monthly_cost": 41.48,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "2cb97eba-d212-5563-b023-23c3b75a2a8f",
+     "unit_price": 0.0466,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 34.02
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "91c2ee96-6f17-5161-9724-5770720f1283",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "swedencentral",
+   "monthly_cost": 41.48,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "476bd9f1-0601-574c-bdd5-be855281fc1d",
+     "unit_price": 0.0466,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 34.02
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "6fd1e535-6cb7-54e9-b079-19566c7c1489",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c3.r1a2",
+   "component_id": "c3",
+   "region": "westeurope",
+   "monthly_cost": 41.48,
+   "lines": [
+    {
+     "meter": "Container Instances / Standard vCPU Duration",
+     "meter_id": "455a4865-255c-4eb4-857c-ed04b0b47ab1",
+     "unit_price": 0.0466,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 34.02
+    },
+    {
+     "meter": "Container Instances / Standard Memory Duration",
+     "meter_id": "f9ecdd26-ac1b-43ea-b457-d7f10d84657a",
+     "unit_price": 0.00511,
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "monthly": 7.46
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "francecentral",
+   "monthly_cost": 1180.85,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "4d821045-b97f-4135-9340-3f267e1fc932",
+     "unit_price": 0.761084,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 555.59
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "db0ab860-654f-500b-bb86-fc2eabb32116",
+     "unit_price": 0.456652,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 333.36
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "germanywestcentral",
+   "monthly_cost": 1074.17,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "ac17bc74-86a6-4d77-ba9e-0b592253c50c",
+     "unit_price": 0.669756,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 488.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "3a40273c-00ed-5113-ae57-c8b7feb48f4a",
+     "unit_price": 0.401852,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.35
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "italynorth",
+   "monthly_cost": 1074.17,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "4073e755-ed8d-570a-8e6e-d165d73af6be",
+     "unit_price": 0.669756,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 488.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "94d13d33-0909-5cbc-bfa3-58ef0cf2c8fc",
+     "unit_price": 0.401852,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.35
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "northeurope",
+   "monthly_cost": 1017.28,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "21dfed35-d848-44a6-b52b-a5f1a43383a8",
+     "unit_price": 0.621044,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 453.36
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "9bf5ac59-f285-52fb-9af3-ecb149b5b5c0",
+     "unit_price": 0.372628,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 272.02
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "polandcentral",
+   "monthly_cost": 1123.06,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "d181e81f-1059-5971-8a42-cf8c8d136f2a",
+     "unit_price": 0.736732,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 537.81
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "65d09f60-d950-595d-8224-9428f32877c6",
+     "unit_price": 0.401852,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.35
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "spaincentral",
+   "monthly_cost": 1074.17,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "738b3854-9dd1-58d2-aa32-c713e1e90ff5",
+     "unit_price": 0.669756,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 488.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "e53a3af8-8d59-55b2-b1a2-2d782578fb5b",
+     "unit_price": 0.401852,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.35
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "swedencentral",
+   "monthly_cost": 1074.28,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "f413518b-3ad9-55b3-a3b5-48f500672226",
+     "unit_price": 0.669756,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 488.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "d05c6314-1f87-57fd-ae48-53decbf41cad",
+     "unit_price": 0.402,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.46
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a1",
+   "component_id": "c4",
+   "region": "westeurope",
+   "monthly_cost": 1074.17,
+   "lines": [
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / vCore",
+     "meter_id": "1cd4ee5b-2b55-4dd9-b3d9-ae1b22af74b0",
+     "unit_price": 0.669756,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 488.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "41141e40-a8ae-596b-80cb-09ded3aabb4c",
+     "unit_price": 0.401852,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 293.35
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - SQL License / vCore",
+     "meter_id": "6f344f4b-7c91-4026-915a-a1b597793be1",
+     "unit_price": 0.099966,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 291.9
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "francecentral",
+   "monthly_cost": 1405.09,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "baba1625-0874-5e1c-a01a-6e35fac7f4bc",
+     "unit_price": 0.652198,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 833.18
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "92ec2abf-0e34-5a15-b586-139c5ea0c214",
+     "unit_price": 0.391319,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 499.91
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "8e2127fe-fdfc-57d5-b593-03a84c82aeee",
+     "unit_price": 0.288,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 72.0
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "germanywestcentral",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "73612657-518e-5ae6-8014-eba5f308ec78",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "9bb46598-6f7d-5d62-95c8-eee8afa09871",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "944f48ba-c7e1-57cf-bfb3-a6021f1f01e2",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "italynorth",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "b2ecf6b0-0e7a-533d-999c-154e3f5921ab",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "e797b12e-e3c9-5b3c-9558-8a8ef8848369",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "f3a68b9e-38c9-545a-ae31-ffca98f78e7a",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "northeurope",
+   "monthly_cost": 1151.06,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "5503e80b-d03e-5f01-80b1-b5cc37a92511",
+     "unit_price": 0.532193,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 679.88
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "a0a77142-ac76-5c37-9a14-b270745bc491",
+     "unit_price": 0.319316,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 407.93
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "cc96aa83-eaa9-529f-9222-e7754f158b22",
+     "unit_price": 0.253,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 63.25
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "polandcentral",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "a71a9775-7860-56b0-b2a7-ea1a43e626a1",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "574cbc01-d471-5212-8d6c-f3ec0cd92844",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "3259319d-a57e-51c7-8f33-205d5cf5adb2",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "spaincentral",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "28d6745f-662e-5e46-bd8d-f338e0e0f2ad",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "fd7e9b33-acd4-5ed8-b2d3-23842e8d15ad",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "94883d33-0fa1-5299-8942-f9d436792f60",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "swedencentral",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "a0a29890-09ad-5640-8719-d72aea39ecf8",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "30c360ef-c997-55f3-ade6-f925f8ea14fe",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "f9f5a1f7-7e10-5390-af2b-7f067ab89f5d",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a2",
+   "component_id": "c4",
+   "region": "westeurope",
+   "monthly_cost": 1241.62,
+   "lines": [
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / vCore",
+     "meter_id": "76ba5cef-d9c0-5dd5-b6a3-070a0fe7e6a8",
+     "unit_price": 0.573934,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 733.2
+    },
+    {
+     "meter": "SQL Database General Purpose - Serverless - Compute Gen5 / Zone Redundancy vCore",
+     "meter_id": "ffb3f9cf-f102-5195-a874-c84451368c7e",
+     "unit_price": 0.34436,
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "monthly": 439.92
+    },
+    {
+     "meter": "SQL Database Single/Elastic Pool General Purpose - Storage / General Purpose Zone Redundancy Data Stored",
+     "meter_id": "a639beac-1b57-5e05-b3c0-4c45424772a4",
+     "unit_price": 0.274,
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "monthly": 68.5
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "francecentral",
+   "monthly_cost": 1237.19,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "325915c9-9c2a-56d0-add3-c23addfb2435",
+     "unit_price": 0.412,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1203.04
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "dd7b9cb1-aea6-48a4-a946-05714d333c6e",
+     "unit_price": 0.1334,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 34.15
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "germanywestcentral",
+   "monthly_cost": 1273.15,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "f57cb268-a3a2-5618-81d7-8de3eaee993a",
+     "unit_price": 0.424,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1238.08
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "42eabd1e-987e-4ce4-9713-01aa6167c126",
+     "unit_price": 0.137,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 35.07
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "italynorth",
+   "monthly_cost": 1273.13,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "1d525c57-1c76-5fbf-8f5f-d8d188d91826",
+     "unit_price": 0.424,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1238.08
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "2256b437-b635-5193-a21e-b04cdef47962",
+     "unit_price": 0.1369,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 35.05
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "northeurope",
+   "monthly_cost": 1188.7,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "709213b5-c412-530c-b98d-a57ebefc8f4c",
+     "unit_price": 0.396,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1156.32
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "2ba743de-2bf6-4e22-9911-402f13c568b4",
+     "unit_price": 0.1265,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 32.38
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "spaincentral",
+   "monthly_cost": 1270.59,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "f4fbc84e-7335-5f42-811a-061adcae2848",
+     "unit_price": 0.424,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1238.08
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "98c570a2-0250-5122-a086-fc23217706d3",
+     "unit_price": 0.127,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 32.51
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "swedencentral",
+   "monthly_cost": 1127.13,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "a9c57af9-c827-5aa0-93da-97261b09734d",
+     "unit_price": 0.374,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1092.08
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "9f3fed98-976b-5666-8c69-d41104ea1706",
+     "unit_price": 0.1369,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 35.05
+    }
+   ]
+  },
+  {
+   "option_id": "c4.r1a3",
+   "component_id": "c4",
+   "region": "westeurope",
+   "monthly_cost": 1273.13,
+   "lines": [
+    {
+     "meter": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute / vCore",
+     "meter_id": "183009e7-9adb-59b8-93ba-2bbdb93064af",
+     "unit_price": 0.424,
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "monthly": 1238.08
+    },
+    {
+     "meter": "Azure Database for PostgreSQL Single Server General Purpose - Storage / General Purpose Data Stored",
+     "meter_id": "8aaa8162-6730-4657-8ba2-a4d22672ef53",
+     "unit_price": 0.1369,
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "monthly": 35.05
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "francecentral",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "germanywestcentral",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "italynorth",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "northeurope",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "polandcentral",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "spaincentral",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "swedencentral",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a1",
+   "component_id": "c5",
+   "region": "westeurope",
+   "monthly_cost": 100.74,
+   "lines": [
+    {
+     "meter": "Azure Redis Cache Standard / C1 Cache",
+     "meter_id": "37c8dbd7-412b-4892-a31a-915b96a66885",
+     "unit_price": 0.138,
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "monthly": 100.74
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "francecentral",
+   "monthly_cost": 0.84,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "43c2dcf8-4192-5c3d-bb04-bf3f69caa36d",
+     "unit_price": 0.297,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.59
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "germanywestcentral",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "7ed19e4a-010d-5aea-836c-43c1c8164e2d",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "italynorth",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "00f57e47-5611-50c3-a393-db2b6568cb9b",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "northeurope",
+   "monthly_cost": 0.82,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "de9e21bb-5b22-5df0-a56e-9a939a985c6f",
+     "unit_price": 0.283,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.57
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "polandcentral",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "6ea5a800-6c7a-5556-a081-ccf05e20de8e",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "spaincentral",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "b6d652a0-715e-576a-b570-f43fc051d21f",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "swedencentral",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "7f356bc7-f8a6-5cb2-a7c2-4cf785e6c596",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c5.r1a2",
+   "component_id": "c5",
+   "region": "westeurope",
+   "monthly_cost": 0.86,
+   "lines": [
+    {
+     "meter": "Azure Cosmos DB serverless / 1M RUs",
+     "meter_id": "718d4f90-b362-5802-87d0-279b5514712c",
+     "unit_price": 0.305,
+     "unit": "1M",
+     "qty": 2000000.0,
+     "monthly": 0.61
+    },
+    {
+     "meter": "Azure Cosmos DB / Data Stored",
+     "meter_id": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+     "unit_price": 0.25,
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "monthly": 0.25
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "francecentral",
+   "monthly_cost": 6.46,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "913f43ed-4a2d-46cb-ad7e-68d9f8bef468",
+     "unit_price": 0.0105,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.25
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "413b2843-65ea-4fe2-9c4e-8207f241c071",
+     "unit_price": 0.11,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.1
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "ee6364f3-a0e7-4f75-9745-666afcb14f0a",
+     "unit_price": 0.011,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.11
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "germanywestcentral",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "33a033a0-f893-494c-90ec-aea71adbf4c7",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "4f185ae3-63a5-42e8-b416-327a00d6187c",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "a54e5258-0ecc-4b3c-a24a-5b5083088cd4",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "italynorth",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "667ad3ac-01f4-5919-8100-0ba36c0cf7fe",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "ff815b96-5626-5216-8f71-6080c62fa959",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "049447b9-8d3d-5562-ac7c-9343c52b00bf",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "northeurope",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "2aec6f70-b1fe-42a6-8142-b879c955603d",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "108a63a0-143f-4aea-b1a0-6a931d5d8bb9",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "5ebb1769-35d6-481a-b69a-3207e48f1e5f",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "polandcentral",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "e8402c03-c299-5f95-9f56-3ce5c767016e",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "4838e8da-ba92-5120-900b-94d72b85471e",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "4070b710-4c05-589d-a75a-d94498f57369",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "spaincentral",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "013761e8-a5f1-5da6-8e65-af4baf0549e6",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "00b0f5e4-7728-5d10-ac9a-c09c8eff51da",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "b27386d6-039b-5211-817c-23525ad8063e",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "swedencentral",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "344cacf4-889d-5b6e-b668-1b9af7028f85",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "010d07ae-1495-58b0-81d9-b98adef6813a",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "e14d6d99-d019-53f1-b162-8ffa2af1416d",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  },
+  {
+   "option_id": "c6.r1a1",
+   "component_id": "c6",
+   "region": "westeurope",
+   "monthly_cost": 6.1,
+   "lines": [
+    {
+     "meter": "Blob Storage / Cool LRS Data Stored",
+     "meter_id": "8bf84600-37ce-42ab-a6d7-0c322aed8182",
+     "unit_price": 0.01,
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "monthly": 5.0
+    },
+    {
+     "meter": "Blob Storage / Cool LRS Write Operations",
+     "meter_id": "2a87c94a-471c-46e5-931a-f7310f143322",
+     "unit_price": 0.1,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 1.0
+    },
+    {
+     "meter": "Blob Storage / Cool Read Operations",
+     "meter_id": "c9711c6c-2fb5-4ff1-ad23-17e9beab62ba",
+     "unit_price": 0.01,
+     "unit": "10K",
+     "qty": 100000.0,
+     "monthly": 0.1
+    }
+   ]
+  }
+ ],
+ "rejections": [
+  {
+   "option_id": "c3.r1a1",
+   "rule": "functions-consumption-timeout",
+   "reason": "The nightly invoice job runs about 20 minutes, which exceeds the 10-minute maximum execution time on the Consumption plan.",
+   "source_url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout",
+   "by": "Skeptic"
+  }
+ ],
+ "plans": [
+  {
+   "name": "Cheapest",
+   "region": "northeurope",
+   "items": [
+    {
+     "component_id": "c2",
+     "option_id": "c2.r1a2",
+     "region": "northeurope",
+     "monthly_cost": 173.88,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c3",
+     "option_id": "c3.r1a2",
+     "region": "northeurope",
+     "monthly_cost": 36.07,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c4",
+     "option_id": "c4.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 1017.28,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c5",
+     "option_id": "c5.r1a2",
+     "region": "northeurope",
+     "monthly_cost": 0.82,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c6",
+     "option_id": "c6.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 6.1,
+     "replaced_by": null
+    }
+   ],
+   "monthly_total": 1234.15,
+   "savings": 3656.18,
+   "savings_pct": 74.8,
+   "summary": "Every component moves to its lowest-priced option in North Europe: Container Apps, Container Instances, a 4 vCore General Purpose SQL database, Cosmos DB serverless for sessions and Cool blob storage. It gives the biggest saving but needs the most migration and testing work.",
+   "tradeoffs": [
+    "Web/API must be containerised for Container Apps",
+    "Session store moves from Redis to Cosmos DB, which needs app changes and has higher latency",
+    "SQL drops from Business Critical to General Purpose, so I/O latency and failover time get worse",
+    "The nightly job needs a containerised build and an external scheduler"
+   ]
+  },
+  {
+   "name": "Balanced",
+   "region": "northeurope",
+   "items": [
+    {
+     "component_id": "c2",
+     "option_id": "c2.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 245.28,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c3",
+     "option_id": "c3.r1a2",
+     "region": "northeurope",
+     "monthly_cost": 36.07,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c4",
+     "option_id": "c4.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 1017.28,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c5",
+     "option_id": "c5.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 100.74,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c6",
+     "option_id": "c6.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 6.1,
+     "replaced_by": null
+    }
+   ],
+   "monthly_total": 1405.47,
+   "savings": 3484.86,
+   "savings_pct": 71.3,
+   "summary": "Most of the saving comes from right-sizing within the same service families: App Service P1v3, a 4 vCore General Purpose SQL database and Redis C1. Only the nightly job is moved off an always-on plan, to a container that runs for about 20 minutes a night.",
+   "tradeoffs": [
+    "P1v3 has less headroom at the 9:00-18:00 peak, so load-test it and consider autoscale",
+    "General Purpose SQL has higher storage latency and slower failover than Business Critical",
+    "Redis C1 has less memory and bandwidth, so check session size and connection counts first",
+    "The nightly job needs a scheduler and a containerised build"
+   ]
+  },
+  {
+   "name": "Safest",
+   "region": "northeurope",
+   "items": [
+    {
+     "component_id": "c2",
+     "option_id": "c2.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 245.28,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c3",
+     "option_id": "c3.orig",
+     "region": "northeurope",
+     "monthly_cost": 152.31,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c4",
+     "option_id": "c4.r1a1",
+     "region": "northeurope",
+     "monthly_cost": 1017.28,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c5",
+     "option_id": "c5.orig",
+     "region": "northeurope",
+     "monthly_cost": 164.25,
+     "replaced_by": null
+    },
+    {
+     "component_id": "c6",
+     "option_id": "c6.orig",
+     "region": "northeurope",
+     "monthly_cost": 11.0,
+     "replaced_by": null
+    }
+   ],
+   "monthly_total": 1590.12,
+   "savings": 3300.21,
+   "savings_pct": 67.5,
+   "summary": "Stays in North Europe and keeps the same services for the job, Redis and storage. Only the web tier and the SQL database are downsized, which is where most of the saving is.",
+   "tradeoffs": [
+    "SQL moves from Business Critical to General Purpose, with higher I/O latency and slower failover, so validate CPU and IOPS first",
+    "P1v3 has less headroom per instance at peak",
+    "The always-on Functions plan stays mostly idle, leaving that saving on the table",
+    "Redis and blob storage are left unchanged, so small savings are skipped"
+   ]
+  }
+ ],
+ "original_total": 4890.33,
+ "swap_round": 1,
+ "timeline": [
+  {
+   "agent": "Diagram Reader",
+   "kind": "start",
+   "message": "Reading the architecture diagram",
+   "data": null,
+   "t": 1795779431.1199808
+  },
+  {
+   "agent": "Diagram Reader",
+   "kind": "output",
+   "message": "Found 6 components; searching EU regions",
+   "data": {
+    "components": [
+     {
+      "id": "c1",
+      "service": "Azure Front Door Service",
+      "sku": "Standard",
+      "quantity": 1.0,
+      "region": "northeurope",
+      "details": "Standard tier; global service, entry point for user traffic",
+      "confidence": "high",
+      "source": "diagram"
+     },
+     {
+      "id": "c2",
+      "service": "Azure App Service",
+      "sku": "P2 v3",
+      "quantity": 2.0,
+      "region": "northeurope",
+      "details": "Premium v3 P2v3, Linux; Bookings web + API; 2 instances",
+      "confidence": "high",
+      "source": "diagram"
+     },
+     {
+      "id": "c3",
+      "service": "Functions",
+      "sku": "EP1",
+      "quantity": 1.0,
+      "region": "northeurope",
+      "details": "Premium plan EP1; 1 instance, always ready; nightly invoice job (~20 min), so mostly idle",
+      "confidence": "high",
+      "source": "diagram"
+     },
+     {
+      "id": "c4",
+      "service": "SQL Database",
+      "sku": "8 vCore",
+      "quantity": 1.0,
+      "region": "northeurope",
+      "details": "Business Critical, 8 vCore, Gen5, zone redundant, 250 GB storage",
+      "confidence": "high",
+      "source": "diagram"
+     },
+     {
+      "id": "c5",
+      "service": "Redis Cache",
+      "sku": "C2",
+      "quantity": 1.0,
+      "region": "northeurope",
+      "details": "Standard tier C2; used for sessions",
+      "confidence": "high",
+      "source": "diagram"
+     },
+     {
+      "id": "c6",
+      "service": "Storage",
+      "sku": null,
+      "quantity": 1.0,
+      "region": "northeurope",
+      "details": "Blob storage, Hot tier, LRS; ~500 GB of invoice PDFs",
+      "confidence": "high",
+      "source": "diagram"
+     }
+    ],
+    "constraints": {
+     "allowed_regions": [
+      "westeurope",
+      "northeurope",
+      "swedencentral",
+      "francecentral",
+      "germanywestcentral",
+      "italynorth",
+      "polandcentral",
+      "spaincentral"
+     ],
+     "notes": "Production workload in North Europe; customer data must stay in the EU; ~5,000 users with peak usage 9:00-18:00; zone-redundant SQL implies HA requirement. Users box is not a billable component."
+    }
+   },
+   "t": 1795779437.9154494
+  },
+  {
+   "agent": "You",
+   "kind": "done",
+   "message": "Confirmed 6 components",
+   "data": [
+    {
+     "id": "c1",
+     "service": "Azure Front Door Service",
+     "sku": "Standard",
+     "quantity": 1.0,
+     "region": "northeurope",
+     "details": "Standard tier; global service, entry point for user traffic",
+     "confidence": "high",
+     "source": "diagram"
+    },
+    {
+     "id": "c2",
+     "service": "Azure App Service",
+     "sku": "P2 v3",
+     "quantity": 2.0,
+     "region": "northeurope",
+     "details": "Premium v3 P2v3, Linux; Bookings web + API; 2 instances",
+     "confidence": "high",
+     "source": "diagram"
+    },
+    {
+     "id": "c3",
+     "service": "Functions",
+     "sku": "EP1",
+     "quantity": 1.0,
+     "region": "northeurope",
+     "details": "Premium plan EP1; 1 instance, always ready; nightly invoice job (~20 min), so mostly idle",
+     "confidence": "high",
+     "source": "diagram"
+    },
+    {
+     "id": "c4",
+     "service": "SQL Database",
+     "sku": "8 vCore",
+     "quantity": 1.0,
+     "region": "northeurope",
+     "details": "Business Critical, 8 vCore, Gen5, zone redundant, 250 GB storage",
+     "confidence": "high",
+     "source": "diagram"
+    },
+    {
+     "id": "c5",
+     "service": "Redis Cache",
+     "sku": "C2",
+     "quantity": 1.0,
+     "region": "northeurope",
+     "details": "Standard tier C2; used for sessions",
+     "confidence": "high",
+     "source": "diagram"
+    },
+    {
+     "id": "c6",
+     "service": "Storage",
+     "sku": null,
+     "quantity": 1.0,
+     "region": "northeurope",
+     "details": "Blob storage, Hot tier, LRS; ~500 GB of invoice PDFs",
+     "confidence": "high",
+     "source": "diagram"
+    }
+   ],
+   "t": 1795779437.916164
+  },
+  {
+   "agent": "Pricer",
+   "kind": "tool",
+   "message": "Fetched live price meters for 6 options",
+   "data": {
+    "c1.orig": 0,
+    "c2.orig": 40,
+    "c3.orig": 9,
+    "c4.orig": 40,
+    "c5.orig": 40,
+    "c6.orig": 40
+   },
+   "t": 1795779447.0712736
+  },
+  {
+   "agent": "Pricer",
+   "kind": "warn",
+   "message": "c1.orig: no matching price meters (The menu for Azure Front Door Standard is empty, so no meters are available to price this resource.)",
+   "data": null,
+   "t": 1795779452.3096302
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c2.orig: billed on P2 v3 App x2",
+   "data": [
+    {
+     "service": "Azure App Service",
+     "product": "Azure App Service Premium v3 Plan - Linux",
+     "sku": "P2 v3",
+     "meter": "P2 v3 App",
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "why": "Linux Premium v3 P2v3 plan, 2 instances, provisioned all month",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779452.3096976
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c3.orig: billed on Premium vCPU Duration x1, Premium Memory Duration x3.5",
+   "data": [
+    {
+     "service": "Functions",
+     "product": "Premium Functions",
+     "sku": "Premium",
+     "meter": "Premium vCPU Duration",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "EP1 = 1 vCPU, always-ready instance bills all month despite being mostly idle",
+     "global_meter": false
+    },
+    {
+     "service": "Functions",
+     "product": "Premium Functions",
+     "sku": "Premium",
+     "meter": "Premium Memory Duration",
+     "unit": "1 GiB Hour",
+     "qty": 3.5,
+     "why": "EP1 has 3.5 GiB memory, billed all month for the always-ready instance",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779452.3097425
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c4.orig: billed on vCore x1, vCore (global price) x8, Business Critical Data Stored x250",
+   "data": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+     "sku": "8 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Business Critical Gen5 8 vCore size-specific meter covers all 8 vCores, 1 database",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - SQL License",
+     "sku": "vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 8.0,
+     "why": "Business Critical SQL license billed per vCore; no Hybrid Benefit mentioned",
+     "global_meter": true
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool Business Critical - Storage",
+     "sku": "Business Critical",
+     "meter": "Business Critical Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "why": "250 GB data stored per month",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779452.3097816
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c5.orig: billed on C2 Cache (global price) x1",
+   "data": [
+    {
+     "service": "Redis Cache",
+     "product": "Azure Redis Cache Standard",
+     "sku": "C2",
+     "meter": "C2 Cache",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Standard tier C2 cache, whole-resource meter, always on",
+     "global_meter": true
+    }
+   ],
+   "t": 1795779452.3097982
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c6.orig: billed on Hot LRS Data Stored x500",
+   "data": [
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Hot LRS",
+     "meter": "Hot LRS Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "why": "500 GB Hot LRS data stored; operations not specified so skipped",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779452.3098135
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "start",
+   "message": "Checking 7 SKUs across 8 regions",
+   "data": null,
+   "t": 1795779452.3098688
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c2.orig: sold in 8 regions, cheapest northeurope $490.56/mo",
+   "data": {
+    "francecentral": 508.08,
+    "germanywestcentral": 519.76,
+    "italynorth": 519.76,
+    "northeurope": 490.56,
+    "polandcentral": 519.76,
+    "spaincentral": 519.76,
+    "swedencentral": 519.76,
+    "westeurope": 519.76
+   },
+   "t": 1795779454.3060524
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c3.orig: sold in 8 regions, cheapest northeurope $152.31/mo",
+   "data": {
+    "francecentral": 168.78,
+    "germanywestcentral": 154.29,
+    "italynorth": 154.29,
+    "northeurope": 152.31,
+    "polandcentral": 154.29,
+    "spaincentral": 154.29,
+    "swedencentral": 154.29,
+    "westeurope": 154.29
+   },
+   "t": 1795779454.3064537
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c4.orig: sold in 8 regions, cheapest northeurope $4,072.21/mo",
+   "data": {
+    "francecentral": 4490.5,
+    "germanywestcentral": 4220.07,
+    "italynorth": 4220.07,
+    "northeurope": 4072.21,
+    "polandcentral": 4220.07,
+    "spaincentral": 4220.07,
+    "swedencentral": 4220.07,
+    "westeurope": 4220.07
+   },
+   "t": 1795779454.307181
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c5.orig: sold in 8 regions, cheapest francecentral $164.25/mo",
+   "data": {
+    "francecentral": 164.25,
+    "germanywestcentral": 164.25,
+    "italynorth": 164.25,
+    "northeurope": 164.25,
+    "polandcentral": 164.25,
+    "spaincentral": 164.25,
+    "swedencentral": 164.25,
+    "westeurope": 164.25
+   },
+   "t": 1795779454.3074343
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c6.orig: sold in 8 regions, cheapest spaincentral $9.20/mo",
+   "data": {
+    "francecentral": 9.6,
+    "germanywestcentral": 9.8,
+    "italynorth": 9.6,
+    "northeurope": 11.0,
+    "polandcentral": 9.8,
+    "spaincentral": 9.2,
+    "swedencentral": 9.2,
+    "westeurope": 9.8
+   },
+   "t": 1795779454.3082263
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "start",
+   "message": "Round 1: looking for cheaper designs for 5 components",
+   "data": null,
+   "t": 1795779454.3086128
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c2.r1a1: Azure App Service P1v3: Half the vCPU/RAM per instance at roughly half the price; 5,000 users with a 9-18h peak is typically comfortable on 2x P1v3 and the 2-instance HA layout is preserved.",
+   "data": {
+    "service": "Azure App Service",
+    "sku": "P1v3",
+    "details": "Premium v3 P1v3 (2 vCPU, 8 GiB), Linux, 2 instances (zone redundant capable), Bookings web + API",
+    "rationale": "Half the vCPU/RAM per instance at roughly half the price; 5,000 users with a 9-18h peak is typically comfortable on 2x P1v3 and the 2-instance HA layout is preserved.",
+    "tradeoffs": [
+     "Less headroom per instance at peak; validate CPU/memory under load",
+     "Can add autoscale to a 3rd instance if needed"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5628488
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c2.r1a2: Azure Container Apps Standard: Pay per vCPU/GiB-second with scale-out only at peak, avoiding paying for P2v3-sized instances 24/7.",
+   "data": {
+    "service": "Azure Container Apps",
+    "sku": "Standard",
+    "details": "Consumption plan, 2 vCPU 4 GiB per replica, min 2 replicas always on, scale out on HTTP load during business hours",
+    "rationale": "Pay per vCPU/GiB-second with scale-out only at peak, avoiding paying for P2v3-sized instances 24/7.",
+    "tradeoffs": [
+     "Requires containerising the app and migration effort",
+     "Always-on min replicas limit savings versus idle-to-zero"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.562934
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c3.r1a1: Functions Consumption: The job runs ~20 minutes a day, so billing per execution replaces an always-ready EP1 instance running 24/7 at near-zero cost.",
+   "data": {
+    "service": "Functions",
+    "sku": "Consumption",
+    "details": "Linux Consumption plan, nightly timer trigger, ~20 min execution, 1.5 GB memory; use Flex Consumption if run exceeds the 10 min default timeout",
+    "rationale": "The job runs ~20 minutes a day, so billing per execution replaces an always-ready EP1 instance running 24/7 at near-zero cost.",
+    "tradeoffs": [
+     "Classic Consumption has a 10 min max timeout (extendable to 10 min only), so Flex Consumption or Durable chunking may be needed",
+     "Cold start (irrelevant for a nightly job)",
+     "No VNet integration on classic Consumption"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5630026
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c3.r1a2: Container Instances Standard: Billed only for the 20 minutes per day the container runs, avoiding an always-on premium plan.",
+   "data": {
+    "service": "Container Instances",
+    "sku": "Standard",
+    "details": "Linux, 1 vCPU 2 GiB, run once nightly for ~20 min (about 10 vCPU-hours/month), triggered by Logic Apps or a scheduler",
+    "rationale": "Billed only for the 20 minutes per day the container runs, avoiding an always-on premium plan.",
+    "tradeoffs": [
+     "Needs a trigger/orchestrator and containerised job",
+     "Less integrated monitoring than Functions"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.563061
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c4.r1a1: SQL Database 4 vCore: General Purpose zone-redundant still meets the HA requirement and costs a fraction of Business Critical at 8 vCore, and 4 vCore likely fits a 5,000-user booking app.",
+   "data": {
+    "service": "SQL Database",
+    "sku": "4 vCore",
+    "details": "General Purpose, Gen5 (standard-series), 4 vCore, zone redundant, 250 GB storage, provisioned",
+    "rationale": "General Purpose zone-redundant still meets the HA requirement and costs a fraction of Business Critical at 8 vCore, and 4 vCore likely fits a 5,000-user booking app.",
+    "tradeoffs": [
+     "Remote storage means higher I/O latency than Business Critical local SSD",
+     "Failover is slightly slower than Business Critical",
+     "Need to validate CPU and IOPS demand before downsizing"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.563134
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c4.r1a2: SQL Database 2-8 vCore autoscale: Compute is billed per second for vCores actually used so nights and weekends drop to the minimum, while peak capacity of 8 vCore is retained.",
+   "data": {
+    "service": "SQL Database",
+    "sku": "2-8 vCore autoscale",
+    "details": "General Purpose serverless, Gen5, min 2 / max 8 vCore, zone redundant, ~35% active (business hours), 250 GB storage, auto-pause disabled",
+    "rationale": "Compute is billed per second for vCores actually used so nights and weekends drop to the minimum, while peak capacity of 8 vCore is retained.",
+    "tradeoffs": [
+     "Auto-pause must stay off for a production app, so the 2 vCore minimum is always billed",
+     "Scale-up under sudden load can add latency",
+     "Same remote-storage latency as General Purpose"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5631988
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c4.r1a3: Azure Database for PostgreSQL Standard_D4ds_v5: Flexible Server zone-redundant HA is much cheaper than SQL Database Business Critical at similar compute if the app can run on PostgreSQL.",
+   "data": {
+    "service": "Azure Database for PostgreSQL",
+    "sku": "Standard_D4ds_v5",
+    "details": "Flexible Server, General Purpose, 4 vCore, zone-redundant HA, 256 GB storage",
+    "rationale": "Flexible Server zone-redundant HA is much cheaper than SQL Database Business Critical at similar compute if the app can run on PostgreSQL.",
+    "tradeoffs": [
+     "Requires migrating schema, queries and data access code from SQL Server to PostgreSQL",
+     "Only viable if the application is not tied to T-SQL features"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5632524
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c5.r1a1: Redis Cache C1: Session data for ~5,000 users is small, so 1 GB is likely sufficient and C1 costs about half of C2 while keeping the Standard replica.",
+   "data": {
+    "service": "Redis Cache",
+    "sku": "C1",
+    "details": "Standard tier C1 (1 GB, replicated), used for session storage",
+    "rationale": "Session data for ~5,000 users is small, so 1 GB is likely sufficient and C1 costs about half of C2 while keeping the Standard replica.",
+    "tradeoffs": [
+     "Lower memory and network bandwidth than C2",
+     "Check session payload size and connection count first"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5633066
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c5.r1a2: Azure Cosmos DB Serverless: Session data for 5,000 users generates modest request units, so per-request billing could cost less than a fixed 24/7 cache.",
+   "data": {
+    "service": "Azure Cosmos DB",
+    "sku": "Serverless",
+    "details": "NoSQL API serverless, session store with TTL, low request volume, ~1 GB",
+    "rationale": "Session data for 5,000 users generates modest request units, so per-request billing could cost less than a fixed 24/7 cache.",
+    "tradeoffs": [
+     "Higher latency than Redis",
+     "Requires app changes to the session provider",
+     "Savings are uncertain and depend on request volume"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.5633667
+  },
+  {
+   "agent": "Service Swap",
+   "kind": "output",
+   "message": "c6.r1a1: Storage Standard_LRS Cool: Invoice PDFs are written once and rarely read afterward, so Cool storage cuts the per-GB cost versus Hot.",
+   "data": {
+    "service": "Storage",
+    "sku": "Standard_LRS Cool",
+    "details": "Blob Storage, Cool access tier (or lifecycle policy moving PDFs older than 30-60 days from Hot to Cool), LRS, ~500 GB of invoice PDFs",
+    "rationale": "Invoice PDFs are written once and rarely read afterward, so Cool storage cuts the per-GB cost versus Hot.",
+    "tradeoffs": [
+     "Higher read and write operation charges",
+     "30-day minimum retention charge for early deletion",
+     "Immaterial absolute saving at ~500 GB"
+    ],
+    "also_replaces": []
+   },
+   "t": 1795779469.563444
+  },
+  {
+   "agent": "Pricer",
+   "kind": "tool",
+   "message": "Fetched live price meters for 10 options",
+   "data": {
+    "c2.r1a1": 40,
+    "c2.r1a2": 16,
+    "c3.r1a1": 9,
+    "c3.r1a2": 16,
+    "c4.r1a1": 40,
+    "c4.r1a2": 40,
+    "c4.r1a3": 40,
+    "c5.r1a1": 40,
+    "c5.r1a2": 40,
+    "c6.r1a1": 40
+   },
+   "t": 1795779473.3698711
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c2.r1a1: billed on P1 v3 App x2",
+   "data": [
+    {
+     "service": "Azure App Service",
+     "product": "Azure App Service Premium v3 Plan - Linux",
+     "sku": "P1 v3",
+     "meter": "P1 v3 App",
+     "unit": "1 Hour",
+     "qty": 2.0,
+     "why": "P1v3 Linux App Service plan, 2 instances always on; zone redundancy has no extra meter",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779484.4610631
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c2.r1a2: billed on Standard vCPU Active Usage x1.4, Standard vCPU Idle Usage x2.6, Standard Memory Active Usage x2.8, Standard Memory Idle Usage x5.2, Standard Requests x5e+06",
+   "data": [
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard vCPU Active Usage",
+     "unit": "1 Second",
+     "qty": 1.4,
+     "why": "2 replicas x 2 vCPU = 4 vCPU active ~35% of month (business hours, assumed)",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard vCPU Idle Usage",
+     "unit": "1 Second",
+     "qty": 2.6,
+     "why": "4 vCPU idle the remaining ~65% of month (min replicas always on)",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Memory Active Usage",
+     "unit": "1 GiB Second",
+     "qty": 2.8,
+     "why": "2 replicas x 4 GiB = 8 GiB active ~35% of month",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Memory Idle Usage",
+     "unit": "1 GiB Second",
+     "qty": 5.2,
+     "why": "8 GiB idle ~65% of month",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Container Apps",
+     "product": "Azure Container Apps",
+     "sku": "Standard",
+     "meter": "Standard Requests",
+     "unit": "1M",
+     "qty": 5000000.0,
+     "why": "assumed ~5M HTTP requests/month",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779484.4611883
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c3.r1a1: billed on On Demand Execution Time x1, On Demand Total Executions x30",
+   "data": [
+    {
+     "service": "Functions",
+     "product": "Flex Consumption",
+     "sku": "On Demand",
+     "meter": "On Demand Execution Time",
+     "unit": "1 GB Second",
+     "qty": 1.0,
+     "why": "Flex Consumption on-demand execution: 1.5 GB x 20 min x 30 nights = 54,000 GB-s; unit is 1 GB Second so 54000 (price 0 within free grant, but usage given)",
+     "global_meter": false
+    },
+    {
+     "service": "Functions",
+     "product": "Flex Consumption",
+     "sku": "On Demand",
+     "meter": "On Demand Total Executions",
+     "unit": "10",
+     "qty": 30.0,
+     "why": "~30 executions/month = 3 units of 10 executions",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779484.4612522
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c3.r1a2: billed on Standard vCPU Duration x1, Standard Memory Duration x2",
+   "data": [
+    {
+     "service": "Container Instances",
+     "product": "Container Instances",
+     "sku": "Standard",
+     "meter": "Standard vCPU Duration",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "1 vCPU x ~10 hours/month",
+     "global_meter": false
+    },
+    {
+     "service": "Container Instances",
+     "product": "Container Instances",
+     "sku": "Standard",
+     "meter": "Standard Memory Duration",
+     "unit": "1 GB Hour",
+     "qty": 2.0,
+     "why": "2 GB memory x ~10 hours/month = 20 GB-hours",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779484.461301
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c4.r1a1: billed on vCore x1, Zone Redundancy vCore x1, vCore (global price) x4",
+   "data": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+     "sku": "4 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "4 vCore Gen5 General Purpose provisioned, whole size sku, always on",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+     "sku": "4 vCore Zone Redundancy",
+     "meter": "Zone Redundancy vCore",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "4 vCore zone redundancy add-on",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - SQL License",
+     "sku": "vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "why": "SQL license for 4 vCores (added by code)",
+     "global_meter": true
+    }
+   ],
+   "t": 1795779485.1355448
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c4.r1a2: billed on vCore x1.75, Zone Redundancy vCore x1.75, General Purpose Zone Redundancy Data Stored x250",
+   "data": [
+    {
+     "service": "SQL Database",
+     "product": "SQL Database General Purpose - Serverless - Compute Gen5",
+     "sku": "1 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "why": "serverless vCore billed per vCore while active; assumed ~5 vCore average during ~35% active time",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database General Purpose - Serverless - Compute Gen5",
+     "sku": "1 vCore Zone Redundancy",
+     "meter": "Zone Redundancy vCore",
+     "unit": "1 Hour",
+     "qty": 1.75,
+     "why": "zone redundancy serverless vCore, same assumed active vCores",
+     "global_meter": false
+    },
+    {
+     "service": "SQL Database",
+     "product": "SQL Database Single/Elastic Pool General Purpose - Storage",
+     "sku": "General Purpose Zone Redundancy",
+     "meter": "General Purpose Zone Redundancy Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 250.0,
+     "why": "250 GB zone-redundant General Purpose data stored",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779485.1356602
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c4.r1a3: billed on vCore x4, General Purpose Data Stored x256",
+   "data": [
+    {
+     "service": "Azure Database for PostgreSQL",
+     "product": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+     "sku": "4 vCore",
+     "meter": "vCore",
+     "unit": "1 Hour",
+     "qty": 4.0,
+     "why": "Ddsv5 General Purpose, generic per-vCore meter at 'vCore' price? 4 vCore sku row is priced 0.396 for the whole size, so count 1",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Database for PostgreSQL",
+     "product": "Azure Database for PostgreSQL Single Server General Purpose - Storage",
+     "sku": "General Purpose",
+     "meter": "General Purpose Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 256.0,
+     "why": "256 GB storage (single server storage meter is the only storage row in menu; best available)",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779485.1357236
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c5.r1a1: billed on C1 Cache (global price) x1",
+   "data": [
+    {
+     "service": "Redis Cache",
+     "product": "Azure Redis Cache Standard",
+     "sku": "C1",
+     "meter": "C1 Cache",
+     "unit": "1 Hour",
+     "qty": 1.0,
+     "why": "Standard C1 cache, always on",
+     "global_meter": true
+    }
+   ],
+   "t": 1795779485.1357553
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c5.r1a2: billed on 1M RUs x2e+06, Data Stored (global price) x1",
+   "data": [
+    {
+     "service": "Azure Cosmos DB",
+     "product": "Azure Cosmos DB serverless",
+     "sku": "RUs",
+     "meter": "1M RUs",
+     "unit": "1M",
+     "qty": 2000000.0,
+     "why": "assumed ~2M RUs/month for low volume session store",
+     "global_meter": false
+    },
+    {
+     "service": "Azure Cosmos DB",
+     "product": "Azure Cosmos DB",
+     "sku": "RUs",
+     "meter": "Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 1.0,
+     "why": "~1 GB data stored",
+     "global_meter": true
+    }
+   ],
+   "t": 1795779485.1358075
+  },
+  {
+   "agent": "Pricer",
+   "kind": "output",
+   "message": "c6.r1a1: billed on Cool LRS Data Stored x500, Cool LRS Write Operations x100000, Cool Read Operations x100000",
+   "data": [
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool LRS Data Stored",
+     "unit": "1 GB/Month",
+     "qty": 500.0,
+     "why": "500 GB cool LRS data stored",
+     "global_meter": false
+    },
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool LRS Write Operations",
+     "unit": "10K",
+     "qty": 100000.0,
+     "why": "assumed ~100K write operations/month",
+     "global_meter": false
+    },
+    {
+     "service": "Storage",
+     "product": "Blob Storage",
+     "sku": "Cool LRS",
+     "meter": "Cool Read Operations",
+     "unit": "10K",
+     "qty": 100000.0,
+     "why": "assumed ~100K read operations/month",
+     "global_meter": false
+    }
+   ],
+   "t": 1795779485.1358643
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "start",
+   "message": "Checking 15 SKUs across 8 regions",
+   "data": null,
+   "t": 1795779485.136001
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c2.r1a1: sold in 8 regions, cheapest northeurope $245.28/mo",
+   "data": {
+    "francecentral": 254.04,
+    "germanywestcentral": 259.88,
+    "italynorth": 259.88,
+    "northeurope": 245.28,
+    "polandcentral": 259.88,
+    "spaincentral": 259.88,
+    "swedencentral": 259.88,
+    "westeurope": 259.88
+   },
+   "t": 1795779487.531361
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c2.r1a2: sold in 8 regions, cheapest francecentral $173.88/mo",
+   "data": {
+    "francecentral": 173.88,
+    "germanywestcentral": 173.88,
+    "italynorth": 238.51,
+    "northeurope": 173.88,
+    "polandcentral": 173.88,
+    "spaincentral": 238.51,
+    "swedencentral": 173.88,
+    "westeurope": 239.31
+   },
+   "t": 1795779487.531955
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c3.r1a1: sold in 8 regions, cheapest francecentral $65.73/mo",
+   "data": {
+    "francecentral": 65.73,
+    "germanywestcentral": 93.54,
+    "italynorth": 65.73,
+    "northeurope": 65.73,
+    "polandcentral": 93.54,
+    "spaincentral": 65.73,
+    "swedencentral": 65.73,
+    "westeurope": 65.73
+   },
+   "t": 1795779487.5321982
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c3.r1a2: sold in 8 regions, cheapest northeurope $36.07/mo",
+   "data": {
+    "francecentral": 43.22,
+    "germanywestcentral": 41.45,
+    "italynorth": 41.48,
+    "northeurope": 36.07,
+    "polandcentral": 41.45,
+    "spaincentral": 41.48,
+    "swedencentral": 41.48,
+    "westeurope": 41.48
+   },
+   "t": 1795779487.5324168
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c4.r1a1: sold in 8 regions, cheapest northeurope $1,017.28/mo",
+   "data": {
+    "francecentral": 1180.85,
+    "germanywestcentral": 1074.17,
+    "italynorth": 1074.17,
+    "northeurope": 1017.28,
+    "polandcentral": 1123.06,
+    "spaincentral": 1074.17,
+    "swedencentral": 1074.28,
+    "westeurope": 1074.17
+   },
+   "t": 1795779487.5328164
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c4.r1a2: sold in 8 regions, cheapest northeurope $1,151.06/mo",
+   "data": {
+    "francecentral": 1405.09,
+    "germanywestcentral": 1241.62,
+    "italynorth": 1241.62,
+    "northeurope": 1151.06,
+    "polandcentral": 1241.62,
+    "spaincentral": 1241.62,
+    "swedencentral": 1241.62,
+    "westeurope": 1241.62
+   },
+   "t": 1795779487.5332072
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c4.r1a3: sold in 7 regions, cheapest swedencentral $1,127.13/mo",
+   "data": {
+    "francecentral": 1237.19,
+    "germanywestcentral": 1273.15,
+    "italynorth": 1273.13,
+    "northeurope": 1188.7,
+    "spaincentral": 1270.59,
+    "swedencentral": 1127.13,
+    "westeurope": 1273.13
+   },
+   "t": 1795779487.5333905
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c5.r1a1: sold in 8 regions, cheapest francecentral $100.74/mo",
+   "data": {
+    "francecentral": 100.74,
+    "germanywestcentral": 100.74,
+    "italynorth": 100.74,
+    "northeurope": 100.74,
+    "polandcentral": 100.74,
+    "spaincentral": 100.74,
+    "swedencentral": 100.74,
+    "westeurope": 100.74
+   },
+   "t": 1795779487.533496
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c5.r1a2: sold in 8 regions, cheapest northeurope $0.82/mo",
+   "data": {
+    "francecentral": 0.84,
+    "germanywestcentral": 0.86,
+    "italynorth": 0.86,
+    "northeurope": 0.82,
+    "polandcentral": 0.86,
+    "spaincentral": 0.86,
+    "swedencentral": 0.86,
+    "westeurope": 0.86
+   },
+   "t": 1795779487.5336714
+  },
+  {
+   "agent": "Region Scout",
+   "kind": "output",
+   "message": "c6.r1a1: sold in 8 regions, cheapest germanywestcentral $6.10/mo",
+   "data": {
+    "francecentral": 6.46,
+    "germanywestcentral": 6.1,
+    "italynorth": 6.1,
+    "northeurope": 6.1,
+    "polandcentral": 6.1,
+    "spaincentral": 6.1,
+    "swedencentral": 6.1,
+    "westeurope": 6.1
+   },
+   "t": 1795779487.5344079
+  },
+  {
+   "agent": "Skeptic",
+   "kind": "start",
+   "message": "Reviewing 10 alternatives against 14 rules",
+   "data": null,
+   "t": 1795779487.535123
+  },
+  {
+   "agent": "Skeptic",
+   "kind": "reject",
+   "message": "c3.r1a1: The nightly invoice job runs about 20 minutes, which exceeds the 10-minute maximum execution time on the Consumption plan.",
+   "data": {
+    "rule": "functions-consumption-timeout",
+    "source": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout"
+   },
+   "t": 1795779488.7169416
+  },
+  {
+   "agent": "Skeptic",
+   "kind": "output",
+   "message": "Kept 9 of 10 alternatives",
+   "data": null,
+   "t": 1795779488.716974
+  },
+  {
+   "agent": "Judge",
+   "kind": "warn",
+   "message": "Left out c1: the original could not be priced",
+   "data": null,
+   "t": 1795779488.71721
+  },
+  {
+   "agent": "Judge",
+   "kind": "start",
+   "message": "Building plans for 5 components; cheapest single region is northeurope",
+   "data": null,
+   "t": 1795779488.7179077
+  },
+  {
+   "agent": "Judge",
+   "kind": "output",
+   "message": "Cheapest (northeurope): $1,234.15/mo, saves $3,656.18 (74.8%)",
+   "data": null,
+   "t": 1795779494.9219007
+  },
+  {
+   "agent": "Judge",
+   "kind": "output",
+   "message": "Balanced (northeurope): $1,405.47/mo, saves $3,484.86 (71.3%)",
+   "data": null,
+   "t": 1795779494.9220135
+  },
+  {
+   "agent": "Judge",
+   "kind": "output",
+   "message": "Safest (northeurope): $1,590.12/mo, saves $3,300.21 (67.5%)",
+   "data": null,
+   "t": 1795779494.9220905
+  }
+ ],
+ "llm_calls": 6,
+ "ai_cost_usd": 0.1705858,
+ "error": ""
+}

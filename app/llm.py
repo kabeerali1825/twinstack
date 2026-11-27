@@ -9,15 +9,18 @@ LLM_FIXTURES=replay  -> no network; replies come from those files (missing file 
 import hashlib
 import json
 import os
+import time
+import urllib.request
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 from typing import TypeVar
 
-from openai import OpenAI
+from openai import BadRequestError, OpenAI
 from pydantic import BaseModel, ValidationError
 
 MAX_CALLS_PER_RUN = 15
+_thinking_off: dict[str, str] = {}  # model -> thinking type that turns thinking off
 FIXTURES = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "llm"
 T = TypeVar("T", bound=BaseModel)
 
@@ -42,6 +45,20 @@ def _client() -> OpenAI:
         max_retries=4,
         timeout=90,
     )
+
+
+_spend_cache: tuple[float, float] = (0.0, 0.0)  # (checked_at, spend)
+
+
+def key_spend(max_age: float = 60) -> float:
+    """Total USD spent on the key so far, from the gateway (cached per instance for `max_age` seconds)."""
+    global _spend_cache
+    if time.time() - _spend_cache[0] > max_age:
+        url = os.environ["LITELLM_BASE_URL"].rsplit("/v1", 1)[0] + "/key/info"
+        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {os.environ['LITELLM_API_KEY']}"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            _spend_cache = (time.time(), float(json.load(r)["info"]["spend"]))
+    return _spend_cache[1]
 
 
 def _call_api(**kwargs) -> tuple[str, float]:
@@ -76,9 +93,17 @@ def chat(messages: list[dict], usage, *, smart: bool = False, max_tokens: int = 
     usage.llm_calls += 1  # counted before the call, so failed calls count too
     model = os.environ["MODEL_SMART" if smart else "MODEL_FAST"]
     # The gateway enables extended thinking by default; on structured tasks it can spend the whole
-    # max_tokens budget thinking and return empty content, so it's switched off.
-    text, cost = _create(model=model, messages=messages, max_tokens=max_tokens,
-                         extra_body={"thinking": {"type": "disabled"}})
+    # max_tokens budget thinking and return empty content, so it's switched off. Models differ in how:
+    # Haiku takes "disabled", Sonnet 5.5 asks for "between_tools" (and says so in a 400 error).
+    try:
+        text, cost = _create(model=model, messages=messages, max_tokens=max_tokens,
+                             extra_body={"thinking": {"type": _thinking_off.get(model, "disabled")}})
+    except BadRequestError as e:
+        if "between_tools" not in str(e) or _thinking_off.get(model) == "between_tools":
+            raise
+        _thinking_off[model] = "between_tools"
+        text, cost = _create(model=model, messages=messages, max_tokens=max_tokens,
+                             extra_body={"thinking": {"type": "between_tools"}})
     usage.ai_cost_usd += cost
     return text
 

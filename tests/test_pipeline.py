@@ -50,14 +50,48 @@ def test_demo_run_end_to_end(offline):
                for r in s.rejections)
 
 
+def diagram_state():
+    import base64
+    from pathlib import Path
+
+    from app.models import RunState
+    png = (Path(__file__).resolve().parents[1] / "public" / "demos" / "contoso-bookings.png").read_bytes()
+    return RunState(input_image="data:image/png;base64," + base64.b64encode(png).decode())
+
+
+def test_diagram_reader(offline):
+    from app import orchestrator
+    s = orchestrator.step(diagram_state())
+    assert s.step == "confirm" and not s.error
+    assert s.input_image == ""  # not shipped back and forth after reading
+    services = {c.service for c in s.components}
+    assert {"Azure App Service", "SQL Database", "Redis Cache"} <= services
+    assert all(c.source == "diagram" for c in s.components)
+    assert "northeurope" in s.constraints.allowed_regions
+
+
+def test_live_run_limit_per_visitor(offline):
+    from fastapi.testclient import TestClient
+
+    from api import index
+    index._hits.clear()
+    client = TestClient(index.app)
+    codes = [client.post("/api/run/start", json={"text": DEMO}).status_code for _ in range(index.LIMITS["start"] + 1)]
+    assert codes[:-1] == [200] * index.LIMITS["start"] and codes[-1] == 429
+    index._hits.clear()
+
+
 def test_api_round_trip(offline):
     """The browser's loop: start, then POST the whole state back for each step, confirming in between."""
     from fastapi.testclient import TestClient
 
     from api.index import app
 
+    from api import index
+    index._hits.clear()
     client = TestClient(app)
     assert client.post("/api/run/start", json={"text": "hi"}).status_code == 422  # too short
+    assert client.post("/api/run/start", json={"image": "data:text/html;base64,PGgxPg=="}).status_code == 422
     state = client.post("/api/run/start", json={"text": DEMO}).json()
     for _ in range(20):
         if state["step"] == "confirm":

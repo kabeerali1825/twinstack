@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"options\": [{\"option_id\": \"c1.orig\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Standard tier control plane assumed, billed hourly all month (uptime SLA meter)\"}], \"problem\": \"\"}, {\"option_id\": \"c2.orig\", \"meters\": [{\"index\": 0, \"count\": 3, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"3 Linux D4s v5 nodes on pay-as-you-go, always on as stated (no autoscaling applied to original)\"}], \"problem\": \"\"}, {\"option_id\": \"c3.orig\", \"meters\": [{\"index\": 2, \"count\": 4, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"4 vCore General Purpose provisioned compute, Gen5 (DC-Series is confidential, Gen5 is the standard choice), always on\"}], \"problem\": \"\"}, {\"option_id\": \"c4.orig\", \"meters\": [{\"index\": 0, \"count\": 1, \"active_fraction\": 1, \"monthly_usage\": null, \"why\": \"Premium P1 (6 GB) cache, provisioned, billed all month\"}], \"problem\": \"\"}]}",
+ "cost": 0.0009400999999999999
+}
