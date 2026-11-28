@@ -1,7 +1,7 @@
 """Plain Chat baseline (smart model, no tools): what a normal AI chat says about the same architecture.
 
 It gets the confirmed components and requirements, no live prices, no rules, no checks: the answer a user would get by
-pasting the design into a chat. Its numbers are shown next to TwinStack's, never used in a plan.
+pasting the design into a chat. Its numbers are shown next to ArchTwin's, never used in a plan.
 """
 from pydantic import BaseModel
 
