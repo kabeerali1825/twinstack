@@ -1,7 +1,7 @@
-# TwinStack — Project Context for Claude Code
+# ArchTwin — Project Context for Claude Code
 
 > Save this file as `CLAUDE.md` in the repo root so Claude Code loads it automatically.
-> Working name: **TwinStack** (alternative: ArchiTrim). Tagline: *"Same architecture. Cheaper twin."*
+> Name: **ArchTwin** (renamed from TwinStack in Nov 2026; repo and folder keep the old name). Tagline: *"Same architecture. Cheaper twin."*
 > Repo: https://github.com/kabeerali1825/twinstack (public) · local folder: `D:\Agent-A-Thon\twinstack` (Windows dev machine)
 
 ---
@@ -10,7 +10,7 @@
 
 - **Developer:** Kabeer Ali — backend engineer (.NET, Azure, AI). Building this solo for SSI's internal **Agent-A-Thon** (multi-agent hackathon).
 - **Product:** a multi-agent web app. The user uploads an **Azure architecture diagram image** (or pastes a text description). Agents find cheaper ways to run the same architecture that still meet every requirement, backed by **live Azure prices** and **Microsoft documentation**, and output three plans: **Cheapest / Balanced / Safest**.
-- **Why it's not "just ask Claude":** a chat gives rough, possibly stale guesses. TwinStack searches live prices across all regions, pricing models and alternative services, checks every option against real service limits, and cites a meter ID and doc link for every number.
+- **Why it's not "just ask Claude":** a chat gives rough, possibly stale guesses. ArchTwin searches live prices across all regions, pricing models and alternative services, checks every option against real service limits, and cites a meter ID and doc link for every number.
 
 ---
 
@@ -116,7 +116,7 @@ Rules for Claude Code when writing the app:
 | 7 | **Fit Checker / Skeptic** | Reject options that break limits or rules (timeouts, missing features, SLA, zone support, residency, spot for prod…); send back for rework, **max 2 loops** | Sonnet |
 | 8 | **Total Cost Agent** | Add people/ops effort cost next to the Azure bill (e.g. AKS needs Kubernetes skills) | Haiku |
 | 9 | **Judge** | Build the Cheapest / Balanced / Safest plans with savings, trade-offs and reasons | Sonnet |
-| 10 | **Plain Chat** (added in M3) | Ask a no-tools chat the same question; its guess is shown next to TwinStack's numbers, never used in a plan | Sonnet |
+| 10 | **Plain Chat** (added in M3) | Ask a no-tools chat the same question; its guess is shown next to ArchTwin's numbers, never used in a plan | Sonnet |
 
 **Pipeline:**
 `diagram|text → Diagram Reader / Parser → HUMAN CONFIRM → Workload Profiler → Service Swap → Region Scout → Pricing-Model → Fit Checker/Skeptic (↺ max 2) → Total Cost → Judge → 3 plans`
@@ -245,7 +245,7 @@ Rules for Claude Code when writing the app:
 **M3 — Stretch**
 - Caching, storage, networking components (Redis, Blob, egress, NAT, IPs, Log Analytics)
 - draw.io (`.drawio` XML) and Bicep/ARM template input (deterministic parsing)
-- Side-by-side "plain Claude chat estimate vs TwinStack" comparison
+- Side-by-side "plain Claude chat estimate vs ArchTwin" comparison
 - Report export (Markdown/PDF), one-click demos with cached results, polish
 
 **Status (Nov 2026):** M1, M2 and M3 built. M3 = networking/storage pricing (no code change needed), draw.io / ARM /
@@ -267,7 +267,7 @@ diagrams (Mermaid, from parsed `connections`), Plain Chat comparison, re-recorde
 
 ## 14. Rubric fit (keep in mind when prioritizing)
 
-| Criterion | How TwinStack earns it |
+| Criterion | How ArchTwin earns it |
 |---|---|
 | Completeness / multi-agent | 9 role-based agents, live tool calls, a Skeptic that sends work back, a human confirm step, every step visible |
 | Creativity | Diagram in → verified cheaper twin out; pre-deployment optimization with live prices and a source for every number |
@@ -288,7 +288,7 @@ diagrams (Mermaid, from parsed `connections`), Plain Chat comparison, re-recorde
 2. Whether LiteLLM returns per-request cost (header/usage field) for spend tracking.
 3. Current Vercel Hobby Python function duration and body-size limits.
 4. Azure Retail Prices API reachable from Vercel; confirm filter syntax for the target services.
-5. Final product name (TwinStack vs ArchiTrim) and Vercel subdomain availability.
+5. ~~Final product name~~ Decided: **ArchTwin** (`archtwin.vercel.app` was free in Nov 2026).
 
 ## 17. Suggested first steps for Claude Code
 

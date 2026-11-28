@@ -19,7 +19,7 @@ from app.agents.parser import REGION_GROUPS
 from app.models import RunState
 from app.pricing import services
 
-app = FastAPI(title="TwinStack")
+app = FastAPI(title="ArchTwin")
 IMAGE_PREFIXES = ("data:image/png;base64,", "data:image/jpeg;base64,", "data:image/webp;base64,")
 MAX_IMAGE_CHARS = 3_500_000  # ~2.6 MB image; Vercel's request body limit is 4.5 MB
 MAX_COMPONENTS = 25

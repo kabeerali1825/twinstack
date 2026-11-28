@@ -1,4 +1,4 @@
-// TwinStack frontend: drives the agent pipeline one step per request and keeps the run in localStorage,
+// ArchTwin frontend: drives the agent pipeline one step per request and keeps the run in localStorage,
 // so a refresh or a failed step resumes where it stopped. All server/LLM text is inserted as text, never HTML.
 "use strict";
 
@@ -94,6 +94,7 @@ function save() {
 function clearRun() {
   try { localStorage.removeItem(STORE); } catch {}
   S = null; planIdx = 0;
+  if (location.search) history.replaceState(null, "", "/");  // drop ?demo= so a refresh stays on the start screen
   document.body.dataset.view = "start";
   show("workspace", false); show("start"); show("run-error", false); show("new-analysis", false);
   markDemo("");
@@ -463,10 +464,10 @@ function renderResults() {
     .reduce((n, c) => n + c.lines.length, 0);
   const off = b && orig ? Math.round(100 * (b.today - orig) / orig) : 0;
   const chatCard = b ? h("div", { class: "card section baseline" },
-    h("h2", {}, "A plain AI chat vs TwinStack"),
+    h("h2", {}, "A plain AI chat vs ArchTwin"),
     h("p", { class: "muted" }, "We asked an AI chat the same question with no tools and no live prices."),
     h("div", { class: "table-scroll" }, h("table", { class: "compare" },
-      h("thead", {}, h("tr", {}, h("th", {}), h("th", { class: "r" }, "Plain chat"), h("th", { class: "r" }, "TwinStack"))),
+      h("thead", {}, h("tr", {}, h("th", {}), h("th", { class: "r" }, "Plain chat"), h("th", { class: "r" }, "ArchTwin"))),
       h("tbody", {},
         h("tr", {}, h("td", {}, "Today's bill"), h("td", { class: "r amount" }, money(b.today)), h("td", { class: "r amount" }, money(orig))),
         h("tr", {}, h("td", {}, "Cheapest option"), h("td", { class: "r amount" }, money(b.cheaper)), h("td", { class: "r amount" }, money(plans[0].monthly_total))),
@@ -537,7 +538,7 @@ function archDiagrams(plan) {
 function reportMarkdown() {
   const md = [], cell = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
   const today = (c) => cand(`${c.id}.orig`, c.region);
-  md.push(`# TwinStack report`, "",
+  md.push(`# ArchTwin report`, "",
     `Generated ${new Date().toLocaleString()} from a run on ${new Date(S.timeline[0].t * 1000).toLocaleString()}. `
     + `Prices from the Azure Retail Prices API (pay-as-you-go, USD). AI cost of the analysis: $${S.ai_cost_usd.toFixed(3)} `
     + `(${S.llm_calls} calls).`, "");
@@ -586,8 +587,8 @@ function reportMarkdown() {
     md.push("");
   }
 
-  if (S.baseline) md.push(`## A plain AI chat vs TwinStack`, "", "The same question asked of an AI chat with no tools or live prices.", "",
-    `| | Plain chat | TwinStack |`, `|---|---|---|`,
+  if (S.baseline) md.push(`## A plain AI chat vs ArchTwin`, "", "The same question asked of an AI chat with no tools or live prices.", "",
+    `| | Plain chat | ArchTwin |`, `|---|---|---|`,
     `| Today's bill | ${money(S.baseline.today)} | ${money(S.original_total)} |`,
     `| Cheapest option | ${money(S.baseline.cheaper)} | ${money(S.plans[0].monthly_total)} |`, "",
     ...S.baseline.suggestions.map((s) => `- Chat suggested: ${cell(s)}`), "");
@@ -598,7 +599,7 @@ function reportMarkdown() {
     md.push(`- **${o ? label(o) : r.option_id}**, rejected by ${r.by}: ${r.reason}` + (r.source_url ? ` [Rule source](${r.source_url})` : ""));
   }
   md.push("", `## Agent activity`, "", ...S.timeline.map((e) => `- **${e.agent}**: ${e.message}`), "",
-    "---", "Read-only analysis: TwinStack never connects to an Azure account. Plans are estimates; check them before you buy.");
+    "---", "Read-only analysis: ArchTwin never connects to an Azure account. Plans are estimates; check them before you buy.");
   return md.join("\n");
 }
 
@@ -621,7 +622,7 @@ async function downloadPdf(btn) {
       s.setAttribute("width", w); s.setAttribute("height", w * vb.height / vb.width); s.style.maxWidth = "none";
     }
     await pdfLib().set({
-      margin: 10, filename: `twinstack-report-${new Date().toISOString().slice(0, 10)}.pdf`,
+      margin: 10, filename: `archtwin-report-${new Date().toISOString().slice(0, 10)}.pdf`,
       image: { type: "jpeg", quality: 0.95 }, html2canvas: { scale: 2, backgroundColor: "#ffffff", scrollX: 0, scrollY: 0 },  // scroll: else a scrolled page gives a blank first page
       jsPDF: { unit: "mm", format: "a4" }, pagebreak: { mode: ["css", "legacy"], avoid: ["tr", ".commit-figs", ".arch-box", "li"] },
     }).from(copy).save();
@@ -634,7 +635,7 @@ async function downloadPdf(btn) {
 
 function downloadReport() {
   const blob = new Blob([reportMarkdown()], { type: "text/markdown" });
-  const a = h("a", { href: URL.createObjectURL(blob), download: `twinstack-report-${new Date().toISOString().slice(0, 10)}.md` });
+  const a = h("a", { href: URL.createObjectURL(blob), download: `archtwin-report-${new Date().toISOString().slice(0, 10)}.md` });
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
@@ -647,7 +648,7 @@ async function openDemo(name) {
 }
 
 async function shareRun(btn) {
-  if (!confirm("Share this result as a sample? Anyone visiting TwinStack can open it, including your text description. Your diagram image is not shared.")) return;
+  if (!confirm("Share this result as a sample? Anyone visiting ArchTwin can open it, including your text description. Your diagram image is not shared.")) return;
   btn.disabled = true;
   try {
     await api(`/api/share/${S.run_id}`, {});
@@ -731,6 +732,8 @@ async function fillRecent() {
     $("services").replaceChildren(...meta.services.map((s) => h("option", { value: s })));
     if (meta.live_runs_per_hour) $("run-limit").textContent = meta.live_runs_per_hour;
   } catch { /* the confirm step still works with free text */ }
+  const demo = new URLSearchParams(location.search).get("demo");  // ?demo=contoso-bookings: link straight to a sample
+  if (/^[a-z0-9-]+$/.test(demo || "")) { openDemo(demo); markDemo(demo); return; }
   try { S = JSON.parse(localStorage.getItem(STORE)); } catch { S = null; }
   if (!S) return;
   if (S.step === "parse" && !S.input_image && !S.input_text) { clearRun(); return; }
