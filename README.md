@@ -54,6 +54,35 @@ as a Markdown report or PDF, and can be shared as a sample on the home page (opt
 **The LLM decides, the code calculates.** All price lookups, unit conversions, monthly math, totals and savings are
 plain Python. Each step is its own short HTTP request; the browser keeps the run state, so a run survives a refresh.
 
+## Price accuracy: checked against the Azure Pricing Calculator
+
+Today's design from both samples was entered by hand into the official
+[Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) on 28 Nov 2026 (USD, pay-as-you-go,
+licences included), and each line compared with ArchTwin's price for it.
+**8 of 10 lines match to the cent; the other 2 are within 0.5%; both totals are within 0.05%.**
+
+| Sample | Component | ArchTwin | Calculator | Difference |
+|---|---|---:|---:|---:|
+| Web API on AKS (West Europe) | AKS Standard tier (uptime SLA) | $73.00 | $73.00 | 0 |
+| | 3 × D4s v5 Linux nodes | $503.70 | $503.70 | 0 |
+| | SQL Database General Purpose 4 vCore (compute + licence) | $780.82 | $780.82 | 0 |
+| | Redis Premium P1 | $405.15 | $404.42 | +0.18% |
+| | **Total** | **$1,762.67** | **$1,761.94** | **+0.04%** |
+| Contoso Bookings (North Europe) | Front Door Standard (base fee) | $35.00 | $35.00 | 0 |
+| | App Service P2 v3 Linux × 2 | $490.56 | $490.56 | 0 |
+| | Functions Premium EP1, 1 always-ready instance | $152.31 | $152.31 | 0 |
+| | SQL Database Business Critical 8 vCore (compute + licence) | $4,003.46 | $4,003.46 | 0 |
+| | Redis Standard C2 | $164.25 | $163.52 | +0.45% |
+| | Blob Storage Hot LRS, 500 GB | $11.00 | $11.00 | 0 |
+| | **Total** | **$4,856.58** | **$4,855.85** | **+0.02%** |
+
+- **Redis:** the Retail Prices API returns $0.555/hour for P1 and $0.225/hour for C2; the calculator uses $0.554 and $0.224.
+- **Not priced by ArchTwin** (usage the input doesn't state, so it's left out rather than guessed): SQL Database
+  storage (for Contoso's 250 GB on Business Critical, about $69/month at $0.275/GB, ~1.4% of the bill), Front Door
+  and blob traffic and operations, and VM OS disks. The calculator adds these from its defaults when you fill them in.
+- **To repeat the check:** the calculator pre-selects 3-year reservations and Azure Hybrid Benefit for some products
+  (SQL Database, for one); switch them to pay-as-you-go to compare with "today" prices.
+
 ## Run locally
 
 ```
