@@ -1,0 +1,27 @@
+{
+ "filter": "serviceName eq 'Azure Database for PostgreSQL' and armRegionName eq 'northeurope' and productName eq 'Azure Database for PostgreSQL Flex Server Storage' and skuName eq 'Storage' and meterName eq 'Storage Data Stored'",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.1265,
+   "unitPrice": 0.1265,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2021-06-01T00:00:00Z",
+   "meterId": "e60c0c7e-25ab-5889-972f-7f8b34b39c54",
+   "meterName": "Storage Data Stored",
+   "productId": "DZH318Z0DCRX",
+   "skuId": "DZH318Z0DCRX/001D",
+   "productName": "Azure Database for PostgreSQL Flex Server Storage",
+   "skuName": "Storage",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 GB/Month",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "Storage"
+  }
+ ]
+}

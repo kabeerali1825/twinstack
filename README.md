@@ -16,12 +16,12 @@ Built for SSI's Agent-A-Thon. Read-only by design: it never connects to an Azure
 | Run your own: paste a description or upload a diagram, then watch each agent work. Click "the example text" or "a sample diagram" to start. | ~1 minute, 3 live runs per hour per visitor |
 | Open a result other visitors chose to share (home page, "Recently shared by visitors") | Free, instant |
 
-![Results for the Contoso Bookings diagram: today's $4,857/month vs a $904/month cheapest plan, with per-component prices](docs/results.png)
+![Results for the Contoso Bookings diagram: today's $4,925/month vs a $1,030/month cheapest plan, with per-component prices](docs/results.png)
 
 **Reading the savings.** The Cheapest plan takes the lowest-priced option for every component, which can mean a
 migration (above, SQL Database to PostgreSQL). Balanced and Safest keep more of today's setup: for Contoso, Balanced
-keeps SQL Server on a smaller General Purpose database ($1,344/month, 72% less) and Safest changes only the database
-tier and storage ($1,866/month, 62% less);
+keeps SQL Server on General Purpose with a smaller App Service ($2,491/month, 49% less) and Safest changes only the
+database tier ($2,945/month, 40% less);
 each plan lists its trade-offs, and every rejected alternative is shown with the rule and Microsoft Learn link that
 ruled it out.
 
@@ -59,7 +59,7 @@ plain Python. Each step is its own short HTTP request; the browser keeps the run
 Today's design from both samples was entered by hand into the official
 [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) on 28 Nov 2026 (USD, pay-as-you-go,
 licences included), and each line compared with ArchTwin's price for it.
-**8 of 10 lines match to the cent; the other 2 are within 0.5%; both totals are within 0.05%.**
+**9 of 11 lines match to the cent; the other 2 are within 0.5%; both totals are within 0.05%.**
 
 | Sample | Component | ArchTwin | Calculator | Difference |
 |---|---|---:|---:|---:|
@@ -72,14 +72,16 @@ licences included), and each line compared with ArchTwin's price for it.
 | | App Service P2 v3 Linux × 2 | $490.56 | $490.56 | 0 |
 | | Functions Premium EP1, 1 always-ready instance | $152.31 | $152.31 | 0 |
 | | SQL Database Business Critical 8 vCore (compute + licence) | $4,003.46 | $4,003.46 | 0 |
+| | SQL Database Business Critical storage, 250 GB | $68.75 | $68.75 | 0 |
 | | Redis Standard C2 | $164.25 | $163.52 | +0.45% |
 | | Blob Storage Hot LRS, 500 GB | $11.00 | $11.00 | 0 |
-| | **Total** | **$4,856.58** | **$4,855.85** | **+0.02%** |
+| | **Total** | **$4,925.33** | **$4,924.60** | **+0.01%** |
 
 - **Redis:** the Retail Prices API returns $0.555/hour for P1 and $0.225/hour for C2; the calculator uses $0.554 and $0.224.
-- **Not priced by ArchTwin** (usage the input doesn't state, so it's left out rather than guessed): SQL Database
-  storage (for Contoso's 250 GB on Business Critical, about $69/month at $0.275/GB, ~1.4% of the bill), Front Door
-  and blob traffic and operations, and VM OS disks. The calculator adds these from its defaults when you fill them in.
+- **Database storage** is priced when the input states a size (SQL Database General Purpose / Business Critical,
+  PostgreSQL and MySQL Flexible Server, doubled for an HA standby). The AKS sample states none, so none is priced.
+- **Not priced by ArchTwin** (usage the input doesn't state, so it's left out rather than guessed): Front Door and blob
+  traffic and operations, and VM OS disks. The calculator adds these from its defaults when you fill them in.
 - **To repeat the check:** the calculator pre-selects 3-year reservations and Azure Hybrid Benefit for some products
   (SQL Database, for one); switch them to pay-as-you-go to compare with "today" prices.
 

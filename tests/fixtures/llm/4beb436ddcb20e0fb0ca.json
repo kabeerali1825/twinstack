@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"questions\": [{\"question\": \"How many API requests or web page views per month?\", \"why\": \"sizes Front Door traffic charges and whether App Service P2v3 x2 is enough\", \"options\": [\"Under 10 million\", \"10-100 million\", \"Over 100 million\"], \"components\": [\"c1\", \"c2\"]}, {\"question\": \"Is the bookings site needed outside 9:00-18:00?\", \"why\": \"decides whether App Service and SQL can scale down off-hours or must stay always on\", \"options\": [\"Business hours only\", \"Extended hours, 7am-10pm\", \"24/7 all year\"], \"components\": [\"c2\", \"c3\"]}]}",
+ "cost": 0.0002058
+}

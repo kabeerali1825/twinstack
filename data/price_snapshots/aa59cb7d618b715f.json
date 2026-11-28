@@ -1,0 +1,27 @@
+{
+ "filter": "serviceName eq 'SQL Database' and armRegionName eq 'northeurope' and productName eq 'SQL Database Single/Elastic Pool Business Critical - Storage' and skuName eq 'Business Critical' and meterName eq 'Business Critical Data Stored'",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.275,
+   "unitPrice": 0.275,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2018-08-01T00:00:00Z",
+   "meterId": "57ced9e8-8490-4508-a4f3-ef716df2c21b",
+   "meterName": "Business Critical Data Stored",
+   "productId": "DZH318Z0BQDS",
+   "skuId": "DZH318Z0BQDS/000L",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Storage",
+   "skuName": "Business Critical",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 GB/Month",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  }
+ ]
+}

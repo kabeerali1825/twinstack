@@ -1,0 +1,1093 @@
+{
+ "filter": "serviceName eq 'Functions' and skuName eq 'On Demand' and (armRegionName eq 'francecentral' or armRegionName eq 'germanywestcentral' or armRegionName eq 'italynorth' or armRegionName eq 'northeurope' or armRegionName eq 'polandcentral' or armRegionName eq 'spaincentral' or armRegionName eq 'swedencentral' or armRegionName eq 'westeurope' or armRegionName eq 'Global' or armRegionName eq '' or armRegionName eq 'Zone 1')",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "784e0fc6-81bd-55cc-9f0b-3d0f628a7392",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0073",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "784e0fc6-81bd-55cc-9f0b-3d0f628a7392",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0073",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "a5521323-e093-53b5-b6bf-cabc4e098293",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0073",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "a5521323-e093-53b5-b6bf-cabc4e098293",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0073",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "bfac086d-ae13-585b-8bb3-7deb41d7cf08",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009F",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-12-01T00:00:00Z",
+   "meterId": "bfac086d-ae13-585b-8bb3-7deb41d7cf08",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009F",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-04-01T00:00:00Z",
+   "meterId": "c91f0431-7495-5047-bd54-a4a16ecb1b70",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009F",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-04-01T00:00:00Z",
+   "meterId": "c91f0431-7495-5047-bd54-a4a16ecb1b70",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009F",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-05-01T00:00:00Z",
+   "meterId": "13646df4-af4b-5c11-9f5d-0685f2ecc265",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006L",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-05-01T00:00:00Z",
+   "meterId": "13646df4-af4b-5c11-9f5d-0685f2ecc265",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006L",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-05-01T00:00:00Z",
+   "meterId": "2caec7d1-7308-5492-9fe7-8791ee6ee521",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006L",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-05-01T00:00:00Z",
+   "meterId": "2caec7d1-7308-5492-9fe7-8791ee6ee521",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006L",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "04bf9ffe-7320-5321-9ed7-661107c8008a",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0095",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "04bf9ffe-7320-5321-9ed7-661107c8008a",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0095",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "13bbc1e0-136c-573b-8c2b-bab44bbc2179",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0096",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "13bbc1e0-136c-573b-8c2b-bab44bbc2179",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0096",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "1b89c7d8-fbb8-528b-bcb8-8a439a637524",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0096",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "1b89c7d8-fbb8-528b-bcb8-8a439a637524",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0096",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "a4e39f0d-8908-5961-a561-e51dca6ee6b0",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0095",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "a4e39f0d-8908-5961-a561-e51dca6ee6b0",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/0095",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 2.158e-05,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "07ae36c6-ccab-5332-bd44-b583c6c94485",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009D",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "07ae36c6-ccab-5332-bd44-b583c6c94485",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009D",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 3.32e-06,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "870274ff-390e-5c9a-aa8f-8147bcc8d69d",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/005N",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 2.6e-05,
+   "unitPrice": 2.6e-05,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "870274ff-390e-5c9a-aa8f-8147bcc8d69d",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/005N",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 2.158e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "87736c3a-3f7d-5d3a-8b54-b4575b44d2ad",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009D",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 3.7e-05,
+   "unitPrice": 3.7e-05,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "87736c3a-3f7d-5d3a-8b54-b4575b44d2ad",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/009D",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "b0b79568-e95b-5f21-9109-50a8b8612ea6",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/005N",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "b0b79568-e95b-5f21-9109-50a8b8612ea6",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/005N",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "cee19628-5ca3-58ca-b32e-d5d8d3bbe89d",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006C",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 100000.0,
+   "retailPrice": 3.7e-05,
+   "unitPrice": 3.7e-05,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "cee19628-5ca3-58ca-b32e-d5d8d3bbe89d",
+   "meterName": "On Demand Execution Time",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006C",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "1 GB Second",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.071e-05,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "d9758073-71dd-548d-b9a2-e3765c776554",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006C",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 25000.0,
+   "retailPrice": 4e-06,
+   "unitPrice": 4e-06,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "d9758073-71dd-548d-b9a2-e3765c776554",
+   "meterName": "On Demand Total Executions",
+   "productId": "DZH318Z0DW2R",
+   "skuId": "DZH318Z0DW2R/006C",
+   "productName": "Flex Consumption",
+   "skuName": "On Demand",
+   "serviceName": "Functions",
+   "serviceId": "DZH319HJX2WX",
+   "serviceFamily": "Compute",
+   "unitOfMeasure": "10",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "On Demand",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "3 Years"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 3.32e-06,
+     "term": "1 Year"
+    }
+   ]
+  }
+ ]
+}

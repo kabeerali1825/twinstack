@@ -1,0 +1,5 @@
+{
+ "model": "claude-sonnet-5-5",
+ "text": "{\n\"today_monthly_usd\": 5300,\n\"cheaper_monthly_usd\": 2900,\n\"suggestions\": [\n\"Move SQL from Business Critical 8 vCore to General Purpose 4-6 vCore (keep zone redundancy). Business Critical is the largest cost driver (~$3,000+/mo); General Purpose zone-redundant with right-sized vCores typically cuts this by 50-60%. Check CPU/IO metrics first and consider serverless or reserved capacity.\",\n\"Buy 1-year Azure Reservations/Savings Plan for the steady-state resources (SQL vCores, App Service P2v3 instances). This typically saves 30-40% with no architecture change.\",\n\"Replace the always-on Functions EP1 with a Consumption or Flex Consumption plan, since the nightly invoice job runs only ~20 min. This saves ~$150/mo.\",\n\"Right-size App Service to P1v3 x2 (or autoscale 1-2 instances outside 9:00-18:00) and move invoice PDFs older than ~90 days to Cool tier storage. This is a smaller saving but low risk.\"\n]\n}",
+ "cost": 0.0054538
+}

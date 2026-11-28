@@ -171,6 +171,58 @@ def _license_for(pick: MeterPick, option: Option) -> MeterPick | None:
                      global_meter=True, scope="global")
 
 
+SIZE = re.compile(r"(\d+(?:\.\d+)?)\s*(GB|GiB|TB|TiB)\b", re.I)
+NO_HA = re.compile(r"\b(no|not|without)\b[^,.;]{0,20}\b(ha|high availability|standby)\b", re.I)
+HA = re.compile(r"\b(ha|high availability|standby)\b", re.I)
+
+
+def _stated_gb(*texts: str) -> float | None:
+    """The data size stated in the details, skipping memory sizes ('4 vCore 16 GiB', '16 GB RAM')."""
+    for t in texts:
+        for m in SIZE.finditer(t or ""):
+            if re.search(r"vcores?\W*$", t[:m.start()], re.I) or re.match(r"\W*(ram|memory)\b", t[m.end():], re.I):
+                continue
+            return float(m[1]) * (1024 if m[2].upper().startswith("T") else 1)
+    return None
+
+
+def _storage_meter(pick: MeterPick, details: str) -> tuple[str, str, str, int] | None:
+    """(product, sku, meter, copies) of the per-GB data storage billed next to this database compute meter.
+    ponytail: SQL Database vCore General Purpose / Business Critical and PostgreSQL / MySQL Flexible Server only."""
+    d = details.lower()
+    zone = "zone redundan" in d and "not zone" not in d and "no zone" not in d
+    if pick.service == "SQL Database" and " - Compute" in pick.product:
+        tier = next((t for t in ("General Purpose", "Business Critical") if t in pick.product), None)
+        if not tier:
+            return None
+        sku = f"{tier} Zone Redundancy" if tier == "General Purpose" and zone else tier  # BC replicas are included
+        return f"SQL Database Single/Elastic Pool {tier} - Storage", sku, f"{sku} Data Stored", 1
+    copies = 2 if HA.search(d) and not NO_HA.search(d) else 1  # an HA standby bills its own storage
+    if pick.service == "Azure Database for PostgreSQL" and "Flexible Server" in pick.product:
+        return "Azure Database for PostgreSQL Flex Server Storage", "Storage", "Storage Data Stored", copies
+    if pick.service == "Azure Database for MySQL" and "Flexible Server" in pick.product:
+        sku = "Storage ZRS" if zone else "Storage"
+        return "Azure Database for MySQL Flexible Server Storage", sku, f"{sku} Data Stored", copies
+    return None
+
+
+def _storage_for(pick: MeterPick, option: Option, gb: float, databases: float, region: str) -> MeterPick | None:
+    """Database compute is billed without its data storage, a per-GB meter that rarely makes the menu next to dozens
+    of compute rows. Like the SQL license, code adds it, but only when the input states the size."""
+    found = _storage_meter(pick, option.details)
+    if not found:
+        return None
+    product, sku, meter, copies = found
+    rows = [r for r in query(odata(serviceName=pick.service, armRegionName=region, productName=product,
+                                   skuName=sku, meterName=meter)) if r["type"] == "Consumption"]
+    if not rows:
+        return None
+    qty = gb * databases * copies
+    return MeterPick(service=pick.service, product=product, sku=sku, meter=meter, unit=rows[0]["unitOfMeasure"],
+                     qty=qty, why=f"{qty:g} GB data storage"
+                                  + (" (primary + HA standby)" if copies == 2 else "") + " (added by code)")
+
+
 def run(state: RunState) -> None:
     todo = [o for o in state.options if not o.priced]
     if not todo:
@@ -230,6 +282,11 @@ def run(state: RunState) -> None:
                 if (lic := _license_for(m, o)) and lic.qty > licenses.get(lic.product, lic).qty - 1e-9:
                     licenses[lic.product] = lic
             o.meters += licenses.values()
+        c = comps[o.component_id]
+        gb = _stated_gb(o.details, c.details)  # an alternative keeps today's data size unless it states its own
+        if o.meters and gb and not any("Data Stored" in m.meter for m in o.meters):
+            if storage := next((s for m in o.meters if (s := _storage_for(m, o, gb, c.quantity, c.region))), None):
+                o.meters.append(storage)
         if o.meters:
             state.log("Pricer", "output", f"{o.id}: billed on " + ", ".join(
                 f"{m.meter}{ {'zone': ' (zone price)', 'global': ' (global price)', 'none': ' (global price)'}.get(m.scope, '')} x{m.qty:g}"
