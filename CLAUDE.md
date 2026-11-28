@@ -2,7 +2,7 @@
 
 > Save this file as `CLAUDE.md` in the repo root so Claude Code loads it automatically.
 > Name: **ArchTwin** (renamed from TwinStack in Nov 2026; repo and folder keep the old name). Tagline: *"Same architecture. Cheaper twin."*
-> Repo: https://github.com/kabeerali1825/twinstack (public) · local folder: `D:\Agent-A-Thon\twinstack` (Windows dev machine)
+> Live: https://archtwin.vercel.app · Repo: https://github.com/kabeerali1825/twinstack (public) · local folder: `D:\Agent-A-Thon\twinstack` (Windows dev machine)
 
 ---
 
