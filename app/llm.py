@@ -9,6 +9,7 @@ LLM_FIXTURES=replay  -> no network; replies come from those files (missing file 
 import hashlib
 import json
 import os
+import re
 import time
 import urllib.request
 from dataclasses import dataclass
@@ -113,15 +114,33 @@ def _json_part(text: str) -> str:
     return text[text.find("{"): text.rfind("}") + 1]
 
 
+# Haiku sometimes ends the object with a stray key fragment: `..."EU.", "}` or `..."EU.", "}"]}`.
+_TRAILING_JUNK = re.compile(r',\s*"[\s"\]}:]*$')
+
+
+def _validate(text: str, schema: type[T]) -> T:
+    part = _json_part(text)
+    try:
+        return schema.model_validate_json(part)
+    except ValidationError as e:
+        fixed = _TRAILING_JUNK.sub("", part)
+        if fixed != part:
+            try:
+                return schema.model_validate_json(fixed + "}")
+            except ValidationError:
+                pass
+        raise e
+
+
 def chat_json(messages: list[dict], schema: type[T], usage, *, smart: bool = False,
               max_tokens: int = 1500) -> T:
     """LLM call whose reply must validate as `schema`. Retries once with the error, then raises."""
     text = chat(messages, usage, smart=smart, max_tokens=max_tokens)
     try:
-        return schema.model_validate_json(_json_part(text))
+        return _validate(text, schema)
     except ValidationError as e:
         retry = [*messages,
                  {"role": "assistant", "content": text},
                  {"role": "user", "content": f"That JSON failed validation:\n{e}\nReply with only the corrected JSON."}]
         text = chat(retry, usage, smart=smart, max_tokens=max_tokens)
-        return schema.model_validate_json(_json_part(text))
+        return _validate(text, schema)

@@ -31,6 +31,14 @@ def test_retries_once_then_succeeds(fake):
     assert u.llm_calls == 2
 
 
+@pytest.mark.parametrize("tail", [', "}', ', "}"]}', ', "}": ""}'])
+def test_stray_key_at_end_is_dropped_without_retry(fake, tail):
+    fake.append('{"name": "redis"' + tail)  # Haiku glitches seen in production
+    u = llm.Usage()
+    assert llm.chat_json([], Thing, u).name == "redis"
+    assert u.llm_calls == 1
+
+
 def test_call_cap(fake):
     u = llm.Usage(llm_calls=llm.MAX_CALLS_PER_RUN)
     with pytest.raises(llm.BudgetExceeded):
