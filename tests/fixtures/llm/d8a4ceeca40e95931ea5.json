@@ -1,0 +1,5 @@
+{
+ "model": "claude-sonnet-5-5",
+ "text": "{\"options\":[{\"option_id\":\"c1.orig\",\"meters\":[{\"index\":0,\"count\":1,\"count_means\":\"instances\",\"active_fraction\":1,\"monthly_usage\":null,\"why\":\"Standard tier AKS control plane (Uptime SLA), billed all month for 1 cluster\"}],\"problem\":\"\"},{\"option_id\":\"c2.orig\",\"meters\":[{\"index\":0,\"count\":3,\"count_means\":\"instances\",\"active_fraction\":1,\"monthly_usage\":null,\"why\":\"3 regular Linux Standard_D4s_v5 worker nodes, provisioned and billed all month; OS not stated so Linux assumed\"}],\"problem\":\"\"},{\"option_id\":\"c3.orig\",\"meters\":[{\"index\":2,\"count\":1,\"count_means\":\"instances\",\"active_fraction\":1,\"monthly_usage\":null,\"why\":\"General Purpose provisioned Gen5 4 vCore database; the 4 vCore sku already covers all 4 vCores, so count 1. Gen5 assumed as hardware is not stated\"}],\"problem\":\"\"},{\"option_id\":\"c4.orig\",\"meters\":[{\"index\":0,\"count\":1,\"count_means\":\"instances\",\"active_fraction\":1,\"monthly_usage\":null,\"why\":\"Premium P1 cache, whole-cache meter, 1 instance billed all month\"}],\"problem\":\"\"}]}",
+ "cost": 0.0221012
+}

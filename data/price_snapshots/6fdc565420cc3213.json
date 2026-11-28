@@ -1,0 +1,2045 @@
+{
+ "filter": "serviceName eq 'SQL Database' and skuName eq '8 vCore' and (armRegionName eq 'francecentral' or armRegionName eq 'germanywestcentral' or armRegionName eq 'italynorth' or armRegionName eq 'northeurope' or armRegionName eq 'polandcentral' or armRegionName eq 'spaincentral' or armRegionName eq 'swedencentral' or armRegionName eq 'westeurope' or armRegionName eq 'Global' or armRegionName eq '' or armRegionName eq 'Zone 1')",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.166,
+   "unitPrice": 3.166,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2021-07-07T00:00:00Z",
+   "meterId": "10ec7e99-1392-59b1-8212-68459f594a4e",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/007K",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.166,
+   "unitPrice": 3.166,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2021-07-07T00:00:00Z",
+   "meterId": "40011aeb-ea1a-58f6-8830-6f97115f3bd3",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/003N",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.923,
+   "unitPrice": 2.923,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2021-07-07T00:00:00Z",
+   "meterId": "4e6de4c8-9c82-561a-b539-f0bf58c1a59e",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/006Z",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.3384,
+     "retailPrice": 2.3384,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.3384,
+     "retailPrice": 2.3384,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.923,
+   "unitPrice": 2.923,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2021-07-07T00:00:00Z",
+   "meterId": "e7bdf77d-5ede-5fa2-bae6-9f097f3d4c22",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/007X",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.3384,
+     "retailPrice": 2.3384,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.3384,
+     "retailPrice": 2.3384,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "36867d85-7654-5f1c-a835-c31d133fc4f9",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/017Z",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "6466aaff-6010-506a-b38d-32c24eb9727f",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/00CS",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "b10ae9ab-1126-5438-826a-7c61d71370e3",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/00FC",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "daf995cf-a12c-5bd9-afbe-698bb05a0d65",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/01BR",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "e8fc3d27-e917-5275-b7d8-90fa488b629b",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/00CG",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2023-02-01T00:00:00Z",
+   "meterId": "fab2a63d-8170-567d-bc9e-b142fe34d218",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/00C9",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2023-06-27T00:00:00Z",
+   "meterId": "552a0855-3fe1-5877-8ca1-2e96fd3f0e2f",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/02R0",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.166,
+   "unitPrice": 3.166,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "01540a97-ef41-51fa-a6d3-07fdfcbe6542",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/020M",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0,
+   "unitPrice": 0.0,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "2234abb9-02e1-5b92-83a0-0fb150df7c1b",
+   "meterName": "8 vCore - Free",
+   "productId": "DZH318Z0C124",
+   "skuId": "DZH318Z0C124/0306",
+   "productName": "SQL Database General Purpose - Serverless - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.166,
+   "unitPrice": 3.166,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2024-02-01T00:00:00Z",
+   "meterId": "61d2c4d6-7163-5560-967f-99ee66cd360c",
+   "meterName": "vCore",
+   "productId": "DZH318Z08M0H",
+   "skuId": "DZH318Z08M0H/021G",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute DC-Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": "",
+   "savingsPlan": [
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 2.5328,
+     "retailPrice": 2.5328,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "f413518b-3ad9-55b3-a3b5-48f500672226",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/05NQ",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "0106f7c3-54c6-4e68-b6e3-acff669137a3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/0182",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "0106f7c3-54c6-4e68-b6e3-acff669137a3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/015R",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "ac17bc74-86a6-4d77-ba9e-0b592253c50c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/01Z0",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.3358,
+   "unitPrice": 1.3358,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "65cdcd44-4623-4588-a252-e4edfd968dd3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/016K",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.13358,
+     "retailPrice": 0.13358,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.13358,
+     "retailPrice": 0.13358,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.3358,
+   "unitPrice": 1.3358,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "65cdcd44-4623-4588-a252-e4edfd968dd3",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/013Z",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.13358,
+     "retailPrice": 0.13358,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.13358,
+     "retailPrice": 0.13358,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.473464,
+   "unitPrice": 1.473464,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "d181e81f-1059-5971-8a42-cf8c8d136f2a",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/0645",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1473464,
+     "retailPrice": 0.1473464,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1473464,
+     "retailPrice": 0.1473464,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.090016,
+   "unitPrice": 1.090016,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "03c346b6-a578-46ec-9aed-df4ccd58a733",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/015P",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1090016,
+     "retailPrice": 0.1090016,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1090016,
+     "retailPrice": 0.1090016,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "f413518b-3ad9-55b3-a3b5-48f500672226",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/05LR",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "a5c705f8-3e27-5aaa-a3c3-943735b6bc5d",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/027G",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.242088,
+   "unitPrice": 1.242088,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "21dfed35-d848-44a6-b52b-a5f1a43383a8",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/003Q",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1242088,
+     "retailPrice": 0.1242088,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1242088,
+     "retailPrice": 0.1242088,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.522168,
+   "unitPrice": 1.522168,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "4d821045-b97f-4135-9340-3f267e1fc932",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/0054",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1522168,
+     "retailPrice": 0.1522168,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1522168,
+     "retailPrice": 0.1522168,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "d79c056c-8ff1-512d-86ef-97f70d055600",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/0202",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "738b3854-9dd1-58d2-aa32-c713e1e90ff5",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/09TN",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "7e16285d-6280-45a5-90af-98b531ae9db6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/0141",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "76c645c5-6535-55b1-949f-6484677927f1",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/0223",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "4073e755-ed8d-570a-8e6e-d165d73af6be",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/093K",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "7e16285d-6280-45a5-90af-98b531ae9db6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/017W",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "a5c705f8-3e27-5aaa-a3c3-943735b6bc5d",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/026R",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.090016,
+   "unitPrice": 1.090016,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "03c346b6-a578-46ec-9aed-df4ccd58a733",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/017T",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1090016,
+     "retailPrice": 0.1090016,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1090016,
+     "retailPrice": 0.1090016,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "738b3854-9dd1-58d2-aa32-c713e1e90ff5",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/09TV",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.473464,
+   "unitPrice": 1.473464,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "d181e81f-1059-5971-8a42-cf8c8d136f2a",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/063N",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1473464,
+     "retailPrice": 0.1473464,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1473464,
+     "retailPrice": 0.1473464,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "1cd4ee5b-2b55-4dd9-b3d9-ae1b22af74b0",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/003M",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "ac17bc74-86a6-4d77-ba9e-0b592253c50c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/01XN",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.242088,
+   "unitPrice": 1.242088,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "21dfed35-d848-44a6-b52b-a5f1a43383a8",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/005J",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1242088,
+     "retailPrice": 0.1242088,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1242088,
+     "retailPrice": 0.1242088,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.522168,
+   "unitPrice": 1.522168,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "4d821045-b97f-4135-9340-3f267e1fc932",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/0034",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1522168,
+     "retailPrice": 0.1522168,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1522168,
+     "retailPrice": 0.1522168,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "1cd4ee5b-2b55-4dd9-b3d9-ae1b22af74b0",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/005H",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.339512,
+   "unitPrice": 1.339512,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "4073e755-ed8d-570a-8e6e-d165d73af6be",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXL",
+   "skuId": "DZH318Z0BPXL/094D",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_GP_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1339512,
+     "retailPrice": 0.1339512,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "d79c056c-8ff1-512d-86ef-97f70d055600",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/01ZZ",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 1.175504,
+   "unitPrice": 1.175504,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-06-01T00:00:00Z",
+   "meterId": "76c645c5-6535-55b1-949f-6484677927f1",
+   "meterName": "vCore",
+   "productId": "DZH318Z0CGTV",
+   "skuId": "DZH318Z0CGTV/021L",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Compute FSv2 Series",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "8 vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1175504,
+     "retailPrice": 0.1175504,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c8b28cd3-b1df-5636-abd3-5d18ec2b45c8",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/03KK",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "bb2337fa-48ff-5f67-a686-62ba7bcd98f9",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/06CN",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.044352,
+   "unitPrice": 3.044352,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c45debef-2bd3-4a93-a219-604a2b258449",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/007Q",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.3044352,
+     "retailPrice": 0.3044352,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.3044352,
+     "retailPrice": 0.3044352,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "ba9a850d-fc90-4185-a349-8257ddb3ddb6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/008V",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.484192,
+   "unitPrice": 2.484192,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "9483fb82-964a-498f-8212-9c9230dc558c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/008T",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2484192,
+     "retailPrice": 0.2484192,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2484192,
+     "retailPrice": 0.2484192,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "italynorth",
+   "location": "IT North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "bb2337fa-48ff-5f67-a686-62ba7bcd98f9",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/06BH",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.484192,
+   "unitPrice": 2.484192,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "9483fb82-964a-498f-8212-9c9230dc558c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/0083",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2484192,
+     "retailPrice": 0.2484192,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2484192,
+     "retailPrice": 0.2484192,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c3f8faae-1a4a-4043-82a9-84c8d11f439f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/020K",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "420b1796-0a0c-5c25-abdd-216aa146ba8c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/03D0",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "germanywestcentral",
+   "location": "DE West Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c3f8faae-1a4a-4043-82a9-84c8d11f439f",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/020R",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "westeurope",
+   "location": "EU West",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "ba9a850d-fc90-4185-a349-8257ddb3ddb6",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/003V",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 3.044352,
+   "unitPrice": 3.044352,
+   "armRegionName": "francecentral",
+   "location": "FR Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c45debef-2bd3-4a93-a219-604a2b258449",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/003X",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.3044352,
+     "retailPrice": 0.3044352,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.3044352,
+     "retailPrice": 0.3044352,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "polandcentral",
+   "location": "PL Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "c8b28cd3-b1df-5636-abd3-5d18ec2b45c8",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/03JQ",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "5c0dcf20-3c40-57af-b72c-f6be3c0356dd",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/06TT",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "swedencentral",
+   "location": "SE Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "420b1796-0a0c-5c25-abdd-216aa146ba8c",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/03F3",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 2.679032,
+   "unitPrice": 2.679032,
+   "armRegionName": "spaincentral",
+   "location": "ES Central",
+   "effectiveStartDate": "2025-07-01T00:00:00Z",
+   "meterId": "5c0dcf20-3c40-57af-b72c-f6be3c0356dd",
+   "meterName": "vCore",
+   "productId": "DZH318Z0BPXH",
+   "skuId": "DZH318Z0BPXH/06TS",
+   "productName": "SQL Database Single/Elastic Pool Business Critical - Compute Gen5",
+   "skuName": "8 vCore",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "SQLDB_BC_Compute_Gen5_8",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.2679032,
+     "retailPrice": 0.2679032,
+     "term": "3 Years"
+    }
+   ]
+  }
+ ]
+}

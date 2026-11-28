@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"questions\": [{\"question\": \"How many requests or booking events per month does the API handle?\", \"why\": \"sizes App Service instance count and Front Door request charges\", \"options\": [\"Under 1 million a month\", \"1-10 million a month\", \"Over 10 million a month\"], \"components\": [\"c1\", \"c2\"]}, {\"question\": \"Is the 250 GB database expected to grow significantly over the next year?\", \"why\": \"determines whether the 8 vCore Business Critical tier and storage size still fit\", \"options\": [\"Stays about the same\", \"Grows to 500 GB or more\", \"Grows but stays under 500 GB\"], \"components\": [\"c4\"]}]}",
- "cost": 0.00020669999999999998
-}

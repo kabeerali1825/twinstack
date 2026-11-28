@@ -10,6 +10,18 @@ from app.models import Option, RunState
 from app.pricing import resolve_service, services
 
 MAX_ALTERNATIVES = 3
+# The tier sets the price as much as the size ('8 vCore' Business Critical costs ~2.5x General Purpose) and lives in
+# `details`, so it's part of what makes an idea a repeat. ponytail: keyword list; add a tier name when one is missed.
+_TIERS = re.compile(r"\b(general purpose|business critical|hyperscale|serverless|burstable|memory optimized|basic|"
+                    r"standard|premium|isolated|hot|cool|cold|archive|flex consumption|consumption|dedicated)\b", re.I)
+
+
+def _norm(sku: str | None) -> str:
+    return re.sub(r"[\s_-]", "", (sku or "").lower())  # 'P0 v3' == 'P0v3', 'Standard_D2ds_v5' == 'standardd2dsv5'
+
+
+def _key(component_id: str, service: str, sku: str | None, details: str) -> tuple:
+    return component_id, service, _norm(sku), frozenset(t.lower() for t in _TIERS.findall(details or ""))
 
 
 class _Alt(BaseModel):
@@ -93,9 +105,8 @@ def run(state: RunState) -> None:
         _Out, state, smart=True, max_tokens=800 + 700 * len(targets))
 
     target_ids = {t["component_id"] for t in targets}
-    norm = lambda s: re.sub(r"[\s_-]", "", (s or "").lower())  # 'P0 v3' == 'P0v3', 'Standard_D2ds_v5' == 'standardd2dsv5'
-    tried = {(o.component_id, o.service, norm(o.sku)) for o in state.options}
-    tried_alts = {(o.component_id, o.service, norm(o.sku)) for o in state.options if not o.is_original}
+    tried = {_key(o.component_id, o.service, o.sku, o.details) for o in state.options}
+    tried_alts = {_key(o.component_id, o.service, o.sku, o.details) for o in state.options if not o.is_original}
     count = {}
     for a in out.alternatives:
         if a.component_id not in target_ids or count.get(a.component_id, 0) >= MAX_ALTERNATIVES:
@@ -107,9 +118,9 @@ def run(state: RunState) -> None:
         # A repeat of an idea already priced and judged wastes a call. Exception: a fix may keep today's service and
         # size with a different setup (e.g. the same server with HA turned on), so it's only checked against
         # earlier alternatives, not against today's option.
-        key = (a.component_id, service, norm(a.sku))
+        key = _key(a.component_id, service, a.sku, a.details)
         orig = state.option(f"{a.component_id}.orig")
-        fix_on_today = a.component_id in issues and (service, norm(a.sku)) == (orig.service, norm(orig.sku))
+        fix_on_today = a.component_id in issues and (service, _norm(a.sku)) == (orig.service, _norm(orig.sku))
         if key in (tried_alts if fix_on_today else tried):
             state.log("Service Swap", "warn", f"Dropped a repeat of an earlier idea for {a.component_id}: {service} {a.sku or ''}")
             continue

@@ -687,6 +687,7 @@ $("use-example").onclick = () => {
   $("text").focus();
 };
 $("use-sample").onclick = async () => {
+  $("text").value = "";  // leftover text (e.g. the example) would be read as notes that conflict with the diagram
   const blob = await (await fetch(DEMO_IMAGES["contoso-bookings"])).blob();
   await attach(new File([blob], "contoso-bookings.png", { type: "image/png" }));
 };
