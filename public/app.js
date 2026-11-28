@@ -421,6 +421,10 @@ function renderResults() {
     h("span", { class: "result-buttons" },
       h("button", { type: "button", class: "btn", onclick: downloadReport }, "Download report (.md)"),
       h("button", { type: "button", class: "btn", onclick: (e) => downloadPdf(e.currentTarget) }, "Download PDF"),
+      meta.sharing && !S.saved ? h("button", {
+        type: "button", class: "btn", disabled: !!S.shared, onclick: (e) => shareRun(e.currentTarget),
+        title: "Adds this result to the samples on the home page, for anyone to open. Your diagram image is not shared.",
+      }, S.shared ? "Shared as a sample" : "Share as a sample") : null,
       h("button", { type: "button", class: "btn primary", onclick: clearRun }, "Analyze another")));
 
   const imgCard = S.demo_image ? h("div", { class: "card section" }, h("h2", {}, "Diagram analyzed"),
@@ -642,6 +646,23 @@ async function openDemo(name) {
   } catch { $("input-error").textContent = "That example isn't available right now."; show("input-error"); }
 }
 
+async function shareRun(btn) {
+  if (!confirm("Share this result as a sample? Anyone visiting TwinStack can open it, including your text description. Your diagram image is not shared.")) return;
+  btn.disabled = true;
+  try {
+    await api(`/api/share/${S.run_id}`, {});
+    S.shared = true; save();
+    btn.textContent = "Shared as a sample";
+  } catch (e) { btn.disabled = false; alert(e.message); }
+}
+
+async function openShared(id) {
+  try {
+    S = { ...(await api(`/api/shared/${id}`)), saved: true };
+    planIdx = 0; render(); window.scrollTo(0, 0);
+  } catch (e) { $("input-error").textContent = e.message; show("input-error"); }
+}
+
 // ---------- wiring ----------
 $("file").onchange = (e) => e.target.files[0] && attach(e.target.files[0]);
 $("remove-image").onclick = detach;
@@ -689,8 +710,22 @@ async function fillSamples() {
   }
 }
 
+// Visitors' shared results: up to 5, newest first, from /api/recent. Hidden when there are none.
+async function fillRecent() {
+  let runs = [];
+  try { runs = await api("/api/recent"); } catch { return; }
+  $("recent-grid").replaceChildren(...runs.map((r) => h("button", { type: "button", class: "sample", onclick: () => openShared(r.id) },
+    h("span", { class: "sample-kind" }, `${r.kind}, shared ${new Date(r.t * 1000).toLocaleDateString()}`),
+    h("span", { class: "sample-name" }, r.name),
+    h("span", { class: "sample-desc" }, r.desc),
+    h("span", { class: "sample-figs" }, h("span", { class: "was" }, money(r.was)), " to ",
+      h("strong", {}, money(r.now)), " a month", h("span", { class: "pct" }, `saves ${r.pct}%`)))));
+  show("recent", runs.length > 0);
+}
+
 (async function init() {
   fillSamples();
+  fillRecent();
   try {
     meta = await api("/api/meta");
     $("services").replaceChildren(...meta.services.map((s) => h("option", { value: s })));
