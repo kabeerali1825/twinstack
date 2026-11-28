@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"questions\": [{\"question\": \"How many API requests or events per month?\", \"why\": \"sizes load on AKS nodes and whether the 4 vCore database and P1 cache are right-sized\", \"options\": [\"Under 10 million\", \"10-100 million\", \"Over 100 million\"], \"components\": [\"c1\", \"c2\", \"c3\", \"c4\"]}, {\"question\": \"How much data is stored in the database?\", \"why\": \"storage size drives Azure SQL Database cost and tier\", \"options\": [\"Under 100 GB\", \"100-500 GB\", \"Over 500 GB\"], \"components\": [\"c3\"]}, {\"question\": \"What uptime or high availability level is required?\", \"why\": \"decides whether zone redundancy, a second region or extra nodes are needed\", \"options\": [\"Best effort, around 99.5%\", \"99.9% with zone redundancy\", \"99.99% or higher, multi-region\"], \"components\": [\"c1\", \"c2\", \"c3\", \"c4\"]}]}",
+ "cost": 0.0002493
+}

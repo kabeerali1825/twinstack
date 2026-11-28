@@ -1,0 +1,5 @@
+{
+ "model": "claude-haiku",
+ "text": "{\"questions\": [{\"question\": \"How many requests or invoice-related API calls per month?\", \"why\": \"sizes App Service instances and whether Front Door traffic tier fits\", \"options\": [\"Under 1 million a month\", \"1-10 million a month\", \"Over 10 million a month\"], \"components\": [\"c1\", \"c2\"]}, {\"question\": \"Is the bookings site needed beyond business hours, or only 9:00-18:00?\", \"why\": \"decides whether App Service can scale down off-peak or must stay at 2 always-on instances\", \"options\": [\"Business hours only\", \"Around the clock, steady load\", \"Around the clock, with a quieter night\"], \"components\": [\"c2\"]}]}",
+ "cost": 0.00021119999999999998
+}

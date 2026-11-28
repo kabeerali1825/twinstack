@@ -1,0 +1,5 @@
+{
+ "model": "claude-sonnet-5-5",
+ "text": "{\"today_monthly_usd\": 6600, \"cheaper_monthly_usd\": 3100, \"suggestions\": [\"Right-size SQL: Business Critical 8 vCore zone-redundant (~$5,000/mo) is the dominant cost. For ~5,000 users, move to General Purpose (zone redundant) at 4 vCore, or use serverless/auto-pause if load allows, and add a 1-year or 3-year reserved capacity discount (up to ~30-55% off). Validate with DTU/CPU metrics first.\", \"Replace the Functions EP1 always-ready Premium plan (~$170/mo) with a Consumption or Flex Consumption plan, since the nightly job runs only ~20 minutes. Check the job's execution time limit (Consumption defaults to 5 min, max 10; use Flex Consumption or Durable Functions if it needs longer).\", \"Cut App Service from 2x P2v3 to 2x P1v3 (or P1mv3), and use autoscale to scale in outside 9:00-18:00; buy a 1-year Reserved Instance or Savings Plan for the baseline instances (~35% saving).\", \"Move aged invoice PDFs to Cool/Archive tier with a lifecycle management policy (keeping them in EU LRS/ZRS), and consider downsizing Redis from Standard C2 to C1 if session memory use is low.\"]}",
+ "cost": 0.0063228
+}

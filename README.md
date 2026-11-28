@@ -16,10 +16,12 @@ Built for SSI's Agent-A-Thon. Read-only by design: it never connects to an Azure
 | Run your own: paste a description or upload a diagram, then watch each agent work. Click "the example text" or "a sample diagram" to start. | ~1 minute, 3 live runs per hour per visitor |
 | Open a result other visitors chose to share (home page, "Recently shared by visitors") | Free, instant |
 
-![Results for the Contoso Bookings diagram: today's $4,925/month vs a $905/month cheapest plan, with per-component prices](docs/results.png)
+![Results for the Contoso Bookings diagram: today's $4,857/month vs a $904/month cheapest plan, with per-component prices](docs/results.png)
 
 **Reading the savings.** The Cheapest plan takes the lowest-priced option for every component, which can mean a
-migration (above, most of the saving is SQL Database to PostgreSQL). Balanced and Safest keep more of today's setup;
+migration (above, SQL Database to PostgreSQL). Balanced and Safest keep more of today's setup: for Contoso, Balanced
+keeps SQL Server on a smaller General Purpose database ($1,344/month, 72% less) and Safest changes only the database
+tier and storage ($1,866/month, 62% less);
 each plan lists its trade-offs, and every rejected alternative is shown with the rule and Microsoft Learn link that
 ruled it out.
 

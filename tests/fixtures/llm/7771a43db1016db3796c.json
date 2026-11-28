@@ -1,5 +1,0 @@
-{
- "model": "claude-haiku",
- "text": "{\"questions\": [{\"question\": \"How much data will the SQL database store?\", \"why\": \"sizes storage and may require a larger database tier\", \"options\": [\"Under 100 GB\", \"100-500 GB\", \"Over 500 GB\"], \"components\": [\"c3\"]}, {\"question\": \"Is the 2,000-user load mostly steady during business hours or very spiky?\", \"why\": \"decides whether the AKS nodes need autoscaling or a fixed 3-node count fits\", \"options\": [\"Steady through business hours\", \"Sharp peaks with long quiet periods\", \"Unpredictable bursts\"], \"components\": [\"c1\", \"c2\"]}, {\"question\": \"What uptime target does the Web API need?\", \"why\": \"high availability changes node count, SQL redundancy, and Redis tier\", \"options\": [\"Best effort, around 99%\", \"99.9% or higher\", \"99.99% with failover\"], \"components\": [\"c1\", \"c2\", \"c3\", \"c4\"]}]}",
- "cost": 0.0002497
-}

@@ -1,0 +1,5 @@
+{
+ "model": "claude-sonnet-5-5",
+ "text": "{\"options\":[{\"option_id\":\"c6.r2a1\",\"meters\":[{\"index\":1,\"count\":1,\"count_means\":\"units\",\"active_fraction\":1,\"monthly_usage\":500,\"why\":\"~500 GB of invoice PDFs in Cool LRS, same General Block Blob v2 product as today's Hot setup; operations not given so not priced.\"}],\"problem\":\"\"},{\"option_id\":\"c6.r2a2\",\"meters\":[{\"index\":6,\"count\":1,\"count_means\":\"units\",\"active_fraction\":1,\"monthly_usage\":100,\"why\":\"Assumption: the ~500 GB total is spread over time and blobs stay Hot for ~30 days, so roughly the most recent 100 GB sits in Hot LRS.\"},{\"index\":2,\"count\":1,\"count_means\":\"units\",\"active_fraction\":1,\"monthly_usage\":400,\"why\":\"Assumption: the remaining ~400 GB has aged past 30 days and sits in Cool LRS; the total of Hot and Cool is 500 GB.\"}],\"problem\":\"\"}]}",
+ "cost": 0.016247
+}

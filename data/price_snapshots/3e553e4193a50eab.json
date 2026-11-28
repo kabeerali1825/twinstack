@@ -5083,7 +5083,19 @@
    "unitOfMeasure": "1 Hour",
    "type": "Consumption",
    "isPrimaryMeterRegion": true,
-   "armSkuName": "1 vCore Free Tier"
+   "armSkuName": "1 vCore Free Tier",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.0,
+     "retailPrice": 0.0,
+     "term": "3 Years"
+    }
+   ]
   },
   {
    "currencyCode": "USD",
@@ -5413,7 +5425,19 @@
    "unitOfMeasure": "1 Hour",
    "type": "Consumption",
    "isPrimaryMeterRegion": true,
-   "armSkuName": "AzureDB_PostgreSQL_OrionDB_Compute"
+   "armSkuName": "AzureDB_PostgreSQL_OrionDB_Compute",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.1607408,
+     "retailPrice": 0.1607408,
+     "term": "1 Year"
+    },
+    {
+     "unitPrice": 0.1607408,
+     "retailPrice": 0.1607408,
+     "term": "3 Years"
+    }
+   ]
   },
   {
    "currencyCode": "USD",

@@ -1,0 +1,80 @@
+{
+ "filter": "serviceName eq 'Azure Database for PostgreSQL' and armRegionName eq 'northeurope' and productName eq 'Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute' and skuName eq 'vCore'",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.0988,
+   "unitPrice": 0.0988,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-05-01T00:00:00Z",
+   "meterId": "12342617-5aa7-5014-8d8b-0fa6bf52f082",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00TG",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_General_Purpose_Ddsv5Series_Compute_vCore",
+   "savingsPlan": [
+    {
+     "unitPrice": 0.07904,
+     "retailPrice": 0.07904,
+     "term": "1 Year"
+    }
+   ]
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "reservationTerm": "1 Year",
+   "retailPrice": 519.0,
+   "unitPrice": 519.0,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-05-01T00:00:00Z",
+   "meterId": "12342617-5aa7-5014-8d8b-0fa6bf52f082",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00TQ",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Reservation",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_General_Purpose_Ddsv5Series_Compute_vCore"
+  },
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "reservationTerm": "3 Years",
+   "retailPrice": 1038.0,
+   "unitPrice": 1038.0,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-05-01T00:00:00Z",
+   "meterId": "12342617-5aa7-5014-8d8b-0fa6bf52f082",
+   "meterName": "vCore",
+   "productId": "DZH318Z0KDZJ",
+   "skuId": "DZH318Z0KDZJ/00TH",
+   "productName": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+   "skuName": "vCore",
+   "serviceName": "Azure Database for PostgreSQL",
+   "serviceId": "DZH3199QPQTD",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 Hour",
+   "type": "Reservation",
+   "isPrimaryMeterRegion": false,
+   "armSkuName": "AzureDB_PostgreSQL_Flexible_Server_General_Purpose_Ddsv5Series_Compute_vCore"
+  }
+ ]
+}
