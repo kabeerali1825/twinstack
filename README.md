@@ -8,11 +8,11 @@ in every allowed region, and returns three plans: **Cheapest, Balanced, Safest**
 
 Built for SSI's Agent-A-Thon. Read-only by design: it never connects to an Azure account.
 
-**Live app: https://twinstack-lilac.vercel.app**
+**Live app: https://archtwin.vercel.app**
 
 | Try it | Cost |
 |---|---|
-| Open a recorded result: [Web API on AKS (text input)](https://twinstack-lilac.vercel.app/?demo=aks-sql-redis) · [Contoso Bookings (diagram input)](https://twinstack-lilac.vercel.app/?demo=contoso-bookings) | Free, instant |
+| Open a recorded result: [Web API on AKS (text input)](https://archtwin.vercel.app/?demo=aks-sql-redis) · [Contoso Bookings (diagram input)](https://archtwin.vercel.app/?demo=contoso-bookings) | Free, instant |
 | Run your own: paste a description or upload a diagram, then watch each agent work. Click "the example text" or "a sample diagram" to start. | ~1 minute, 3 live runs per hour per visitor |
 | Open a result other visitors chose to share (home page, "Recently shared by visitors") | Free, instant |
 
