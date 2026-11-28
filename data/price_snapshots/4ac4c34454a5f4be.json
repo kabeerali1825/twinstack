@@ -1,0 +1,27 @@
+{
+ "filter": "serviceName eq 'SQL Database' and armRegionName eq 'northeurope' and productName eq 'SQL Database Single/Elastic Pool General Purpose - Storage' and skuName eq 'General Purpose Zone Redundancy' and meterName eq 'General Purpose Zone Redundancy Data Stored'",
+ "items": [
+  {
+   "currencyCode": "USD",
+   "tierMinimumUnits": 0.0,
+   "retailPrice": 0.253,
+   "unitPrice": 0.253,
+   "armRegionName": "northeurope",
+   "location": "EU North",
+   "effectiveStartDate": "2024-08-01T00:00:00Z",
+   "meterId": "cc96aa83-eaa9-529f-9222-e7754f158b22",
+   "meterName": "General Purpose Zone Redundancy Data Stored",
+   "productId": "DZH318Z0BQDW",
+   "skuId": "DZH318Z0BQDW/003G",
+   "productName": "SQL Database Single/Elastic Pool General Purpose - Storage",
+   "skuName": "General Purpose Zone Redundancy",
+   "serviceName": "SQL Database",
+   "serviceId": "DZH3180HX10K",
+   "serviceFamily": "Databases",
+   "unitOfMeasure": "1 GB/Month",
+   "type": "Consumption",
+   "isPrimaryMeterRegion": true,
+   "armSkuName": ""
+  }
+ ]
+}

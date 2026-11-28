@@ -1,5 +1,0 @@
-{
- "model": "claude-sonnet-5-5",
- "text": "{\"findings\":[{\"option_id\":\"c3.r1a1\",\"rule_id\":\"functions-consumption-timeout\",\"reason\":\"The nightly invoice job runs ~20 minutes but Consumption executions time out at 5 minutes by default and 10 minutes at most, so it cannot run as a single execution.\"},{\"option_id\":\"c5.r1a2\",\"rule_id\":\"redis-basic-no-sla\",\"reason\":\"Basic tier is a single node with no replication and no SLA, meant for dev/test, while this is a production session store.\"},{\"option_id\":\"c2.r1a2\",\"rule_id\":\"container-apps-scale-to-zero-cold-start\",\"reason\":\"Scaling on HTTP concurrency with a minimum of 2 replicas only 'during business hours' implies scale-to-zero outside it, so the first request after idle hits a cold start.\"}]}",
- "cost": 0.016599000000000003
-}
