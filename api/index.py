@@ -9,11 +9,12 @@ import os
 import time
 from collections import defaultdict, deque
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import Path as PathParam
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, model_validator
 
-from app import llm, orchestrator
+from app import llm, orchestrator, store
 from app.agents.parser import REGION_GROUPS
 from app.models import RunState
 from app.pricing import services
@@ -77,7 +78,8 @@ def health():
 @app.get("/api/meta")
 def meta():
     """Lists for the confirm step (service names, region groups) and the live-run limit to show."""
-    return {"services": sorted(services()), "region_groups": REGION_GROUPS, "live_runs_per_hour": LIMITS["start"]}
+    return {"services": sorted(services()), "region_groups": REGION_GROUPS, "live_runs_per_hour": LIMITS["start"],
+            "sharing": store.enabled()}
 
 
 @app.post("/api/run/start")
@@ -96,9 +98,45 @@ def run_step(state: RunState, request: Request) -> RunState:
     if len(state.components) > MAX_COMPONENTS:
         raise HTTPException(400, f"At most {MAX_COMPONENTS} components per analysis.")
     try:
-        return orchestrator.step(state)
+        state = orchestrator.step(state)
     except ValueError as e:
         raise HTTPException(400, str(e))
+    if state.step == "done":
+        try:
+            store.keep_finished(state)
+        except Exception as e:  # storage is optional: the run itself has finished fine
+            print(f"store.keep_finished failed: {e}")
+    return state
+
+
+# ---- Shared samples (Upstash Redis; no AI spend) ---------------------------------------------------
+@app.get("/api/recent")
+def recent():
+    """Card summaries of the newest runs people chose to share."""
+    if not store.enabled():
+        return []
+    try:
+        return store.recent()
+    except Exception as e:
+        print(f"store.recent failed: {e}")
+        return []
+
+
+@app.post("/api/share/{run_id}")
+def share(run_id: str = PathParam(pattern=r"^[0-9a-f]{12}$")):
+    if not store.enabled():
+        raise HTTPException(503, "Sharing isn't set up on this server.")
+    if not store.share(run_id):
+        raise HTTPException(404, "This result can no longer be shared (results can be shared for an hour after they finish).")
+    return {"ok": True}
+
+
+@app.get("/api/shared/{run_id}")
+def shared(run_id: str = PathParam(pattern=r"^[0-9a-f]{12}$")):
+    raw = store.get_shared(run_id) if store.enabled() else None
+    if raw is None:
+        raise HTTPException(404, "That shared result isn't available any more.")
+    return Response(raw, media_type="application/json")
 
 
 # Local dev: serve the frontend from the same process. On Vercel, /public is served statically.
